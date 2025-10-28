@@ -1,911 +1,835 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>KalkiNetra - Research & Threat Intelligence Lab</title>
 
-    <!-- Bootstrap 5 CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KalkiNetra - Research & Threat Intelligence Lab</title>
 
-    <!-- Bootstrap Icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
-    />
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css" />
-  </head>
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
 
-  <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top glass-navbar">
-      <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="index.html">
-          <img
-            src="/Screenshot 2025-10-25 170112.png"
-            alt="KalkiNetra Logo"
-            class="navbar-logo me-2"
-          />
-        </a>
-        <button
-          class="navbar-toggler border-0"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto align-items-center">
-            <li class="nav-item">
-              <a class="nav-link active" href="#home">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#research">Research</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#tools">Tools</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#collaboration">Collaboration</a>
-            </li>
-            <li class="nav-item ms-lg-3">
-              <a
-                class="nav-link login1 d-flex align-items-center login-link"
-                href="#login"
-              >
-                <i class="bi bi-person-circle me-2"></i>Log In
-              </a>
-            </li>
-            <li class="nav-item ms-2">
-              <a href="#contact" class="btn btn-get-started">GET STARTED</a>
-            </li>
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top glass-navbar">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="index.html">
+      <img src="/Screenshot 2025-10-25 170112.png" alt="KalkiNetra Logo" class="navbar-logo me-2" />
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto align-items-center">
+        <li class="nav-item">
+          <a class="nav-link" href="about.html">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="research.html">Research & Publications</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="solutions.html">AI Security Solutions</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="Insights.html">Insights</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="collaborate.html">Join / Collaborate</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="contact.html">Contact</a>
+        </li>
+        <li class="nav-item ms-lg-3">
+          <a class="nav-link login1 d-flex align-items-center login-link" href="#login">
+            <i class="bi bi-person-circle me-2"></i>Log In
+          </a>
+        </li>
+        <li class="nav-item ms-2">
+          <a href="contact.html" class="btn btn-get-started">GET STARTED</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero-section">
+    <!-- Background Glow Effects -->
+    <div class="glow-effect glow-1"></div>
+    <div class="glow-effect glow-2"></div>
+    <div class="glow-effect glow-3"></div>
+
+    <div class="container">
+      <div class="row min-vh-75 align-items-center justify-content-center text-center">
+        <div class="col-lg-10 ">
+          <h1 class="hero-title mb-4">
+            <span class="split-text" data-text="Exploring Vulnerabilities">Exploring Vulnerabilities</span>
+            <br />
+            <span class="split-text" data-text="Crafting Solutions">Crafting Solutions</span>
+          </h1>
+          <p class="hero-subtitle mb-2">Research & Threat Intelligence Lab</p>
+          <p class="hero-tagline mb-5">
+            Understanding AI Risks, Securing Tomorrow
+          </p>
+
+          <div class="hero-cta-buttons d-flex flex-wrap gap-3 justify-content-center">
+            <a href="#research" class="btn btn-primary-custom btn-lg">
+              <i class="bi bi-file-earmark-text me-2"></i>Discover Our Work
+            </a>
+            <a href="#collaboration" class="btn btn-outline-custom btn-lg">
+              <i class="bi bi-people me-2"></i>Collaborate with Us
+            </a>
+            <a href="#contact" class="btn btn-outline-custom btn-lg">
+              <i class="bi bi-envelope me-2"></i>Contact Us
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners/Technologies Loop Section -->
+  <section class="logo-loop-section py-4">
+    <div class="container">
+      <div class="row mb-4">
+        <div class="col-12 text-center">
+          <h3 class="loop-section-title">Trusted By Industry Leaders</h3>
+        </div>
+      </div>
+      <div class="logo-loop-wrapper">
+        <div class="logo-loop-track" id="logoTrack">
+          <!-- First set of logos -->
+          <div class="logo-loop-list">
+            <div class="logo-loop-item">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" />
+            </div>
+            <div class="logo-loop-item">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg"
+                alt="TensorFlow" />
+            </div>
+            <div class="logo-loop-item">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg"
+                alt="PyTorch" />
+            </div>
+            <div class="logo-loop-item">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" />
+            </div>
+            <div class="logo-loop-item">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg"
+                alt="Kubernetes" />
+            </div>
+            <div class="logo-loop-item">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg"
+                alt="AWS" />
+            </div>
+            <div class="logo-loop-item">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg"
+                alt="Google Cloud" />
+            </div>
+            <div class="logo-loop-item">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" alt="Azure" />
+            </div>
+          </div>
+          <!-- Duplicate set for seamless loop -->
+          <div class="logo-loop-list">
+            <div class="logo-loop-item">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" />
+            </div>
+            <div class="logo-loop-item">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg"
+                alt="TensorFlow" />
+            </div>
+            <div class="logo-loop-item">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg"
+                alt="PyTorch" />
+            </div>
+            <div class="logo-loop-item">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" />
+            </div>
+            <div class="logo-loop-item">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg"
+                alt="Kubernetes" />
+            </div>
+            <div class="logo-loop-item">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg"
+                alt="AWS" />
+            </div>
+            <div class="logo-loop-item">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg"
+                alt="Google Cloud" />
+            </div>
+            <div class="logo-loop-item">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" alt="Azure" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Founder Section -->
+  <section class="founder-section py-5">
+    <div class="container py-5">
+      <div class="row justify-content-center align-items-center g-5">
+        <div class="col-lg-4 col-md-5">
+          <div class="founder-image-wrapper">
+            <div class="founder-image-border">
+              <img src="/boss.jpg" alt="Krish Kapoor - Founder" class="founder-image" />
+            </div>
+            <div class="founder-glow-effect"></div>
+          </div>
+        </div>
+        <div class="col-lg-8 col-md-7">
+          <div class="founder-quote-card">
+            <div class="quote-icon mb-4">
+              <i class="bi bi-quote"></i>
+            </div>
+            <blockquote class="founder-quote mb-4">
+              "We stand at the intersection of intelligence and uncertainty.
+              As technology evolves, so do its shadows. At KalkiNetra, our
+              mission is to study these emerging complexities — not with fear,
+              but with curiosity — transforming vulnerabilities into
+              knowledge, and knowledge into defense."
+            </blockquote>
+            <div class="founder-info">
+              <div class="founder-name">Krish Kapoor</div>
+              <div class="founder-title">
+                Founder, KalkiNetra Research & Threat Intelligence Lab
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lab Impact Section -->
+  <section class="impact-section py-5">
+    <div class="container py-5">
+      <div class="row mb-5">
+        <div class="col-12 text-center">
+          <h2 class="section-title">Lab Impact</h2>
+          <p class="section-subtitle">
+            Driving Innovation in AI Security Research
+          </p>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-lg-3 col-md-6">
+          <div class="impact-card">
+            <div class="impact-icon mb-3">
+              <i class="bi bi-lightning-charge-fill"></i>
+            </div>
+            <div class="impact-number" data-target="10">0</div>
+            <div class="impact-label">Experiments Conducted</div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <div class="impact-card">
+            <div class="impact-icon mb-3">
+              <i class="bi bi-cpu-fill"></i>
+            </div>
+            <div class="impact-number" data-target="5">0</div>
+            <div class="impact-label">AI Models Tested</div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <div class="impact-card">
+            <div class="impact-icon mb-3">
+              <i class="bi bi-tools"></i>
+            </div>
+            <div class="impact-number" data-target="2">0</div>
+            <div class="impact-label">B2B Prototypes in Progress</div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <div class="impact-card">
+            <div class="impact-icon mb-3">
+              <i class="bi bi-people-fill"></i>
+            </div>
+            <div class="impact-number" data-target="3">0</div>
+            <div class="impact-label">Collaborations</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Research Focus Section -->
+  <section id="research" class="research-section py-5">
+    <div class="container py-5">
+      <div class="row mb-5">
+        <div class="col-12 text-center">
+          <h2 class="section-title">Research Focus Areas</h2>
+          <p class="section-subtitle">
+            Investigating Critical Vulnerabilities in AI Systems
+          </p>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <!-- Research Card 1 -->
+        <div class="col-lg-6">
+          <div class="research-card slide-in-left">
+            <div class="research-number">01</div>
+            <div class="research-icon mb-3">
+              <i class="bi bi-bug-fill"></i>
+            </div>
+            <h4 class="research-title">LLM Injection Attacks</h4>
+            <p class="research-description">
+              Exploring prompt injection vulnerabilities in Large Language
+              Models, identifying attack vectors, and developing robust
+              defense mechanisms to protect AI systems from malicious inputs.
+            </p>
+            <a href="#" class="research-link">
+              Learn More <i class="bi bi-arrow-right ms-2"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Research Card 2 -->
+        <div class="col-lg-6">
+          <div class="research-card slide-in-right">
+            <div class="research-number">02</div>
+            <div class="research-icon mb-3">
+              <i class="bi bi-shield-exclamation"></i>
+            </div>
+            <h4 class="research-title">
+              Adversarial AI & Model Manipulation
+            </h4>
+            <p class="research-description">
+              Investigating techniques used to deceive AI models through
+              adversarial examples, studying model robustness, and creating
+              frameworks for adversarial defense strategies.
+            </p>
+            <a href="#" class="research-link">
+              Learn More <i class="bi bi-arrow-right ms-2"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Research Card 3 -->
+        <div class="col-lg-6">
+          <div class="research-card slide-in-left">
+            <div class="research-number">03</div>
+            <div class="research-icon mb-3">
+              <i class="bi bi-droplet-fill"></i>
+            </div>
+            <h4 class="research-title">Data Poisoning & Model Exploits</h4>
+            <p class="research-description">
+              Analyzing training data manipulation attacks, backdoor insertion
+              techniques, and developing detection systems to identify
+              compromised datasets and model integrity issues.
+            </p>
+            <a href="#" class="research-link">
+              Learn More <i class="bi bi-arrow-right ms-2"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Research Card 4 -->
+        <div class="col-lg-6">
+          <div class="research-card slide-in-right">
+            <div class="research-number">04</div>
+            <div class="research-icon mb-3">
+              <i class="bi bi-search"></i>
+            </div>
+            <h4 class="research-title">AI Risk Assessments</h4>
+            <p class="research-description">
+              Conducting comprehensive security audits of AI systems,
+              evaluating risk factors, and establishing best practices for
+              secure AI deployment in enterprise environments.
+            </p>
+            <a href="#" class="research-link">
+              Learn More <i class="bi bi-arrow-right ms-2"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured B2B Tools Section -->
+  <section id="tools" class="tools-section py-5">
+    <div class="container py-5">
+      <div class="row mb-5">
+        <div class="col-12 text-center">
+          <h2 class="section-title">Featured B2B Tools</h2>
+          <p class="section-subtitle">
+            Enterprise-Grade Security Solutions for AI Systems
+          </p>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <!-- Tool Card 1 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="tool-card fade-up" style="animation-delay: 0.2s">
+            <div class="tool-icon-wrapper mb-4">
+              <i class="bi bi-shield-check"></i>
+            </div>
+            <h4 class="tool-title mb-3">AI Security Assessment Toolkit</h4>
+            <p class="tool-description mb-4">
+              Comprehensive testing suite for identifying vulnerabilities in
+              AI models, including automated scanning, risk scoring, and
+              detailed reporting capabilities.
+            </p>
+            <ul class="tool-features">
+              <li>
+                <i class="bi bi-check-circle-fill me-2"></i>Automated
+                vulnerability scanning
+              </li>
+              <li>
+                <i class="bi bi-check-circle-fill me-2"></i>Real-time threat
+                detection
+              </li>
+              <li>
+                <i class="bi bi-check-circle-fill me-2"></i>Compliance
+                reporting
+              </li>
+            </ul>
+            <a href="#" class="btn btn-tool-action mt-3">Request Demo <i class="bi bi-arrow-right ms-2"></i></a>
+          </div>
+        </div>
+
+        <!-- Tool Card 2 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="tool-card fade-up" style="animation-delay: 0.4s">
+            <div class="tool-icon-wrapper mb-4">
+              <i class="bi bi-file-earmark-lock"></i>
+            </div>
+            <h4 class="tool-title mb-3">
+              Prompt Injection Mitigation System
+            </h4>
+            <p class="tool-description mb-4">
+              Advanced filtering and detection system designed to prevent
+              prompt injection attacks, protecting LLMs from malicious user
+              inputs and jailbreak attempts.
+            </p>
+            <ul class="tool-features">
+              <li>
+                <i class="bi bi-check-circle-fill me-2"></i>Real-time prompt
+                analysis
+              </li>
+              <li>
+                <i class="bi bi-check-circle-fill me-2"></i>Pattern-based
+                detection
+              </li>
+              <li>
+                <i class="bi bi-check-circle-fill me-2"></i>API integration
+                ready
+              </li>
+            </ul>
+            <a href="#" class="btn btn-tool-action mt-3">Request Demo <i class="bi bi-arrow-right ms-2"></i></a>
+          </div>
+        </div>
+
+        <!-- Tool Card 3 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="tool-card fade-up" style="animation-delay: 0.6s">
+            <div class="tool-icon-wrapper mb-4">
+              <i class="bi bi-diagram-3"></i>
+            </div>
+            <h4 class="tool-title mb-3">Adversarial Testing Framework</h4>
+            <p class="tool-description mb-4">
+              Robust platform for evaluating model resilience against
+              adversarial attacks, with customizable attack scenarios and
+              performance benchmarking.
+            </p>
+            <ul class="tool-features">
+              <li>
+                <i class="bi bi-check-circle-fill me-2"></i>Custom attack
+                generation
+              </li>
+              <li>
+                <i class="bi bi-check-circle-fill me-2"></i>Model robustness
+                scoring
+              </li>
+              <li>
+                <i class="bi bi-check-circle-fill me-2"></i>Defense strategy
+                recommendations
+              </li>
+            </ul>
+            <a href="#" class="btn btn-tool-action mt-3">Request Demo <i class="bi bi-arrow-right ms-2"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Collaboration Callout Section -->
+  <section id="collaboration" class="collaboration-section py-5">
+    <div class="glow-effect glow-collab"></div>
+    <div class="container py-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+          <div class="collab-icon mb-4">
+            <i class="bi bi-people-fill"></i>
+          </div>
+          <h2 class="section-title mb-4">
+            We thrive on collaboration.<br />Let's secure the future together.
+          </h2>
+          <p class="collab-description mb-5">
+            Partner with us on cutting-edge research, contribute to
+            open-source security tools, or collaborate on custom AI security
+            solutions for your organization.
+          </p>
+          <a href="#" class="btn btn-collab-cta btn-lg">
+            Start a Collaboration <i class="bi bi-arrow-right ms-2"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Section -->
+  <section class="newsletter-section py-5">
+    <div class="container py-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="newsletter-card">
+            <div class="newsletter-icon mb-4">
+              <i class="bi bi-envelope-fill"></i>
+            </div>
+            <h3 class="newsletter-title mb-3">Stay Updated</h3>
+            <p class="newsletter-description mb-4">
+              Subscribe for updates on AI security research, tools, and
+              prototypes. Join our community of security researchers and
+              professionals.
+            </p>
+            <form class="newsletter-form">
+              <div class="input-group">
+                <input type="email" class="form-control" placeholder="Enter your email address" required />
+                <button type="submit" class="btn btn-newsletter">
+                  Subscribe <i class="bi bi-send-fill ms-2"></i>
+                </button>
+              </div>
+              <small class="form-text">We respect your privacy. Unsubscribe anytime.</small>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact" class="footer-section py-5">
+    <div class="container py-4">
+      <div class="row g-4 mb-5">
+        <div class="col-lg-4 col-md-6">
+          <a class="footer-brand d-flex align-items-center mb-3" href="index.html">
+            <i class="bi bi-shield-lock-fill me-2"></i>
+            <span class="fw-bold">KalkiNetra</span>
+          </a>
+          <p class="footer-tagline mb-3">
+            Research & Threat Intelligence Lab
+          </p>
+          <p class="footer-contact mb-3">
+            <i class="bi bi-envelope me-2"></i>contact@kalkinetra.com
+          </p>
+          <p class="footer-contact mb-4">
+            <i class="bi bi-geo-alt me-2"></i>Research Lab, Innovation
+            District
+          </p>
+          <div class="social-links d-flex gap-3">
+            <a href="#" class="social-link" aria-label="LinkedIn">
+              <i class="bi bi-linkedin"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="Twitter">
+              <i class="bi bi-twitter"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="GitHub">
+              <i class="bi bi-github"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="Email">
+              <i class="bi bi-envelope-fill"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-6">
+          <h6 class="footer-heading mb-3">Research</h6>
+          <ul class="footer-links list-unstyled">
+            <li><a href="#research">Focus Areas</a></li>
+            <li><a href="#">Publications</a></li>
+            <li><a href="#">Case Studies</a></li>
+            <li><a href="#">Resources</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-6">
+          <h6 class="footer-heading mb-3">Tools</h6>
+          <ul class="footer-links list-unstyled">
+            <li><a href="#tools">Security Toolkit</a></li>
+            <li><a href="#tools">Injection Mitigation</a></li>
+            <li><a href="#tools">Testing Framework</a></li>
+            <li><a href="#">Documentation</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-6">
+          <h6 class="footer-heading mb-3">Company</h6>
+          <ul class="footer-links list-unstyled">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#collaboration">Collaborate</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-6">
+          <h6 class="footer-heading mb-3">Legal</h6>
+          <ul class="footer-links list-unstyled">
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Cookie Policy</a></li>
+            <li><a href="#">Security</a></li>
           </ul>
         </div>
       </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero-section">
-      <!-- Background Glow Effects -->
-      <div class="glow-effect glow-1"></div>
-      <div class="glow-effect glow-2"></div>
-      <div class="glow-effect glow-3"></div>
+      <hr class="footer-divider" />
 
-      <div class="container">
-        <div
-          class="row min-vh-75 align-items-center justify-content-center text-center"
-        >
-          <div class="col-lg-10">
-            <h1 class="hero-title mb-4">
-              <span class="split-text" data-text="Exploring Vulnerabilities"
-                >Exploring Vulnerabilities</span
-              >
-              <br />
-              <span class="split-text" data-text="Crafting Solutions"
-                >Crafting Solutions</span
-              >
-            </h1>
-            <p class="hero-subtitle mb-2">Research & Threat Intelligence Lab</p>
-            <p class="hero-tagline mb-5">
-              Understanding AI Risks, Securing Tomorrow
-            </p>
-
-            <div
-              class="hero-cta-buttons d-flex flex-wrap gap-3 justify-content-center"
-            >
-              <a href="#research" class="btn btn-primary-custom btn-lg">
-                <i class="bi bi-file-earmark-text me-2"></i>Discover Our Work
-              </a>
-              <a href="#collaboration" class="btn btn-outline-custom btn-lg">
-                <i class="bi bi-people me-2"></i>Collaborate with Us
-              </a>
-              <a href="#contact" class="btn btn-outline-custom btn-lg">
-                <i class="bi bi-envelope me-2"></i>Contact Us
-              </a>
-            </div>
-          </div>
+      <div class="row">
+        <div class="col-12 text-center">
+          <p class="footer-copyright mb-0">
+            © 2025 KalkiNetra Research & Threat Intelligence Lab. All rights
+            reserved.
+            <span class="d-inline-block ms-2">Built with <i class="bi bi-heart-fill text-danger"></i> for AI
+              Security</span>
+          </p>
         </div>
       </div>
-    </section>
+    </div>
+  </footer>
 
-    <!-- Partners/Technologies Loop Section -->
-    <section class="logo-loop-section py-4">
-      <div class="container">
-        <div class="row mb-4">
-          <div class="col-12 text-center">
-            <h3 class="loop-section-title">Trusted By Industry Leaders</h3>
-          </div>
-        </div>
-        <div class="logo-loop-wrapper">
-          <div class="logo-loop-track" id="logoTrack">
-            <!-- First set of logos -->
-            <div class="logo-loop-list">
-              <div class="logo-loop-item">
-                <img
-                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
-                  alt="Python"
-                />
-              </div>
-              <div class="logo-loop-item">
-                <img
-                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg"
-                  alt="TensorFlow"
-                />
-              </div>
-              <div class="logo-loop-item">
-                <img
-                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg"
-                  alt="PyTorch"
-                />
-              </div>
-              <div class="logo-loop-item">
-                <img
-                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
-                  alt="Docker"
-                />
-              </div>
-              <div class="logo-loop-item">
-                <img
-                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg"
-                  alt="Kubernetes"
-                />
-              </div>
-              <div class="logo-loop-item">
-                <img
-                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg"
-                  alt="AWS"
-                />
-              </div>
-              <div class="logo-loop-item">
-                <img
-                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg"
-                  alt="Google Cloud"
-                />
-              </div>
-              <div class="logo-loop-item">
-                <img
-                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg"
-                  alt="Azure"
-                />
-              </div>
-            </div>
-            <!-- Duplicate set for seamless loop -->
-            <div class="logo-loop-list">
-              <div class="logo-loop-item">
-                <img
-                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
-                  alt="Python"
-                />
-              </div>
-              <div class="logo-loop-item">
-                <img
-                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg"
-                  alt="TensorFlow"
-                />
-              </div>
-              <div class="logo-loop-item">
-                <img
-                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg"
-                  alt="PyTorch"
-                />
-              </div>
-              <div class="logo-loop-item">
-                <img
-                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
-                  alt="Docker"
-                />
-              </div>
-              <div class="logo-loop-item">
-                <img
-                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg"
-                  alt="Kubernetes"
-                />
-              </div>
-              <div class="logo-loop-item">
-                <img
-                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg"
-                  alt="AWS"
-                />
-              </div>
-              <div class="logo-loop-item">
-                <img
-                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg"
-                  alt="Google Cloud"
-                />
-              </div>
-              <div class="logo-loop-item">
-                <img
-                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg"
-                  alt="Azure"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Founder Section -->
-    <section class="founder-section py-5">
-      <div class="container py-5">
-        <div class="row justify-content-center align-items-center g-5">
-          <div class="col-lg-4 col-md-5">
-            <div class="founder-image-wrapper">
-              <div class="founder-image-border">
-                <img
-                  src="/boss.jpg"
-                  alt="Krish Kapoor - Founder"
-                  class="founder-image"
-                />
-              </div>
-              <div class="founder-glow-effect"></div>
-            </div>
-          </div>
-          <div class="col-lg-8 col-md-7">
-            <div class="founder-quote-card">
-              <div class="quote-icon mb-4">
-                <i class="bi bi-quote"></i>
-              </div>
-              <blockquote class="founder-quote mb-4">
-                "We stand at the intersection of intelligence and uncertainty.
-                As technology evolves, so do its shadows. At KalkiNetra, our
-                mission is to study these emerging complexities — not with fear,
-                but with curiosity — transforming vulnerabilities into
-                knowledge, and knowledge into defense."
-              </blockquote>
-              <div class="founder-info">
-                <div class="founder-name">Krish Kapoor</div>
-                <div class="founder-title">
-                  Founder, KalkiNetra Research & Threat Intelligence Lab
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+  <!-- Custom JavaScript -->
+  <script>
+    // Wait for everything to load
+    window.addEventListener("load", function () {
+      // Split Text Animation Function
+      function initSplitText() {
+        const splitTextElements = document.querySelectorAll(".split-text");
 
-    <!-- Lab Impact Section -->
-    <section class="impact-section py-5">
-      <div class="container py-5">
-        <div class="row mb-5">
-          <div class="col-12 text-center">
-            <h2 class="section-title">Lab Impact</h2>
-            <p class="section-subtitle">
-              Driving Innovation in AI Security Research
-            </p>
-          </div>
-        </div>
+        splitTextElements.forEach((element, lineIndex) => {
+          const text = element.getAttribute("data-text");
+          if (!text) return;
 
-        <div class="row g-4">
-          <div class="col-lg-3 col-md-6">
-            <div class="impact-card">
-              <div class="impact-icon mb-3">
-                <i class="bi bi-lightning-charge-fill"></i>
-              </div>
-              <div class="impact-number" data-target="10">0</div>
-              <div class="impact-label">Experiments Conducted</div>
-            </div>
-          </div>
+          element.innerHTML = "";
+          element.style.display = "inline-block";
 
-          <div class="col-lg-3 col-md-6">
-            <div class="impact-card">
-              <div class="impact-icon mb-3">
-                <i class="bi bi-cpu-fill"></i>
-              </div>
-              <div class="impact-number" data-target="5">0</div>
-              <div class="impact-label">AI Models Tested</div>
-            </div>
-          </div>
+          // Split text into individual letters
+          const letters = text.split("");
+          letters.forEach((char, charIndex) => {
+            const span = document.createElement("span");
+            span.className = "letter";
 
-          <div class="col-lg-3 col-md-6">
-            <div class="impact-card">
-              <div class="impact-icon mb-3">
-                <i class="bi bi-tools"></i>
-              </div>
-              <div class="impact-number" data-target="2">0</div>
-              <div class="impact-label">B2B Prototypes in Progress</div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6">
-            <div class="impact-card">
-              <div class="impact-icon mb-3">
-                <i class="bi bi-people-fill"></i>
-              </div>
-              <div class="impact-number" data-target="3">0</div>
-              <div class="impact-label">Collaborations</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Research Focus Section -->
-    <section id="research" class="research-section py-5">
-      <div class="container py-5">
-        <div class="row mb-5">
-          <div class="col-12 text-center">
-            <h2 class="section-title">Research Focus Areas</h2>
-            <p class="section-subtitle">
-              Investigating Critical Vulnerabilities in AI Systems
-            </p>
-          </div>
-        </div>
-
-        <div class="row g-4">
-          <!-- Research Card 1 -->
-          <div class="col-lg-6">
-            <div class="research-card slide-in-left">
-              <div class="research-number">01</div>
-              <div class="research-icon mb-3">
-                <i class="bi bi-bug-fill"></i>
-              </div>
-              <h4 class="research-title">LLM Injection Attacks</h4>
-              <p class="research-description">
-                Exploring prompt injection vulnerabilities in Large Language
-                Models, identifying attack vectors, and developing robust
-                defense mechanisms to protect AI systems from malicious inputs.
-              </p>
-              <a href="#" class="research-link">
-                Learn More <i class="bi bi-arrow-right ms-2"></i>
-              </a>
-            </div>
-          </div>
-
-          <!-- Research Card 2 -->
-          <div class="col-lg-6">
-            <div class="research-card slide-in-right">
-              <div class="research-number">02</div>
-              <div class="research-icon mb-3">
-                <i class="bi bi-shield-exclamation"></i>
-              </div>
-              <h4 class="research-title">
-                Adversarial AI & Model Manipulation
-              </h4>
-              <p class="research-description">
-                Investigating techniques used to deceive AI models through
-                adversarial examples, studying model robustness, and creating
-                frameworks for adversarial defense strategies.
-              </p>
-              <a href="#" class="research-link">
-                Learn More <i class="bi bi-arrow-right ms-2"></i>
-              </a>
-            </div>
-          </div>
-
-          <!-- Research Card 3 -->
-          <div class="col-lg-6">
-            <div class="research-card slide-in-left">
-              <div class="research-number">03</div>
-              <div class="research-icon mb-3">
-                <i class="bi bi-droplet-fill"></i>
-              </div>
-              <h4 class="research-title">Data Poisoning & Model Exploits</h4>
-              <p class="research-description">
-                Analyzing training data manipulation attacks, backdoor insertion
-                techniques, and developing detection systems to identify
-                compromised datasets and model integrity issues.
-              </p>
-              <a href="#" class="research-link">
-                Learn More <i class="bi bi-arrow-right ms-2"></i>
-              </a>
-            </div>
-          </div>
-
-          <!-- Research Card 4 -->
-          <div class="col-lg-6">
-            <div class="research-card slide-in-right">
-              <div class="research-number">04</div>
-              <div class="research-icon mb-3">
-                <i class="bi bi-search"></i>
-              </div>
-              <h4 class="research-title">AI Risk Assessments</h4>
-              <p class="research-description">
-                Conducting comprehensive security audits of AI systems,
-                evaluating risk factors, and establishing best practices for
-                secure AI deployment in enterprise environments.
-              </p>
-              <a href="#" class="research-link">
-                Learn More <i class="bi bi-arrow-right ms-2"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Featured B2B Tools Section -->
-    <section id="tools" class="tools-section py-5">
-      <div class="container py-5">
-        <div class="row mb-5">
-          <div class="col-12 text-center">
-            <h2 class="section-title">Featured B2B Tools</h2>
-            <p class="section-subtitle">
-              Enterprise-Grade Security Solutions for AI Systems
-            </p>
-          </div>
-        </div>
-
-        <div class="row g-4">
-          <!-- Tool Card 1 -->
-          <div class="col-lg-4 col-md-6">
-            <div class="tool-card fade-up" style="animation-delay: 0.2s">
-              <div class="tool-icon-wrapper mb-4">
-                <i class="bi bi-shield-check"></i>
-              </div>
-              <h4 class="tool-title mb-3">AI Security Assessment Toolkit</h4>
-              <p class="tool-description mb-4">
-                Comprehensive testing suite for identifying vulnerabilities in
-                AI models, including automated scanning, risk scoring, and
-                detailed reporting capabilities.
-              </p>
-              <ul class="tool-features">
-                <li>
-                  <i class="bi bi-check-circle-fill me-2"></i>Automated
-                  vulnerability scanning
-                </li>
-                <li>
-                  <i class="bi bi-check-circle-fill me-2"></i>Real-time threat
-                  detection
-                </li>
-                <li>
-                  <i class="bi bi-check-circle-fill me-2"></i>Compliance
-                  reporting
-                </li>
-              </ul>
-              <a href="#" class="btn btn-tool-action mt-3"
-                >Request Demo <i class="bi bi-arrow-right ms-2"></i
-              ></a>
-            </div>
-          </div>
-
-          <!-- Tool Card 2 -->
-          <div class="col-lg-4 col-md-6">
-            <div class="tool-card fade-up" style="animation-delay: 0.4s">
-              <div class="tool-icon-wrapper mb-4">
-                <i class="bi bi-file-earmark-lock"></i>
-              </div>
-              <h4 class="tool-title mb-3">
-                Prompt Injection Mitigation System
-              </h4>
-              <p class="tool-description mb-4">
-                Advanced filtering and detection system designed to prevent
-                prompt injection attacks, protecting LLMs from malicious user
-                inputs and jailbreak attempts.
-              </p>
-              <ul class="tool-features">
-                <li>
-                  <i class="bi bi-check-circle-fill me-2"></i>Real-time prompt
-                  analysis
-                </li>
-                <li>
-                  <i class="bi bi-check-circle-fill me-2"></i>Pattern-based
-                  detection
-                </li>
-                <li>
-                  <i class="bi bi-check-circle-fill me-2"></i>API integration
-                  ready
-                </li>
-              </ul>
-              <a href="#" class="btn btn-tool-action mt-3"
-                >Request Demo <i class="bi bi-arrow-right ms-2"></i
-              ></a>
-            </div>
-          </div>
-
-          <!-- Tool Card 3 -->
-          <div class="col-lg-4 col-md-6">
-            <div class="tool-card fade-up" style="animation-delay: 0.6s">
-              <div class="tool-icon-wrapper mb-4">
-                <i class="bi bi-diagram-3"></i>
-              </div>
-              <h4 class="tool-title mb-3">Adversarial Testing Framework</h4>
-              <p class="tool-description mb-4">
-                Robust platform for evaluating model resilience against
-                adversarial attacks, with customizable attack scenarios and
-                performance benchmarking.
-              </p>
-              <ul class="tool-features">
-                <li>
-                  <i class="bi bi-check-circle-fill me-2"></i>Custom attack
-                  generation
-                </li>
-                <li>
-                  <i class="bi bi-check-circle-fill me-2"></i>Model robustness
-                  scoring
-                </li>
-                <li>
-                  <i class="bi bi-check-circle-fill me-2"></i>Defense strategy
-                  recommendations
-                </li>
-              </ul>
-              <a href="#" class="btn btn-tool-action mt-3"
-                >Request Demo <i class="bi bi-arrow-right ms-2"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Collaboration Callout Section -->
-    <section id="collaboration" class="collaboration-section py-5">
-      <div class="glow-effect glow-collab"></div>
-      <div class="container py-5">
-        <div class="row justify-content-center">
-          <div class="col-lg-8 text-center">
-            <div class="collab-icon mb-4">
-              <i class="bi bi-people-fill"></i>
-            </div>
-            <h2 class="section-title mb-4">
-              We thrive on collaboration.<br />Let's secure the future together.
-            </h2>
-            <p class="collab-description mb-5">
-              Partner with us on cutting-edge research, contribute to
-              open-source security tools, or collaborate on custom AI security
-              solutions for your organization.
-            </p>
-            <a href="#" class="btn btn-collab-cta btn-lg">
-              Start a Collaboration <i class="bi bi-arrow-right ms-2"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Newsletter Section -->
-    <section class="newsletter-section py-5">
-      <div class="container py-5">
-        <div class="row justify-content-center">
-          <div class="col-lg-8">
-            <div class="newsletter-card">
-              <div class="newsletter-icon mb-4">
-                <i class="bi bi-envelope-fill"></i>
-              </div>
-              <h3 class="newsletter-title mb-3">Stay Updated</h3>
-              <p class="newsletter-description mb-4">
-                Subscribe for updates on AI security research, tools, and
-                prototypes. Join our community of security researchers and
-                professionals.
-              </p>
-              <form class="newsletter-form">
-                <div class="input-group">
-                  <input
-                    type="email"
-                    class="form-control"
-                    placeholder="Enter your email address"
-                    required
-                  />
-                  <button type="submit" class="btn btn-newsletter">
-                    Subscribe <i class="bi bi-send-fill ms-2"></i>
-                  </button>
-                </div>
-                <small class="form-text"
-                  >We respect your privacy. Unsubscribe anytime.</small
-                >
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer id="contact" class="footer-section py-5">
-      <div class="container py-4">
-        <div class="row g-4 mb-5">
-          <div class="col-lg-4 col-md-6">
-            <a
-              class="footer-brand d-flex align-items-center mb-3"
-              href="index.html"
-            >
-              <i class="bi bi-shield-lock-fill me-2"></i>
-              <span class="fw-bold">KalkiNetra</span>
-            </a>
-            <p class="footer-tagline mb-3">
-              Research & Threat Intelligence Lab
-            </p>
-            <p class="footer-contact mb-3">
-              <i class="bi bi-envelope me-2"></i>contact@kalkinetra.com
-            </p>
-            <p class="footer-contact mb-4">
-              <i class="bi bi-geo-alt me-2"></i>Research Lab, Innovation
-              District
-            </p>
-            <div class="social-links d-flex gap-3">
-              <a href="#" class="social-link" aria-label="LinkedIn">
-                <i class="bi bi-linkedin"></i>
-              </a>
-              <a href="#" class="social-link" aria-label="Twitter">
-                <i class="bi bi-twitter"></i>
-              </a>
-              <a href="#" class="social-link" aria-label="GitHub">
-                <i class="bi bi-github"></i>
-              </a>
-              <a href="#" class="social-link" aria-label="Email">
-                <i class="bi bi-envelope-fill"></i>
-              </a>
-            </div>
-          </div>
-
-          <div class="col-lg-2 col-md-6">
-            <h6 class="footer-heading mb-3">Research</h6>
-            <ul class="footer-links list-unstyled">
-              <li><a href="#research">Focus Areas</a></li>
-              <li><a href="#">Publications</a></li>
-              <li><a href="#">Case Studies</a></li>
-              <li><a href="#">Resources</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-2 col-md-6">
-            <h6 class="footer-heading mb-3">Tools</h6>
-            <ul class="footer-links list-unstyled">
-              <li><a href="#tools">Security Toolkit</a></li>
-              <li><a href="#tools">Injection Mitigation</a></li>
-              <li><a href="#tools">Testing Framework</a></li>
-              <li><a href="#">Documentation</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-2 col-md-6">
-            <h6 class="footer-heading mb-3">Company</h6>
-            <ul class="footer-links list-unstyled">
-              <li><a href="#">About Us</a></li>
-              <li><a href="#collaboration">Collaborate</a></li>
-              <li><a href="#">Careers</a></li>
-              <li><a href="#contact">Contact</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-2 col-md-6">
-            <h6 class="footer-heading mb-3">Legal</h6>
-            <ul class="footer-links list-unstyled">
-              <li><a href="#">Privacy Policy</a></li>
-              <li><a href="#">Terms of Service</a></li>
-              <li><a href="#">Cookie Policy</a></li>
-              <li><a href="#">Security</a></li>
-            </ul>
-          </div>
-        </div>
-
-        <hr class="footer-divider" />
-
-        <div class="row">
-          <div class="col-12 text-center">
-            <p class="footer-copyright mb-0">
-              © 2025 KalkiNetra Research & Threat Intelligence Lab. All rights
-              reserved.
-              <span class="d-inline-block ms-2"
-                >Built with <i class="bi bi-heart-fill text-danger"></i> for AI
-                Security</span
-              >
-            </p>
-          </div>
-        </div>
-      </div>
-    </footer>
-
-    <!-- Bootstrap 5 JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Custom JavaScript -->
-    <script>
-      // Wait for everything to load
-      window.addEventListener("load", function () {
-        // Split Text Animation Function
-        function initSplitText() {
-          const splitTextElements = document.querySelectorAll(".split-text");
-
-          splitTextElements.forEach((element, lineIndex) => {
-            const text = element.getAttribute("data-text");
-            if (!text) return;
-
-            element.innerHTML = "";
-            element.style.display = "inline-block";
-
-            // Split text into individual letters
-            const letters = text.split("");
-            letters.forEach((char, charIndex) => {
-              const span = document.createElement("span");
-              span.className = "letter";
-
-              // Handle spaces
-              if (char === " ") {
-                span.innerHTML = "&nbsp;";
-              } else {
-                span.textContent = char;
-              }
-
-              // Calculate delay: second line starts after first line completes
-              const baseDelay = lineIndex * 1000; // 1 second between lines
-              const charDelay = charIndex * 40; // 40ms between each character
-              span.style.animationDelay = `${baseDelay + charDelay}ms`;
-
-              element.appendChild(span);
-            });
-          });
-        }
-
-        // Initialize split text
-        initSplitText();
-
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-          anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute("href"));
-            if (target) {
-              const offset = 80; // Account for fixed navbar
-              const targetPosition = target.offsetTop - offset;
-              window.scrollTo({
-                top: targetPosition,
-                behavior: "smooth",
-              });
+            // Handle spaces
+            if (char === " ") {
+              span.innerHTML = "&nbsp;";
+            } else {
+              span.textContent = char;
             }
+
+            // Calculate delay: second line starts after first line completes
+            const baseDelay = lineIndex * 1000; // 1 second between lines
+            const charDelay = charIndex * 40; // 40ms between each character
+            span.style.animationDelay = `${baseDelay + charDelay}ms`;
+
+            element.appendChild(span);
           });
         });
+      }
 
-        // Navbar active state on scroll
-        function updateActiveNav() {
-          const sections = document.querySelectorAll("section[id]");
-          const navLinks = document.querySelectorAll(".nav-link");
+      // Initialize split text
+      initSplitText();
 
-          let current = "home";
-          const scrollPos = window.pageYOffset + 200;
-
-          sections.forEach((section) => {
-            const sectionTop = section.offsetTop;
-            const sectionBottom = sectionTop + section.offsetHeight;
-
-            if (scrollPos >= sectionTop && scrollPos < sectionBottom) {
-              current = section.getAttribute("id");
-            }
-          });
-
-          navLinks.forEach((link) => {
-            link.classList.remove("active");
-            if (link.getAttribute("href") === "#" + current) {
-              link.classList.add("active");
-            }
-          });
-        }
-
-        window.addEventListener("scroll", updateActiveNav);
-        updateActiveNav(); // Run once on load
-
-        // Intersection Observer for slide-in animations
-        const observerOptions = {
-          threshold: 0.15,
-          rootMargin: "0px 0px -100px 0px",
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("animate");
-              observer.unobserve(entry.target); // Animate only once
-            }
-          });
-        }, observerOptions);
-
-        // Observe all elements with slide-in classes
-        setTimeout(() => {
-          document
-            .querySelectorAll(".slide-in-left, .slide-in-right")
-            .forEach((el) => {
-              observer.observe(el);
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            const offset = 80; // Account for fixed navbar
+            const targetPosition = target.offsetTop - offset;
+            window.scrollTo({
+              top: targetPosition,
+              behavior: "smooth",
             });
-        }, 100);
-
-        // Tool card expand functionality
-        document.querySelectorAll(".tool-card").forEach((card) => {
-          card.addEventListener("click", function (e) {
-            // Don't toggle if clicking the button
-            if (!e.target.closest(".btn-tool-action")) {
-              this.classList.toggle("expanded");
-            }
-          });
-        });
-
-        // Newsletter form submission
-        const newsletterForm = document.querySelector(".newsletter-form");
-        if (newsletterForm) {
-          newsletterForm.addEventListener("submit", function (e) {
-            e.preventDefault();
-            const email = this.querySelector('input[type="email"]').value;
-            alert("Thank you for subscribing! We'll send updates to: " + email);
-            this.reset();
-          });
-        }
-
-        // Add scroll indicator fade on navbar with liquid glass effect
-        const navbar = document.querySelector(".glass-navbar");
-
-        window.addEventListener("scroll", function () {
-          const scrollTop =
-            window.pageYOffset || document.documentElement.scrollTop;
-
-          if (scrollTop > 50) {
-            navbar.classList.add("scrolled");
-          } else {
-            navbar.classList.remove("scrolled");
           }
         });
       });
-    </script>
-    <script>
-      // Count Up Animation for Impact Numbers
-      function initCountUp() {
-        const impactNumbers = document.querySelectorAll(".impact-number");
 
-        const observerOptions = {
-          threshold: 0.5,
-          rootMargin: "0px",
-        };
+      // Navbar active state on scroll
+      function updateActiveNav() {
+        const sections = document.querySelectorAll("section[id]");
+        const navLinks = document.querySelectorAll(".nav-link");
 
-        const countUp = (element) => {
-          const target = parseInt(element.getAttribute("data-target"));
-          const duration = 2000; // 2 seconds
-          const increment = target / (duration / 16); // 60fps
-          let current = 0;
+        let current = "home";
+        const scrollPos = window.pageYOffset + 200;
 
-          const timer = setInterval(() => {
-            current += increment;
-            if (current >= target) {
-              element.textContent = target + "+";
-              clearInterval(timer);
-            } else {
-              element.textContent = Math.floor(current) + "+";
-            }
-          }, 16);
-        };
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop;
+          const sectionBottom = sectionTop + section.offsetHeight;
 
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (
-              entry.isIntersecting &&
-              !entry.target.classList.contains("counted")
-            ) {
-              entry.target.classList.add("counted");
-              countUp(entry.target);
-            }
-          });
-        }, observerOptions);
+          if (scrollPos >= sectionTop && scrollPos < sectionBottom) {
+            current = section.getAttribute("id");
+          }
+        });
 
-        impactNumbers.forEach((number) => observer.observe(number));
+        navLinks.forEach((link) => {
+          link.classList.remove("active");
+          if (link.getAttribute("href") === "#" + current) {
+            link.classList.add("active");
+          }
+        });
       }
 
-      // Initialize when DOM is ready
-      if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", initCountUp);
-      } else {
-        initCountUp();
-      }
-    </script>
-    <script>
-      // Fade-up animation when section appears
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("show");
-            }
-          });
-        },
-        { threshold: 0.2 }
-      );
+      window.addEventListener("scroll", updateActiveNav);
+      updateActiveNav(); // Run once on load
 
-      document
-        .querySelectorAll(".tool-card")
-        .forEach((card) => observer.observe(card));
-    </script>
-  </body>
+      // Intersection Observer for slide-in animations
+      const observerOptions = {
+        threshold: 0.15,
+        rootMargin: "0px 0px -100px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate");
+            observer.unobserve(entry.target); // Animate only once
+          }
+        });
+      }, observerOptions);
+
+      // Observe all elements with slide-in classes
+      setTimeout(() => {
+        document
+          .querySelectorAll(".slide-in-left, .slide-in-right")
+          .forEach((el) => {
+            observer.observe(el);
+          });
+      }, 100);
+
+      // Tool card expand functionality
+      document.querySelectorAll(".tool-card").forEach((card) => {
+        card.addEventListener("click", function (e) {
+          // Don't toggle if clicking the button
+          if (!e.target.closest(".btn-tool-action")) {
+            this.classList.toggle("expanded");
+          }
+        });
+      });
+
+      // Newsletter form submission
+      const newsletterForm = document.querySelector(".newsletter-form");
+      if (newsletterForm) {
+        newsletterForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          const email = this.querySelector('input[type="email"]').value;
+          alert("Thank you for subscribing! We'll send updates to: " + email);
+          this.reset();
+        });
+      }
+
+      // Add scroll indicator fade on navbar with liquid glass effect
+      const navbar = document.querySelector(".glass-navbar");
+
+      window.addEventListener("scroll", function () {
+        const scrollTop =
+          window.pageYOffset || document.documentElement.scrollTop;
+
+        if (scrollTop > 50) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      });
+    });
+  </script>
+  <script>
+    // Count Up Animation for Impact Numbers
+    function initCountUp() {
+      const impactNumbers = document.querySelectorAll(".impact-number");
+
+      const observerOptions = {
+        threshold: 0.5,
+        rootMargin: "0px",
+      };
+
+      const countUp = (element) => {
+        const target = parseInt(element.getAttribute("data-target"));
+        const duration = 2000; // 2 seconds
+        const increment = target / (duration / 16); // 60fps
+        let current = 0;
+
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            element.textContent = target + "+";
+            clearInterval(timer);
+          } else {
+            element.textContent = Math.floor(current) + "+";
+          }
+        }, 16);
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (
+            entry.isIntersecting &&
+            !entry.target.classList.contains("counted")
+          ) {
+            entry.target.classList.add("counted");
+            countUp(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      impactNumbers.forEach((number) => observer.observe(number));
+    }
+
+    // Initialize when DOM is ready
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initCountUp);
+    } else {
+      initCountUp();
+    }
+  </script>
+  <script>
+    // Fade-up animation when section appears
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    document
+      .querySelectorAll(".tool-card")
+      .forEach((card) => observer.observe(card));
+  </script>
+</body>
+
 </html>
