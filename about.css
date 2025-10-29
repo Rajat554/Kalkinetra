@@ -26,7 +26,12 @@
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-  background-color: var(--color-dark-bg);
+  background: radial-gradient(ellipse at 20% 10%, rgba(0, 212, 255, 0.06) 0%, transparent 40%),
+              radial-gradient(ellipse at 80% 50%, rgba(0, 255, 255, 0.05) 0%, transparent 50%),
+              radial-gradient(ellipse at 40% 90%, rgba(0, 153, 204, 0.04) 0%, transparent 40%),
+              linear-gradient(135deg, #000000 0%, #001414 50%, #000000 100%);
+  background-attachment: fixed;
+  background-size: 100% 100%;
   color: var(--color-text-primary);
   overflow-x: hidden;
   line-height: 1.6;
@@ -208,17 +213,7 @@ html {
    ======================================== */
 .hero-section {
   position: relative;
-  background: radial-gradient(
-      ellipse at 20% 30%,
-      rgba(0, 212, 255, 0.08) 0%,
-      transparent 50%
-    ),
-    radial-gradient(
-      ellipse at 80% 70%,
-      rgba(0, 255, 255, 0.08) 0%,
-      transparent 50%
-    ),
-    linear-gradient(135deg, #000000 0%, #001a1a 50%, #000000 100%);
+  background: transparent;
   min-height: 85vh;
   display: flex;
   align-items: center;
@@ -398,12 +393,7 @@ html {
    MISSION SECTION
    ======================================== */
 .mission-section {
-  background: linear-gradient(
-      180deg,
-      rgba(0, 212, 255, 0.02) 0%,
-      transparent 100%
-    ),
-    var(--color-dark-bg);
+  background: transparent;
   padding: 80px 0;
 }
 
@@ -479,7 +469,7 @@ html {
    PHILOSOPHY SECTION
    ======================================== */
 .philosophy-section {
-  background: var(--color-dark-bg);
+  background: transparent;
   padding: 80px 0;
 }
 
@@ -633,17 +623,7 @@ html {
    APPROACH SECTION
    ======================================== */
 .approach-section {
-  background: radial-gradient(
-      ellipse at center,
-      rgba(0, 212, 255, 0.08) 0%,
-      transparent 60%
-    ),
-    linear-gradient(
-      135deg,
-      rgba(0, 153, 204, 0.03) 0%,
-      var(--color-dark-bg) 50%,
-      rgba(0, 255, 255, 0.03) 100%
-    );
+  background: transparent;
   padding: 80px 0;
   position: relative;
   overflow: hidden;
@@ -830,13 +810,7 @@ html {
    ORIGIN SECTION
    ======================================== */
 .origin-section {
-  background: linear-gradient(
-      90deg,
-      rgba(0, 153, 204, 0.03) 0%,
-      transparent 50%,
-      rgba(0, 212, 255, 0.03) 100%
-    ),
-    var(--color-dark-bg);
+  background: transparent;
   padding: 80px 0;
 }
 
@@ -949,12 +923,7 @@ html {
    VALUES SECTION
    ======================================== */
 .values-section {
-  background: radial-gradient(
-      ellipse at center,
-      rgba(0, 212, 255, 0.06) 0%,
-      transparent 60%
-    ),
-    var(--color-dark-bg);
+  background: transparent;
   padding: 80px 0;
 }
 
@@ -1027,17 +996,7 @@ html {
    CTA SECTION
    ======================================== */
 .cta-section {
-  background: radial-gradient(
-      ellipse at center,
-      rgba(0, 212, 255, 0.1) 0%,
-      transparent 60%
-    ),
-    linear-gradient(
-      135deg,
-      var(--color-dark-bg) 0%,
-      #001a1a 50%,
-      var(--color-dark-bg) 100%
-    );
+  background: transparent;
   padding: 100px 0;
   position: relative;
   overflow: hidden;
@@ -1173,8 +1132,7 @@ html {
    FOOTER
    ======================================== */
 .footer-section {
-  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.98)),
-    radial-gradient(ellipse at top, rgba(0, 153, 204, 0.05) 0%, transparent 60%);
+  background: transparent;
   border-top: 1px solid rgba(0, 212, 255, 0.15);
   padding: 4rem 0 2rem;
 }
@@ -1525,4 +1483,4 @@ html {
 *:focus-visible {
   outline: 2px solid var(--color-blue-primary);
   outline-offset: 4px;
-}
+} 
