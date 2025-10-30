@@ -12,54 +12,39 @@
   <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
   
-  <link rel="stylesheet" href="collaborate.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="collaborate.css" />
   <link rel="icon" type="image/x-icon" href="/Kalkinetra/assets/Screenshot 2025-10-25 170112.png">
 </head>
 
 <body>
 
-    
-  <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top glass-navbar">
-  <div class="container">
-    <a class="navbar-brand d-flex align-items-center" href="index.html">
-      <img src="/Kalkinetra/assets/Screenshot 2025-10-25 170112.png" alt="KalkiNetra Logo" class="navbar-logo me-2" />
-    </a>
-    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto align-items-center">
-        <li class="nav-item">
-          <a class="nav-link" href="about.html">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="research.html">Research & Publications</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="solutions.html">AI Security Solutions</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="Insights.html">Insights</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="collaborate.html">Join / Collaborate</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="contact.html">Contact</a>
-        </li>
-        <li class="nav-item ms-lg-3">
-          <a class="nav-link login1 d-flex align-items-center login-link" href="#login">
-            <i class="bi bi-person-circle me-2"></i>Log In
-          </a>
-        </li>
-        <li class="nav-item ms-2">
-          <a href="contact.html" class="btn btn-get-started">GET STARTED</a>
-        </li>
+  <!-- Fixed DarkVeil Background -->
+  <div id="darkveil-background"></div>
+
+  <!-- Floating Glass Pill Navbar -->
+  <nav class="pill-navbar">
+    <div class="pill-container">
+      <a href="index.html" class="brand">
+        <img src="/Kalkinetra/assets/Screenshot 2025-10-25 170112.png" alt="Logo" />
+        <span>KalkiNetra</span>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="about.html">About</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="solutions.html">Solutions</a></li>
+        <li><a href="insights.html">Insights</a></li>
+        <li><a href="collaborate.html" class="active">Collaborate</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
-  </div>
-</nav>
+  </nav>
   
   <!-- Hero Section -->
   <section class="join-hero">
@@ -67,10 +52,12 @@
     <div class="glow-effect glow-hero-2"></div>
 
     <div class="container">
-      <div class="row justify-content-center text-center">
+      <div class="row justify-content-center text-center mt-5 pt-5">
         <div class="col-lg-10">
-          <h1 class="hero-title">Join KalkiNetra — Where Curiosity Meets Purpose</h1>
-          <p class="hero-subtitle">
+          <h1 class="hero-title animate-on-scroll" data-animation="fade-up">
+            Join KalkiNetra — Where Curiosity Meets Purpose
+          </h1>
+          <p class="hero-subtitle animate-on-scroll" data-animation="fade-up">
             We're building a team that explores vulnerabilities in AI systems to make them safer, stronger, and more transparent.
           </p>
         </div>
@@ -79,8 +66,8 @@
   </section>
 
   <!-- Section 1 — Our Ethos -->
-  <section class="ethos-section">
-    <div class="container">
+  <section class="ethos-section py-5">
+    <div class="container py-5">
       <div class="row justify-content-center">
         <div class="col-lg-10">
           <div class="content-card animate-on-scroll" data-animation="fade-up">
@@ -104,11 +91,11 @@
   </section>
 
   <!-- Section 2 — Why Work With Us -->
-  <section class="why-section">
-    <div class="container">
+  <section class="why-section py-5">
+    <div class="container py-5">
       <div class="row justify-content-center mb-5">
         <div class="col-lg-10 text-center">
-          <h2 class="section-title mb-5">Why Work With Us</h2>
+          <h2 class="section-title mb-5 animate-on-scroll" data-animation="fade-up">Why Work With Us</h2>
         </div>
       </div>
       
@@ -165,12 +152,12 @@
   </section>
 
   <!-- Section 3 — Current Opportunities -->
-  <section class="opportunities-section">
+  <section class="opportunities-section py-5">
     <div class="glow-effect glow-opportunities"></div>
-    <div class="container">
+    <div class="container py-5">
       <div class="row justify-content-center mb-5">
         <div class="col-lg-10 text-center">
-          <h2 class="section-title mb-5">Current Opportunities</h2>
+          <h2 class="section-title mb-5 animate-on-scroll" data-animation="fade-up">Current Opportunities</h2>
         </div>
       </div>
 
@@ -216,15 +203,15 @@
   </section>
 
   <!-- Section 4 — Collaboration Opportunities -->
-  <section class="collaboration-section">
-    <div class="container">
+  <section class="collaboration-section py-5">
+    <div class="container py-5">
       <div class="row justify-content-center mb-5">
         <div class="col-lg-10 text-center">
-          <h2 class="section-title mb-4">Collaboration Opportunities</h2>
-          <p class="section-subtitle">
+          <h2 class="section-title mb-4 animate-on-scroll" data-animation="fade-up">Collaboration Opportunities</h2>
+          <p class="section-subtitle animate-on-scroll" data-animation="fade-up">
             We actively collaborate with organizations, institutions, and independent researchers.
           </p>
-          <p class="section-subtitle">
+          <p class="section-subtitle animate-on-scroll" data-animation="fade-up">
             Whether it's co-authoring research, testing prototypes, or deploying defense tools — partnership drives our mission.
           </p>
         </div>
@@ -279,9 +266,9 @@
   </section>
 
   <!-- Section 5 — Our Culture -->
-  <section class="culture-section">
+  <section class="culture-section py-5">
     <div class="glow-effect glow-culture"></div>
-    <div class="container">
+    <div class="container py-5">
       <div class="row justify-content-center">
         <div class="col-lg-10">
           <div class="culture-card animate-on-scroll" data-animation="fade-up">
@@ -298,8 +285,8 @@
   </section>
 
   <!-- Contact Form Section -->
-  <section id="apply-form" class="form-section">
-    <div class="container">
+  <section id="apply-form" class="form-section py-5">
+    <div class="container py-5">
       <div class="row justify-content-center">
         <div class="col-lg-8">
           <div class="form-card animate-on-scroll" data-animation="fade-up">
@@ -388,7 +375,6 @@
                   <button type="submit" class="btn-submit">
                     <i class="bi bi-send-fill me-2"></i>
                     Submit Application
-                    <span class="btn-glow"></span>
                   </button>
                 </div>
               </div>
@@ -399,8 +385,8 @@
     </div>
   </section>
 
-
-    <footer id="contact" class="footer-section py-5">
+  <!-- Footer -->
+  <footer id="contact" class="footer-section py-5">
     <div class="container py-4">
       <div class="row g-4 mb-5">
         <div class="col-lg-4 col-md-6">
@@ -415,8 +401,7 @@
             <i class="bi bi-envelope me-2"></i>contact@kalkinetra.com
           </p>
           <p class="footer-contact mb-4">
-            <i class="bi bi-geo-alt me-2"></i>Research Lab, Innovation
-            District
+            <i class="bi bi-geo-alt me-2"></i>Research Lab, Innovation District
           </p>
           <div class="social-links d-flex gap-3">
             <a href="#" class="social-link" aria-label="LinkedIn">
@@ -437,7 +422,7 @@
         <div class="col-lg-2 col-md-6">
           <h6 class="footer-heading mb-3">Research</h6>
           <ul class="footer-links list-unstyled">
-            <li><a href="#research">Focus Areas</a></li>
+            <li><a href="research.html">Focus Areas</a></li>
             <li><a href="#">Publications</a></li>
             <li><a href="#">Case Studies</a></li>
             <li><a href="#">Resources</a></li>
@@ -447,20 +432,20 @@
         <div class="col-lg-2 col-md-6">
           <h6 class="footer-heading mb-3">Tools</h6>
           <ul class="footer-links list-unstyled">
-            <li><a href="#tools">Security Toolkit</a></li>
-            <li><a href="#tools">Injection Mitigation</a></li>
-            <li><a href="#tools">Testing Framework</a></li>
+            <li><a href="solutions.html">Security Toolkit</a></li>
+            <li><a href="#">Injection Mitigation</a></li>
+            <li><a href="#">Testing Framework</a></li>
             <li><a href="#">Documentation</a></li>
           </ul>
         </div>
 
-        <div class="col-lg-2 col-md-6">
+        <div class="col-lg        <div class="col-lg-2 col-md-6">
           <h6 class="footer-heading mb-3">Company</h6>
           <ul class="footer-links list-unstyled">
-            <li><a href="#">About Us</a></li>
-            <li><a href="#collaboration">Collaborate</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="collaborate.html">Collaborate</a></li>
             <li><a href="#">Careers</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
 
@@ -480,10 +465,8 @@
       <div class="row">
         <div class="col-12 text-center">
           <p class="footer-copyright mb-0">
-            © 2025 KalkiNetra Research & Threat Intelligence Lab. All rights
-            reserved.
-            <span class="d-inline-block ms-2">Built with <i class="bi bi-heart-fill text-danger"></i> for AI
-              Security</span>
+            © 2025 KalkiNetra Research & Threat Intelligence Lab. All rights reserved.
+            <span class="d-inline-block ms-2">Built with <i class="bi bi-heart-fill text-danger"></i> for AI Security</span>
           </p>
         </div>
       </div>
