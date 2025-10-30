@@ -13,54 +13,38 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
 
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="/Kalkinetra/Insights.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="insights.css" />
   <link rel="icon" type="image/x-icon" href="/Kalkinetra/assets/Screenshot 2025-10-25 170112.png">
 </head>
 
 <body>
-  <!-- Navigation -->
-  <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top glass-navbar">
-  <div class="container">
-    <a class="navbar-brand d-flex align-items-center" href="index.html">
-      <img src="/Kalkinetra/assets/Screenshot 2025-10-25 170112.png" alt="KalkiNetra Logo" class="navbar-logo me-2" />
-    </a>
-    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto align-items-center">
-        <li class="nav-item">
-          <a class="nav-link" href="about.html">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="research.html">Research & Publications</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="solutions.html">AI Security Solutions</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="Insights.html">Insights</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="collaborate.html">Join / Collaborate</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="contact.html">Contact</a>
-        </li>
-        <li class="nav-item ms-lg-3">
-          <a class="nav-link login1 d-flex align-items-center login-link" href="#login">
-            <i class="bi bi-person-circle me-2"></i>Log In
-          </a>
-        </li>
-        <li class="nav-item ms-2">
-          <a href="contact.html" class="btn btn-get-started">GET STARTED</a>
-        </li>
+
+  <!-- Fixed DarkVeil Background -->
+  <div id="darkveil-background"></div>
+
+  <!-- Floating Glass Pill Navbar -->
+  <nav class="pill-navbar">
+    <div class="pill-container">
+      <a href="index.html" class="brand">
+        <img src="/Kalkinetra/assets/Screenshot 2025-10-25 170112.png" alt="Logo" />
+        <span>KalkiNetra</span>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="about.html">About</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="solutions.html">Solutions</a></li>
+        <li><a href="insights.html" class="active">Insights</a></li>
+        <li><a href="collaborate.html">Collaborate</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
-  </div>
-</nav>
-
+  </nav>
 
   <!-- Hero Section -->
   <section class="insights-hero">
@@ -68,18 +52,18 @@
     <div class="glow-effect glow-hero-2"></div>
 
     <div class="container">
-      <div class="row justify-content-center text-center">
+      <div class="row justify-content-center text-center mt-5 pt-5">
         <div class="col-lg-10">
-          <div class="hero-badge">
+          <div class="hero-badge animate-on-scroll" data-animation="fade-up">
             <i class="bi bi-lightbulb-fill me-2"></i>Insights
           </div>
-          <h1 class="hero-title">
+          <h1 class="hero-title animate-on-scroll" data-animation="fade-up">
             Decoding the Evolving Landscape<br />of AI Security
           </h1>
-          <p class="hero-subtitle">
+          <p class="hero-subtitle animate-on-scroll" data-animation="fade-up">
             Short research briefs, internal reflections, and analytical commentary on AI vulnerabilities.
           </p>
-          <p class="hero-description">
+          <p class="hero-description animate-on-scroll" data-animation="fade-up">
             At KalkiNetra, insights go beyond research papers — they capture the pulse of AI security as it happens. 
             From early-stage experiments to conceptual discussions, this space serves as a living notebook of thoughts, 
             learnings, and evolving challenges in adversarial AI.
@@ -90,19 +74,19 @@
   </section>
 
   <!-- Featured Articles Section -->
-  <section class="articles-section">
-    <div class="container">
+  <section class="articles-section py-5">
+    <div class="container py-5">
       <div class="row mb-5">
         <div class="col-12 text-center">
-          <h2 class="section-title">Featured Articles</h2>
-          <p class="section-subtitle">Deep dives into critical AI security challenges</p>
+          <h2 class="section-title animate-on-scroll" data-animation="fade-up">Featured Articles</h2>
+          <p class="section-subtitle animate-on-scroll" data-animation="fade-up">Deep dives into critical AI security challenges</p>
         </div>
       </div>
 
       <div class="row g-4">
         <!-- Article Card 1 -->
         <div class="col-lg-4 col-md-6">
-          <div class="article-card animate-on-scroll" data-delay="0.2">
+          <div class="article-card animate-on-scroll" data-animation="fade-up">
             <div class="article-number">01</div>
             <div class="article-icon-wrapper">
               <i class="bi bi-exclamation-triangle-fill"></i>
@@ -128,7 +112,7 @@
 
         <!-- Article Card 2 -->
         <div class="col-lg-4 col-md-6">
-          <div class="article-card animate-on-scroll" data-delay="0.4">
+          <div class="article-card animate-on-scroll" data-animation="fade-up">
             <div class="article-number">02</div>
             <div class="article-icon-wrapper">
               <i class="bi bi-shield-exclamation"></i>
@@ -154,7 +138,7 @@
 
         <!-- Article Card 3 -->
         <div class="col-lg-4 col-md-6">
-          <div class="article-card animate-on-scroll" data-delay="0.6">
+          <div class="article-card animate-on-scroll" data-animation="fade-up">
             <div class="article-number">03</div>
             <div class="article-icon-wrapper">
               <i class="bi bi-eye-fill"></i>
@@ -182,12 +166,12 @@
   </section>
 
   <!-- Newsletter CTA Section -->
-  <section class="newsletter-cta-section">
+  <section class="newsletter-cta-section py-5">
     <div class="glow-effect glow-newsletter"></div>
-    <div class="container">
+    <div class="container py-5">
       <div class="row justify-content-center">
         <div class="col-lg-8">
-          <div class="newsletter-card">
+          <div class="newsletter-card animate-on-scroll" data-animation="fade-up">
             <div class="newsletter-icon-wrapper">
               <i class="bi bi-envelope-paper-fill"></i>
             </div>
@@ -229,19 +213,19 @@
   </section>
 
   <!-- Additional Insights Section -->
-  <section class="more-insights-section">
-    <div class="container">
+  <section class="more-insights-section py-5">
+    <div class="container py-5">
       <div class="row mb-5">
         <div class="col-12 text-center">
-          <h2 class="section-title">More from KalkiNetra</h2>
-          <p class="section-subtitle">Explore our complete collection on Medium</p>
+          <h2 class="section-title animate-on-scroll" data-animation="fade-up">More from KalkiNetra</h2>
+          <p class="section-subtitle animate-on-scroll" data-animation="fade-up">Explore our complete collection on Medium</p>
         </div>
       </div>
 
       <div class="row g-4">
         <!-- Insight Item 1 -->
         <div class="col-lg-6">
-          <div class="insight-item animate-on-scroll slide-from-left">
+          <div class="insight-item animate-on-scroll" data-animation="slide-left">
             <div class="insight-icon">
               <i class="bi bi-journal-text"></i>
             </div>
@@ -259,7 +243,7 @@
 
         <!-- Insight Item 2 -->
         <div class="col-lg-6">
-          <div class="insight-item animate-on-scroll slide-from-right">
+          <div class="insight-item animate-on-scroll" data-animation="slide-right">
             <div class="insight-icon">
               <i class="bi bi-chat-square-quote"></i>
             </div>
@@ -277,7 +261,7 @@
 
         <!-- Insight Item 3 -->
         <div class="col-lg-6">
-          <div class="insight-item animate-on-scroll slide-from-left">
+          <div class="insight-item animate-on-scroll" data-animation="slide-left">
             <div class="insight-icon">
               <i class="bi bi-graph-up-arrow"></i>
             </div>
@@ -295,7 +279,7 @@
 
         <!-- Insight Item 4 -->
         <div class="col-lg-6">
-          <div class="insight-item animate-on-scroll slide-from-right">
+          <div class="insight-item animate-on-scroll" data-animation="slide-right">
             <div class="insight-icon">
               <i class="bi bi-diagram-3"></i>
             </div>
@@ -314,6 +298,7 @@
     </div>
   </section>
 
+  <!-- Footer -->
   <footer id="contact" class="footer-section py-5">
     <div class="container py-4">
       <div class="row g-4 mb-5">
@@ -329,8 +314,7 @@
             <i class="bi bi-envelope me-2"></i>contact@kalkinetra.com
           </p>
           <p class="footer-contact mb-4">
-            <i class="bi bi-geo-alt me-2"></i>Research Lab, Innovation
-            District
+            <i class="bi bi-geo-alt me-2"></i>Research Lab, Innovation District
           </p>
           <div class="social-links d-flex gap-3">
             <a href="#" class="social-link" aria-label="LinkedIn">
@@ -351,7 +335,7 @@
         <div class="col-lg-2 col-md-6">
           <h6 class="footer-heading mb-3">Research</h6>
           <ul class="footer-links list-unstyled">
-            <li><a href="#research">Focus Areas</a></li>
+            <li><a href="research.html">Focus Areas</a></li>
             <li><a href="#">Publications</a></li>
             <li><a href="#">Case Studies</a></li>
             <li><a href="#">Resources</a></li>
@@ -361,9 +345,9 @@
         <div class="col-lg-2 col-md-6">
           <h6 class="footer-heading mb-3">Tools</h6>
           <ul class="footer-links list-unstyled">
-            <li><a href="#tools">Security Toolkit</a></li>
-            <li><a href="#tools">Injection Mitigation</a></li>
-            <li><a href="#tools">Testing Framework</a></li>
+            <li><a href="solutions.html">Security Toolkit</a></li>
+            <li><a href="#">Injection Mitigation</a></li>
+            <li><a href="#">Testing Framework</a></li>
             <li><a href="#">Documentation</a></li>
           </ul>
         </div>
@@ -371,10 +355,10 @@
         <div class="col-lg-2 col-md-6">
           <h6 class="footer-heading mb-3">Company</h6>
           <ul class="footer-links list-unstyled">
-            <li><a href="#">About Us</a></li>
-            <li><a href="#collaboration">Collaborate</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="collaborate.html">Collaborate</a></li>
             <li><a href="#">Careers</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
 
@@ -394,10 +378,8 @@
       <div class="row">
         <div class="col-12 text-center">
           <p class="footer-copyright mb-0">
-            © 2025 KalkiNetra Research & Threat Intelligence Lab. All rights
-            reserved.
-            <span class="d-inline-block ms-2">Built with <i class="bi bi-heart-fill text-danger"></i> for AI
-              Security</span>
+            © 2025 KalkiNetra Research & Threat Intelligence Lab. All rights reserved.
+            <span class="d-inline-block ms-2">Built with <i class="bi bi-heart-fill text-danger"></i> for AI Security</span>
           </p>
         </div>
       </div>

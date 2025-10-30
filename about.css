@@ -1,11 +1,4 @@
-/* ========================================
-   KALKINETRA ABOUT PAGE - Modern Blue Dark Design
-   Matching styles.css design with about page functionality
-   ======================================== */
 
-/* ========================================
-   CSS RESET & ROOT VARIABLES
-   ======================================== */
 :root {
   /* Simplified Blue Palette */
   --color-primary: #0066ff;
@@ -1422,17 +1415,3 @@ section {
   outline: 2px solid var(--color-primary);
   outline-offset: 4px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -91,8 +91,7 @@ class DarkVeil {
   animate() {
     const width = this.width;
     const height = this.height;
-    
-    this.time += 0.016 * this.speed;
+        this.time += 0.016 * this.speed;
     
     const imageData = this.ctx.createImageData(width, height);
     const data = imageData.data;
@@ -140,7 +139,7 @@ class DarkVeil {
 // MAIN APPLICATION
 // ========================================
 
-document.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('DOMContentLoaded', function() {
   
   // ========================================
   // INITIALIZE DARKVEIL BACKGROUND
@@ -248,138 +247,36 @@ document.addEventListener('DOMContentLoaded', function() {
   animatedElements.forEach(el => observer.observe(el));
   
   // ========================================
-  // ARTICLE CARD ANIMATIONS & TILT EFFECT
+  // CARDS TILT EFFECT ON MOUSE MOVE (DESKTOP ONLY)
   // ========================================
-  const articleCards = document.querySelectorAll('.article-card');
-  
   if (window.innerWidth > 768) {
-    articleCards.forEach(card => {
-      card.addEventListener('mousemove', function(e) {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        
-        const rotateX = (y - centerY) / 20;
-        const rotateY = (centerX - x) / 20;
-        
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-15px)`;
-      });
-      
-      card.addEventListener('mouseleave', function() {
-        card.style.transform = '';
-      });
+    const cards = document.querySelectorAll('.research-project-card');
+    
+    cards.forEach(card => {
+      card.addEventListener('mousemove', handleTilt);
+      card.addEventListener('mouseleave', resetTilt);
     });
-  }
-  
-  // ========================================
-  // NEWSLETTER FORM HANDLING
-  // ========================================
-  const newsletterForm = document.querySelector('.newsletter-form');
-  const emailInput = newsletterForm?.querySelector('input[type="email"]');
-  const subscribeBtn = newsletterForm?.querySelector('.btn-subscribe');
-
-  if (newsletterForm) {
-    newsletterForm.addEventListener('submit', function(e) {
-      e.preventDefault();
+    
+    function handleTilt(e) {
+      const card = e.currentTarget;
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
       
-      const email = emailInput.value.trim();
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
       
-      if (email && isValidEmail(email)) {
-        // Disable button and show loading state
-        subscribeBtn.disabled = true;
-        subscribeBtn.innerHTML = '<i class="bi bi-hourglass-split me-2"></i>Subscribing...';
-        
-        // Simulate API call
-        setTimeout(() => {
-          // Success state
-          subscribeBtn.innerHTML = '<i class="bi bi-check-circle-fill me-2"></i>Subscribed!';
-          subscribeBtn.style.background = 'linear-gradient(135deg, #00ff88, #0066ff)';
-          
-          // Reset form
-          emailInput.value = '';
-          
-          // Show success message
-          showNotification('Successfully subscribed! Check your email for confirmation.', 'success');
-          
-          // Reset button after delay
-          setTimeout(() => {
-            subscribeBtn.disabled = false;
-            subscribeBtn.innerHTML = 'Subscribe <i class="bi bi-send-fill ms-2"></i>';
-            subscribeBtn.style.background = '';
-          }, 3000);
-        }, 1500);
-      } else {
-        showNotification('Please enter a valid email address.', 'error');
-        emailInput.focus();
-      }
-    });
-
-    // Email validation on input
-    emailInput?.addEventListener('input', function() {
-      if (this.value && !isValidEmail(this.value)) {
-        this.style.borderColor = 'rgba(255, 100, 100, 0.5)';
-      } else {
-        this.style.borderColor = '';
-      }
-    });
-  }
-
-  // Email validation helper
-  function isValidEmail(email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  }
-  
-  // ========================================
-  // NOTIFICATION SYSTEM
-  // ========================================
-  function showNotification(message, type = 'info') {
-    // Remove existing notification
-    const existingNotification = document.querySelector('.custom-notification');
-    if (existingNotification) {
-      existingNotification.remove();
+      const rotateX = (y - centerY) / 20;
+      const rotateY = (centerX - x) / 20;
+      
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
     }
-
-    // Create notification element
-    const notification = document.createElement('div');
-    notification.className = `custom-notification ${type}`;
     
-    const icon = type === 'success' ? 'check-circle-fill' : 
-                 type === 'error' ? 'exclamation-circle-fill' : 
-                 'info-circle-fill';
-    
-    notification.innerHTML = `
-      <i class="bi bi-${icon}"></i>
-      <span>${message}</span>
-    `;
-    
-    document.body.appendChild(notification);
-
-    // Trigger animation
-    setTimeout(() => notification.classList.add('show'), 100);
-
-    // Auto remove after 4 seconds
-    setTimeout(() => {
-      notification.classList.remove('show');
-      setTimeout(() => notification.remove(), 300);
-    }, 4000);
+    function resetTilt(e) {
+      const card = e.currentTarget;
+      card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+    }
   }
-  
-  // ========================================
-  // PARALLAX EFFECT FOR GLOW ELEMENTS
-  // ========================================
-  window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const glows = document.querySelectorAll('.glow-effect');
-    
-    glows.forEach((glow, index) => {
-      const speed = 0.3 + (index * 0.1);
-      const yPos = -(scrolled * speed);
-      glow.style.transform = `translateY(${yPos}px)`;
-    });
-  });
   
   // ========================================
   // BUTTON RIPPLE EFFECT
@@ -432,43 +329,31 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(() => ripple.remove(), 600);
   }
   
-  const buttons = document.querySelectorAll('.btn-subscribe, .article-link, .insight-link');
+  const buttons = document.querySelectorAll('.btn-cta-primary, .btn-cta-outline');
   buttons.forEach(button => {
     button.addEventListener('click', createRipple);
   });
   
   // ========================================
-  // ARTICLE LINK CLICK TRACKING
+  // PARALLAX EFFECT FOR GLOW ELEMENTS
   // ========================================
-  const articleLinks = document.querySelectorAll('.article-link, .insight-link');
-  
-  articleLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
-      const articleTitle = this.closest('.article-card, .insight-item')?.querySelector('.article-title, .insight-title')?.textContent;
-      
-      console.log('Article clicked:', articleTitle);
+  window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const glows = document.querySelectorAll('.glow-effect');
+    
+    glows.forEach((glow, index) => {
+      const speed = 0.3 + (index * 0.1);
+      const yPos = -(scrolled * speed);
+      glow.style.transform = `translateY(${yPos}px)`;
     });
-  });
-  
-  // ========================================
-  // DYNAMIC PAGE TITLE ON BLUR
-  // ========================================
-  let originalTitle = document.title;
-  
-  window.addEventListener('blur', function() {
-    document.title = '👋 Come back! - ' + originalTitle;
-  });
-  
-  window.addEventListener('focus', function() {
-    document.title = originalTitle;
   });
   
   // ========================================
   // CONSOLE BRANDING
   // ========================================
   console.log('%c🔒 KalkiNetra - AI Security Research Lab', 'color: #0066ff; font-size: 20px; font-weight: bold;');
-  console.log('%cInsights Page', 'color: #3388ff; font-size: 14px;');
-  console.log('%cExplore our latest thoughts on AI security', 'color: #1a75ff; font-size: 12px;');
+  console.log('%cResearch & Publications Page', 'color: #3388ff; font-size: 14px;');
+  console.log('%cExplore our cutting-edge security research', 'color: #1a75ff; font-size: 12px;');
   
   // ========================================
   // DETECT SCROLL DIRECTION
@@ -506,6 +391,19 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   
   // ========================================
+  // DYNAMIC PAGE TITLE ON BLUR
+  // ========================================
+  let originalTitle = document.title;
+  
+  window.addEventListener('blur', function() {
+    document.title = '👋 Come back! - ' + originalTitle;
+  });
+  
+  window.addEventListener('focus', function() {
+    document.title = originalTitle;
+  });
+  
+  // ========================================
   // PERFORMANCE MONITORING
   // ========================================
   window.addEventListener('load', function() {
@@ -524,81 +422,27 @@ document.addEventListener('DOMContentLoaded', function() {
   // ========================================
   document.body.classList.add('page-loaded');
   
-  console.log('✅ Insights page initialized successfully');
+  console.log('Research page initialized successfully');
 });
-
-// ========================================
-// UTILITY FUNCTIONS
-// ========================================
-
-// Debounce function for performance
-function debounce(func, wait) {
-  let timeout;
-  return function executedFunction(...args) {
-    const later = () => {
-      clearTimeout(timeout);
-      func(...args);
-    };
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-  };
-}
-
-// Throttle function for scroll events
-function throttle(func, limit) {
-  let inThrottle;
-  return function() {
-    const args = arguments;
-    const context = this;
-    if (!inThrottle) {
-      func.apply(context, args);
-      inThrottle = true;
-      setTimeout(() => inThrottle = false, limit);
-    }
-  };
-}
 
 // ========================================
 // SMOOTH CARD LINK TRANSITIONS
 // ========================================
 document.addEventListener('DOMContentLoaded', function() {
-  const cardLinks = document.querySelectorAll('.article-link, .insight-link');
+  const cardLinks = document.querySelectorAll('.card-link');
   
   cardLinks.forEach(link => {
-    link.addEventListener('mouseenter', function() {
-      const icon = this.querySelector('i');
-      if (icon) {
-        icon.style.transform = 'translateX(5px)';
-      }
-    });
-    
-    link.addEventListener('mouseleave', function() {
-      const icon = this.querySelector('i');
-      if (icon) {
-        icon.style.transform = 'translateX(0)';
-      }
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      // Add visual feedback
+      this.style.transform = 'translateX(15px)';
+      
+      setTimeout(() => {
+        this.style.transform = 'translateX(0)';
+        // Navigate or trigger action here
+        console.log('Navigating to:', this.getAttribute('href'));
+      }, 300);
     });
   });
-});
-
-// ========================================
-// LAZY LOAD IMAGES IF ANY
-// ========================================
-document.addEventListener('DOMContentLoaded', function() {
-  const lazyImages = document.querySelectorAll('img[data-src]');
-  
-  if (lazyImages.length > 0) {
-    const imageObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const img = entry.target;
-          img.src = img.dataset.src;
-          img.removeAttribute('data-src');
-          imageObserver.unobserve(img);
-        }
-      });
-    });
-
-    lazyImages.forEach(img => imageObserver.observe(img));
-  }
 });

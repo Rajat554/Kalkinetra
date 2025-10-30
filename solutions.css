@@ -12,16 +12,16 @@
   --color-secondary: #3388ff;
   --color-accent: #1a75ff;
   --color-dark: #000000;
-  
+
   /* Text Colors */
   --color-text-primary: #ffffff;
   --color-text-secondary: rgba(255, 255, 255, 0.8);
   --color-text-muted: rgba(255, 255, 255, 0.5);
-  
+
   /* Blue Glow Effects */
   --glow-blue: rgba(0, 102, 255, 0.5);
   --glow-blue-soft: rgba(0, 102, 255, 0.3);
-  
+
   /* Transitions */
   --transition-fast: 0.2s ease;
   --transition-normal: 0.3s ease;
@@ -43,7 +43,8 @@ html {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Helvetica Neue", Arial, sans-serif;
   color: var(--color-text-primary);
   line-height: 1.6;
   overflow-x: hidden;
@@ -109,7 +110,7 @@ section {
   background: rgba(0, 0, 0, 0.35);
   border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.05),
-              0 4px 20px rgba(0, 102, 255, 0.25);
+    0 4px 20px rgba(0, 102, 255, 0.25);
   border-radius: 50px;
   padding: 0.7rem 1.5rem;
   gap: 1.5rem;
@@ -122,14 +123,18 @@ section {
   position: absolute;
   inset: 0;
   border-radius: 50px;
-  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.08), transparent 60%);
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(255, 255, 255, 0.08),
+    transparent 60%
+  );
   pointer-events: none;
 }
 
 .pill-navbar.scrolled .pill-container {
   background: rgba(0, 0, 0, 0.55);
   box-shadow: inset 0 0 30px rgba(255, 255, 255, 0.05),
-              0 4px 35px rgba(0, 102, 255, 0.4);
+    0 4px 35px rgba(0, 102, 255, 0.4);
 }
 
 .brand {
@@ -292,7 +297,11 @@ section {
 
 .title-line:nth-child(2) {
   animation-delay: 0.4s;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-secondary)
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -323,9 +332,15 @@ section {
   animation: fadeInUp 0.8s ease-out forwards;
 }
 
-.stat-item:nth-child(1) { animation-delay: 0.8s; }
-.stat-item:nth-child(2) { animation-delay: 1s; }
-.stat-item:nth-child(3) { animation-delay: 1.2s; }
+.stat-item:nth-child(1) {
+  animation-delay: 0.8s;
+}
+.stat-item:nth-child(2) {
+  animation-delay: 1s;
+}
+.stat-item:nth-child(3) {
+  animation-delay: 1.2s;
+}
 
 .stat-number {
   font-size: 3rem;
@@ -531,10 +546,18 @@ section {
   animation-play-state: running;
 }
 
-.solution-card[data-solution="1"] { animation-delay: 0.2s; }
-.solution-card[data-solution="2"] { animation-delay: 0.4s; }
-.solution-card[data-solution="3"] { animation-delay: 0.6s; }
-.solution-card[data-solution="4"] { animation-delay: 0.8s; }
+.solution-card[data-solution="1"] {
+  animation-delay: 0.2s;
+}
+.solution-card[data-solution="2"] {
+  animation-delay: 0.4s;
+}
+.solution-card[data-solution="3"] {
+  animation-delay: 0.6s;
+}
+.solution-card[data-solution="4"] {
+  animation-delay: 0.8s;
+}
 
 .card-glow {
   position: absolute;
@@ -785,7 +808,11 @@ section {
   top: 77px;
   bottom: 139px;
   width: 2px;
-  background: linear-gradient(180deg, var(--color-primary), var(--color-secondary));
+  background: linear-gradient(
+    180deg,
+    var(--color-primary),
+    var(--color-secondary)
+  );
   opacity: 0.3;
 }
 
@@ -804,10 +831,18 @@ section {
   animation-play-state: running;
 }
 
-.timeline-item:nth-child(1) { animation-delay: 0.2s; }
-.timeline-item:nth-child(2) { animation-delay: 0.4s; }
-.timeline-item:nth-child(3) { animation-delay: 0.6s; }
-.timeline-item:nth-child(4) { animation-delay: 0.8s; }
+.timeline-item:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.timeline-item:nth-child(2) {
+  animation-delay: 0.4s;
+}
+.timeline-item:nth-child(3) {
+  animation-delay: 0.6s;
+}
+.timeline-item:nth-child(4) {
+  animation-delay: 0.8s;
+}
 
 .timeline-icon {
   width: 80px;
@@ -898,8 +933,13 @@ section {
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 .access-title {
@@ -917,8 +957,8 @@ section {
 
 .access-benefits {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(2, minmax(250px, 1fr));
+  gap: 2.5rem;
   margin-bottom: 3rem;
 }
 
@@ -991,7 +1031,11 @@ section {
 .highlight {
   color: var(--color-primary);
   font-weight: 700;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-secondary)
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -1127,7 +1171,12 @@ section {
 .footer-divider {
   border: 0;
   height: 1px;
-  background: linear-gradient(to right, transparent, rgba(0, 102, 255, 0.3), transparent);
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(0, 102, 255, 0.3),
+    transparent
+  );
   margin: 3rem 0;
 }
 
@@ -1146,9 +1195,18 @@ section {
 }
 
 @keyframes heartbeat {
-  0%, 100% { transform: scale(1); }
-  10%, 30% { transform: scale(1.1); }
-  20%, 40% { transform: scale(1); }
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  10%,
+  30% {
+    transform: scale(1.1);
+  }
+  20%,
+  40% {
+    transform: scale(1);
+  }
 }
 
 /* ========================================
@@ -1766,8 +1824,7 @@ section {
    END OF SOLUTIONS.CSS
    ======================================== */
 
-
-   /* ========================================
+/* ========================================
    ANIMATION FIX - Prevent Overlap & Rebound
    ======================================== */
 
