@@ -271,7 +271,7 @@ section {
 }
 
 .hero-title {
-  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-size: clamp(2.5rem, 5vw, 5rem);
   font-weight: 800;
   line-height: 1.2;
   margin-bottom: 1.5rem;
@@ -299,7 +299,7 @@ section {
 }
 
 .hero-subtitle {
-  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  font-size: clamp(1rem, 2vw, 1.4rem);
   color: var(--color-text-secondary);
   margin-bottom: 3rem;
   line-height: 1.8;
@@ -782,8 +782,8 @@ section {
   content: "";
   position: absolute;
   left: 40px;
-  top: 40px;
-  bottom: 40px;
+  top: 77px;
+  bottom: 139px;
   width: 2px;
   background: linear-gradient(180deg, var(--color-primary), var(--color-secondary));
   opacity: 0.3;
