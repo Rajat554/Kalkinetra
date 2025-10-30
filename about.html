@@ -1,60 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About Us - KalkiNetra | AI Security Research Lab</title>
-  
+
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-  
+
   <!-- Custom CSS -->
   <link rel="stylesheet" href="about.css">
+  <link rel="stylesheet" href="/Kalkinetra/styles.css">
   <link rel="icon" type="image/x-icon" href="/Kalkinetra/assets/Screenshot 2025-10-25 170112.png">
 </head>
+
 <body>
-  
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top glass-navbar">
-    <div class="container">
-      <a class="navbar-brand d-flex align-items-center" href="index.html">
-        <img src="/Kalkinetra/assets/Screenshot 2025-10-25 170112.png" alt="KalkiNetra Logo" class="navbar-logo me-2" />
+
+  <!-- Fixed DarkVeil Background -->
+  <div id="darkveil-background"></div>
+
+
+  <!-- Floating Glass Pill Navbar -->
+  <nav class="pill-navbar">
+    <div class="pill-container">
+      <a href="index.html" class="brand">
+        <img src="/Kalkinetra/assets/Screenshot 2025-10-25 170112.png" alt="Logo" />
+        <span>KalkiNetra</span>
       </a>
-      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto align-items-center">
-          <li class="nav-item">
-            <a class="nav-link active" href="about.html">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="research.html">Research & Publications</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="solutions.html">AI Security Solutions</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="Insights.html">Insights</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="join.html">Join / Collaborate</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contact.html">Contact</a>
-          </li>
-          <li class="nav-item ms-lg-3">
-            <a class="nav-link d-flex align-items-center login-link" href="#login">
-              <i class="bi bi-person-circle me-2"></i>Log In
-            </a>
-          </li>
-          <li class="nav-item ms-2">
-            <a href="contact.html" class="btn btn-get-started">GET STARTED</a>
-          </li>
-        </ul>
-      </div>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="about.html">About</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="solutions.html">Solutions</a></li>
+        <li><a href="insights.html">Insights</a></li>
+        <li><a href="collaborate.html">Collaborate</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
     </div>
   </nav>
 
@@ -64,25 +52,26 @@
     <div class="glow-effect glow-hero-2"></div>
 
     <div class="container">
-      <div class="row align-items-center justify-content-center text-center">
+      <div class="row align-items-center justify-content-center text-center mt-5 pt-5">
         <div class="col-lg-10">
-          <div class="hero-badge animate-on-scroll" data-animation="fade-up">
+          <!-- <div class="hero-badge animate-on-scroll" data-animation="fade-up">
             <i class="bi bi-shield-lock-fill me-2"></i>
             <span>AI Security Research & Threat Intelligence Lab</span>
-          </div>
-          
+          </div> -->
+
           <h1 class="hero-title">
             <span class="split-text">The Eye That Observes.</span>
-            
+
             <span class="split-text">The Mind That Protects.</span>
           </h1>
-          
+
           <p class="hero-subtitle animate-on-scroll" data-animation="fade-up">
             KalkiNetra is more than a lab — it's a movement to make AI systems secure, resilient, and trustworthy.
           </p>
-          
+
           <p class="hero-description animate-on-scroll" data-animation="fade-up">
-            We uncover hidden vulnerabilities, simulate attacks on large language models, and turn insights into defense mechanisms that help enterprises protect their digital ecosystems.
+            We uncover hidden vulnerabilities, simulate attacks on large language models, and turn insights into defense
+            mechanisms that help enterprises protect their digital ecosystems.
           </p>
 
           <div class="hero-stats animate-on-scroll" data-animation="fade-up">
@@ -117,7 +106,8 @@
             </div>
             <h2 class="mission-title">Our Mission</h2>
             <p class="mission-text">
-              To explore, understand, and secure the intelligence systems that shape our world. We bridge the gap between theoretical AI security research and practical, deployable defense solutions.
+              To explore, understand, and secure the intelligence systems that shape our world. We bridge the gap
+              between theoretical AI security research and practical, deployable defense solutions.
             </p>
           </div>
         </div>
@@ -138,7 +128,7 @@
           </p>
         </div>
       </div>
-      
+
       <div class="row g-4">
         <div class="col-lg-6">
           <div class="philosophy-card animate-on-scroll" data-animation="slide-left">
@@ -149,7 +139,8 @@
             </div>
             <h3 class="philosophy-card-title">Fearless Exploration</h3>
             <p class="philosophy-card-text">
-              We explore AI systems fearlessly, uncover hidden risks, and turn insights into practical security frameworks. Every vulnerability discovered is a step toward safer AI deployment.
+              We explore AI systems fearlessly, uncover hidden risks, and turn insights into practical security
+              frameworks. Every vulnerability discovered is a step toward safer AI deployment.
             </p>
             <div class="philosophy-features">
               <div class="feature-item">
@@ -177,7 +168,8 @@
             </div>
             <h3 class="philosophy-card-title">Collaborative Innovation</h3>
             <p class="philosophy-card-text">
-              Collaboration drives us — every partnership expands our ability to secure the AI landscape. We believe in open research, knowledge sharing, and collective progress.
+              Collaboration drives us — every partnership expands our ability to secure the AI landscape. We believe in
+              open research, knowledge sharing, and collective progress.
             </p>
             <div class="philosophy-features">
               <div class="feature-item">
@@ -228,7 +220,8 @@
                 <div class="step-content">
                   <h4 class="step-title">Research</h4>
                   <p class="step-description">
-                    Study AI models, simulate attacks, and uncover vulnerabilities. We conduct deep analysis of LLMs, prompt injection techniques, and adversarial ML patterns.
+                    Study AI models, simulate attacks, and uncover vulnerabilities. We conduct deep analysis of LLMs,
+                    prompt injection techniques, and adversarial ML patterns.
                   </p>
                   <div class="step-tags">
                     <span class="step-tag">Threat Modeling</span>
@@ -252,7 +245,8 @@
                 <div class="step-content">
                   <h4 class="step-title">Prototype</h4>
                   <p class="step-description">
-                    Build tools and frameworks to mitigate those risks. Our prototypes transform research findings into actionable defense mechanisms.
+                    Build tools and frameworks to mitigate those risks. Our prototypes transform research findings into
+                    actionable defense mechanisms.
                   </p>
                   <div class="step-tags">
                     <span class="step-tag">Tool Development</span>
@@ -276,7 +270,8 @@
                 <div class="step-content">
                   <h4 class="step-title">Deploy</h4>
                   <p class="step-description">
-                    Deliver B2B solutions to cybersecurity teams. We ensure seamless integration with existing security infrastructure.
+                    Deliver B2B solutions to cybersecurity teams. We ensure seamless integration with existing security
+                    infrastructure.
                   </p>
                   <div class="step-tags">
                     <span class="step-tag">Enterprise Solutions</span>
@@ -299,7 +294,8 @@
                 <div class="step-content">
                   <h4 class="step-title">Share</h4>
                   <p class="step-description">
-                    Publish insights, whitepapers, and open research. Knowledge sharing amplifies our collective defense capabilities.
+                    Publish insights, whitepapers, and open research. Knowledge sharing amplifies our collective defense
+                    capabilities.
                   </p>
                   <div class="step-tags">
                     <span class="step-tag">Research Papers</span>
@@ -338,7 +334,8 @@
                 <div class="timeline-content">
                   <h4 class="timeline-title">The Beginning</h4>
                   <p class="timeline-text">
-                    KalkiNetra began as a small curiosity in a home lab in Amritsar. What started as late-night experiments in cybersecurity became a focused pursuit of understanding AI vulnerabilities.
+                    KalkiNetra began as a small curiosity in a home lab in Amritsar. What started as late-night
+                    experiments in cybersecurity became a focused pursuit of understanding AI vulnerabilities.
                   </p>
                 </div>
               </div>
@@ -350,7 +347,8 @@
                 <div class="timeline-content">
                   <h4 class="timeline-title">Evolution</h4>
                   <p class="timeline-text">
-                    Over five years of dedicated research, exploration evolved into expertise. Each discovery built upon the last, creating a comprehensive understanding of AI security challenges.
+                    Over five years of dedicated research, exploration evolved into expertise. Each discovery built upon
+                    the last, creating a comprehensive understanding of AI security challenges.
                   </p>
                 </div>
               </div>
@@ -362,7 +360,9 @@
                 <div class="timeline-content">
                   <h4 class="timeline-title">The Mission Today</h4>
                   <p class="timeline-text">
-                    What started as one researcher's vision is now becoming a collective mission to understand and secure the intelligence that drives the world. We're building a community of researchers, developers, and security professionals committed to AI safety.
+                    What started as one researcher's vision is now becoming a collective mission to understand and
+                    secure the intelligence that drives the world. We're building a community of researchers,
+                    developers, and security professionals committed to AI safety.
                   </p>
                 </div>
               </div>
@@ -413,7 +413,8 @@
             </div>
             <h3 class="value-title">Innovation</h3>
             <p class="value-text">
-              Continuous exploration and experimentation drive us to discover novel approaches to AI security challenges.
+              Continuous exploration and experimentation drive us to discover novel approaches to AI security
+              challenges.
             </p>
           </div>
         </div>
@@ -481,7 +482,8 @@
             </div>
             <h2 class="cta-title">Ready to Join Our Mission?</h2>
             <p class="cta-description">
-              Whether you're a researcher, developer, or enterprise looking to secure your AI systems, we welcome you to be part of this journey.
+              Whether you're a researcher, developer, or enterprise looking to secure your AI systems, we welcome you to
+              be part of this journey.
             </p>
             <div class="cta-buttons">
               <a href="research.html" class="btn-cta-primary">
@@ -537,7 +539,7 @@
           <h6 class="footer-heading mb-3">Research</h6>
           <ul class="footer-links list-unstyled">
             <li><a href="research.html">Focus Areas</a></li>
-                        <li><a href="#">Publications</a></li>
+            <li><a href="#">Publications</a></li>
             <li><a href="#">Case Studies</a></li>
             <li><a href="#">Resources</a></li>
           </ul>
@@ -580,7 +582,8 @@
         <div class="col-12 text-center">
           <p class="footer-copyright mb-0">
             © 2025 KalkiNetra Research & Threat Intelligence Lab. All rights reserved.
-            <span class="d-inline-block ms-2">Built with <i class="bi bi-heart-fill text-danger"></i> for AI Security</span>
+            <span class="d-inline-block ms-2">Built with <i class="bi bi-heart-fill text-danger"></i> for AI
+              Security</span>
           </p>
         </div>
       </div>
@@ -592,4 +595,5 @@
   <!-- Custom JS -->
   <script src="about.js"></script>
 </body>
+
 </html>
