@@ -6,177 +6,418 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI Security Solutions - KalkiNetra</title>
 
-  <!-- Bootstrap 5 CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-
   <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
-    <link rel="stylesheet" href="/Kalkinetra/solutions.css">
-    <link rel="icon" type="image/x-icon" href="/Kalkinetra/assets/Screenshot 2025-10-25 170112.png">
+
+  <!-- Solutions CSS -->
+  <link rel="stylesheet" href="solutions.css" />
+  <link rel="icon" type="image/x-icon" href="assets/Screenshot 2025-10-25 170112.png">
 </head>
 
 <body>
-  <!-- Navigation -->
-  <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top glass-navbar">
-  <div class="container">
-    <a class="navbar-brand d-flex align-items-center" href="index.html">
-      <img src="/Kalkinetra/assets/Screenshot 2025-10-25 170112.png" alt="KalkiNetra Logo" class="navbar-logo me-2" />
-    </a>
-    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto align-items-center">
-        <li class="nav-item">
-          <a class="nav-link" href="about.html">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="research.html">Research & Publications</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="solutions.html">AI Security Solutions</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="Insights.html">Insights</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="collaborate.html">Join / Collaborate</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="contact.html">Contact</a>
-        </li>
-        <li class="nav-item ms-lg-3">
-          <a class="nav-link login1 d-flex align-items-center login-link" href="#login">
-            <i class="bi bi-person-circle me-2"></i>Log In
-          </a>
-        </li>
-        <li class="nav-item ms-2">
-          <a href="contact.html" class="btn btn-get-started">GET STARTED</a>
-        </li>
+  <!-- Fixed DarkVeil Background -->
+  <div id="darkveil-background"></div>
+
+  <!-- Floating Glass Pill Navbar -->
+  <nav class="pill-navbar" id="navbar">
+    <div class="pill-container">
+      <a href="index.html" class="brand">
+        <img src="assets/Screenshot 2025-10-25 170112.png" alt="KalkiNetra Logo" />
+        <span>KalkiNetra</span>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <!-- <li><a href="index.html">Home</a></li> -->
+        <li><a href="about.html">About</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="solutions.html" class="active">Solutions</a></li>
+        <li><a href="insights.html">Insights</a></li>
+        <li><a href="collaborate.html">Collaborate</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
-  </div>
-</nav>
-
+  </nav>
 
   <!-- Hero Section -->
   <section class="solutions-hero">
-    <div class="glow-effect glow-hero-1"></div>
-    <div class="glow-effect glow-hero-2"></div>
-
+    <div class="hero-particles" id="heroParticles"></div>
     <div class="container">
-      <div class="row justify-content-center text-center">
-        <div class="col-lg-10">
-          <h1 class="hero-title">AI Security Solutions</h1>
-          <p class="hero-subtitle">Tools Inspired by Research</p>
-          <p class="hero-description">
-            From adversarial testing to prompt injection prevention, our upcoming tools are designed to strengthen 
-            enterprise AI security — translating cutting-edge research into practical defense systems.
-          </p>
+      <div class="hero-content">
+        <div class="hero-badge">
+          <i class="bi bi-shield-check"></i>
+          <span>Enterprise-Grade AI Security</span>
+        </div>
+        <h1 class="hero-title">
+          <span class="title-line">AI Security Solutions</span>
+          <span class="title-line">Built from Research</span>
+        </h1>
+        <p class="hero-subtitle">
+          Transforming cutting-edge research into practical defense systems for enterprise AI
+        </p>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-number" data-target="4">0</div>
+            <div class="stat-label">Active Solutions</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" data-target="12">0</div>
+            <div class="stat-label">Security Tests</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" data-target="98">0</div>
+            <div class="stat-label">Detection Rate %</div>
+          </div>
+        </div>
+        <div class="hero-cta">
+          <a href="#solutions" class="btn btn-primary">
+            <i class="bi bi-arrow-down-circle"></i>
+            Explore Solutions
+          </a>
+          <a href="contact.html" class="btn btn-outline">
+            <i class="bi bi-calendar-check"></i>
+            Schedule Demo
+          </a>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Introduction Section -->
-  <section class="solutions-section">
+  <section class="intro-section">
     <div class="container">
-      <div class="row mb-5">
-        <div class="col-12 text-center">
-          <p class="hero-description" style="animation-delay: 0.8s;">
-            At KalkiNetra, every line of research evolves into something actionable. Our solutions are not off-the-shelf 
-            products — they are research-driven prototypes, designed to help organizations anticipate, test, and mitigate 
-            AI risks before they escalate. These tools are currently under active development and pilot testing within our lab.
-          </p>
+      <div class="intro-content">
+        <div class="intro-icon">
+          <i class="bi bi-lightbulb"></i>
+        </div>
+        <h2 class="intro-title">Research-Driven Security</h2>
+        <p class="intro-text">
+          At KalkiNetra, every line of research evolves into something actionable. Our solutions are not 
+          off-the-shelf products — they are <strong>research-driven prototypes</strong>, designed to help 
+          organizations anticipate, test, and mitigate AI risks before they escalate. These tools are 
+          currently under active development and pilot testing within our lab.
+        </p>
+        <div class="intro-features">
+          <div class="feature-item">
+            <i class="bi bi-check-circle-fill"></i>
+            <span>Real-World Testing</span>
+          </div>
+          <div class="feature-item">
+            <i class="bi bi-check-circle-fill"></i>
+            <span>Continuous Updates</span>
+          </div>
+          <div class="feature-item">
+            <i class="bi bi-check-circle-fill"></i>
+            <span>Expert Support</span>
+          </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <!-- Solutions Grid -->
-      <div class="row g-4">
-        <!-- Solution 1 -->
-        <div class="col-lg-6">
-          <div class="solution-card animate-on-scroll" data-animation="slide-left">
-            <div class="solution-number">01</div>
-            <div class="solution-icon">
+  <!-- Solutions Grid Section -->
+  <section id="solutions" class="solutions-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Our Security Solutions</h2>
+        <p class="section-subtitle">
+          Four specialized tools designed to protect your AI systems from emerging threats
+        </p>
+      </div>
+
+      <div class="solutions-grid">
+        <!-- Solution Card 1 -->
+        <div class="solution-card" data-solution="1">
+          <div class="card-glow"></div>
+          <!-- <div class="card-number">01</div> -->
+          
+          <div class="card-header">
+            <div class="card-icon">
               <i class="bi bi-shield-slash"></i>
             </div>
-            <h3 class="solution-title">Cross-Model Adversarial Attack Simulator</h3>
-            <p class="solution-description">
-              Simulate vulnerabilities across different AI models to evaluate cross-system robustness.
-            </p>
-            <p class="solution-detail">
-              Developed to help researchers and enterprises identify transferable adversarial patterns and build 
-              stronger model defenses.
-            </p>
-            <a href="#" class="solution-link">
-              Learn More <i class="bi bi-arrow-right"></i>
+            <div class="card-badge">In Development</div>
+          </div>
+
+          <h3 class="card-title">Cross-Model Adversarial Attack Simulator</h3>
+          
+          <p class="card-description">
+            Advanced simulation platform that tests AI model vulnerabilities across different architectures 
+            and frameworks to identify transferable attack patterns.
+          </p>
+
+          <div class="card-features">
+            <div class="feature">
+              <i class="bi bi-cpu"></i>
+              <span>Multi-model testing across TensorFlow, PyTorch, and JAX</span>
+            </div>
+            <div class="feature">
+              <i class="bi bi-graph-up"></i>
+              <span>Real-time vulnerability scoring and risk assessment</span>
+            </div>
+            <div class="feature">
+              <i class="bi bi-file-earmark-code"></i>
+              <span>Automated attack pattern generation and testing</span>
+            </div>
+            <div class="feature">
+              <i class="bi bi-shield-check"></i>
+              <span>Defense strategy recommendations and implementation</span>
+            </div>
+          </div>
+
+          <div class="card-tech">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">TensorFlow</span>
+            <span class="tech-tag">PyTorch</span>
+            <span class="tech-tag">API</span>
+          </div>
+
+          <div class="card-footer">
+            <a href="#" class="card-link">
+              <span>Learn More</span>
+              <i class="bi bi-arrow-right"></i>
             </a>
-            <div class="coming-soon-badge">Coming Soon</div>
+            <button class="btn-request" data-solution="adversarial">
+              <i class="bi bi-envelope"></i>
+              Request Access
+            </button>
           </div>
         </div>
 
-        <!-- Solution 2 -->
-        <div class="col-lg-6">
-          <div class="solution-card animate-on-scroll" data-animation="slide-right">
-            <div class="solution-number">02</div>
-            <div class="solution-icon">
+        <!-- Solution Card 2 -->
+        <div class="solution-card" data-solution="2">
+          <div class="card-glow"></div>
+          <!-- <div class="card-number">02</div> -->
+          
+          <div class="card-header">
+            <div class="card-icon">
               <i class="bi bi-bug-fill"></i>
             </div>
-            <h3 class="solution-title">Trojan Detection Framework</h3>
-            <p class="solution-description">
-              Detect hidden triggers and backdoors in ML systems before deployment.
-            </p>
-            <p class="solution-detail">
-              A framework that analyzes model integrity and flags malicious behavior embedded within training data 
-              or model weights.
-            </p>
-            <a href="#" class="solution-link">
-              Learn More <i class="bi bi-arrow-right"></i>
+            <div class="card-badge">Beta Testing</div>
+          </div>
+
+          <h3 class="card-title">Trojan Detection Framework</h3>
+          
+          <p class="card-description">
+            Comprehensive analysis system that detects hidden triggers, backdoors, and malicious patterns 
+            in machine learning models before deployment.
+          </p>
+
+          <div class="card-features">
+            <div class="feature">
+              <i class="bi bi-search"></i>
+              <span>Deep model weight analysis for backdoor detection</span>
+            </div>
+            <div class="feature">
+              <i class="bi bi-diagram-3"></i>
+              <span>Training data integrity verification and validation</span>
+            </div>
+            <div class="feature">
+              <i class="bi bi-exclamation-triangle"></i>
+              <span>Suspicious behavior pattern identification</span>
+            </div>
+            <div class="feature">
+              <i class="bi bi-clipboard-check"></i>
+              <span>Compliance reporting for security audits</span>
+            </div>
+          </div>
+
+          <div class="card-tech">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">ML Security</span>
+            <span class="tech-tag">Analysis</span>
+            <span class="tech-tag">Docker</span>
+          </div>
+
+          <div class="card-footer">
+            <a href="#" class="card-link">
+              <span>Learn More</span>
+              <i class="bi bi-arrow-right"></i>
             </a>
-            <div class="coming-soon-badge">Coming Soon</div>
+            <button class="btn-request" data-solution="trojan">
+              <i class="bi bi-envelope"></i>
+              Request Access
+            </button>
           </div>
         </div>
 
-        <!-- Solution 3 -->
-        <div class="col-lg-6">
-          <div class="solution-card animate-on-scroll" data-animation="slide-left">
-            <div class="solution-number">03</div>
-            <div class="solution-icon">
+        <!-- Solution Card 3 -->
+        <div class="solution-card" data-solution="3">
+          <div class="card-glow"></div>
+          <!-- <div class="card-number">03</div> -->
+          
+          <div class="card-header">
+            <div class="card-icon">
               <i class="bi bi-eye-fill"></i>
             </div>
-            <h3 class="solution-title">LLM Data Leakage Monitor</h3>
-            <p class="solution-description">
-              Identify and alert for sensitive data exposure in enterprise LLM applications.
-            </p>
-            <p class="solution-detail">
-              Monitors API interactions for data exfiltration patterns, ensuring confidential information remains protected.
-            </p>
-            <a href="#" class="solution-link">
-              Learn More <i class="bi bi-arrow-right"></i>
+            <div class="card-badge">Pilot Program</div>
+          </div>
+
+          <h3 class="card-title">LLM Data Leakage Monitor</h3>
+          
+          <p class="card-description">
+            Real-time monitoring system that identifies and prevents sensitive data exposure in 
+            enterprise Large Language Model applications and API interactions.
+          </p>
+
+          <div class="card-features">
+            <div class="feature">
+              <i class="bi bi-shield-lock"></i>
+              <span>Real-time API request/response monitoring</span>
+            </div>
+            <div class="feature">
+              <i class="bi bi-database"></i>
+              <span>PII and confidential data pattern detection</span>
+            </div>
+            <div class="feature">
+              <i class="bi bi-bell"></i>
+              <span>Instant alerts for data exfiltration attempts</span>
+            </div>
+            <div class="feature">
+              <i class="bi bi-graph-down"></i>
+              <span>Audit trails and compliance documentation</span>
+            </div>
+          </div>
+
+          <div class="card-tech">
+            <span class="tech-tag">LLM</span>
+            <span class="tech-tag">API Gateway</span>
+            <span class="tech-tag">Monitoring</span>
+            <span class="tech-tag">Cloud</span>
+          </div>
+
+          <div class="card-footer">
+            <a href="#" class="card-link">
+              <span>Learn More</span>
+              <i class="bi bi-arrow-right"></i>
             </a>
-            <div class="coming-soon-badge">Coming Soon</div>
+            <button class="btn-request" data-solution="llm-monitor">
+              <i class="bi bi-envelope"></i>
+              Request Access
+            </button>
           </div>
         </div>
 
-        <!-- Solution 4 -->
-        <div class="col-lg-6">
-          <div class="solution-card animate-on-scroll" data-animation="slide-right">
-            <div class="solution-number">04</div>
-            <div class="solution-icon">
+        <!-- Solution Card 4 -->
+        <div class="solution-card" data-solution="4">
+          <div class="card-glow"></div>
+          <!-- <div class="card-number">04</div> -->
+          
+          <div class="card-header">
+            <div class="card-icon">
               <i class="bi bi-file-earmark-lock"></i>
             </div>
-            <h3 class="solution-title">Prompt Injection Prevention Toolkit</h3>
-            <p class="solution-description">
-              Sanitize and evaluate prompts to detect injection and manipulation risks.
-            </p>
-            <p class="solution-detail">
-              This toolkit aids developers and cybersecurity teams in maintaining safe, trustworthy LLM workflows.
-            </p>
-            <a href="#" class="solution-link">
-              Learn More <i class="bi bi-arrow-right"></i>
+            <div class="card-badge">Active Development</div>
+          </div>
+
+          <h3 class="card-title">Prompt Injection Prevention Toolkit</h3>
+          
+          <p class="card-description">
+            Advanced filtering and validation system designed to sanitize prompts and prevent injection 
+            attacks, jailbreaks, and manipulation attempts in LLM workflows.
+          </p>
+
+          <div class="card-features">
+            <div class="feature">
+              <i class="bi bi-filter"></i>
+              <span>Multi-layer prompt sanitization and validation</span>
+            </div>
+            <div class="feature">
+              <i class="bi bi-bar-chart"></i>
+              <span>Pattern-based injection technique detection</span>
+            </div>
+            <div class="feature">
+              <i class="bi bi-code-slash"></i>
+              <span>Context-aware filtering with minimal false positives</span>
+            </div>
+            <div class="feature">
+              <i class="bi bi-plug"></i>
+              <span>Easy integration with existing LLM pipelines</span>
+            </div>
+          </div>
+
+          <div class="card-tech">
+            <span class="tech-tag">NLP</span>
+            <span class="tech-tag">Python SDK</span>
+            <span class="tech-tag">REST API</span>
+            <span class="tech-tag">Security</span>
+          </div>
+
+          <div class="card-footer">
+            <a href="#" class="card-link">
+              <span>Learn More</span>
+              <i class="bi bi-arrow-right"></i>
             </a>
-            <div class="coming-soon-badge">Coming Soon</div>
+            <button class="btn-request" data-solution="prompt-prevention">
+              <i class="bi bi-envelope"></i>
+              Request Access
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="how-it-works-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">How It Works</h2>
+        <p class="section-subtitle">
+          From research to deployment - our proven process
+        </p>
+      </div>
+
+      <div class="process-timeline">
+        <div class="timeline-item">
+          <div class="timeline-icon">
+            <i class="bi bi-lightbulb-fill"></i>
+          </div>
+          <div class="timeline-content">
+            <h3 class="timeline-title">Research & Discovery</h3>
+            <p class="timeline-description">
+              Identify emerging threats through active research, vulnerability analysis, and threat intelligence gathering.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-icon">
+            <i class="bi bi-code-square"></i>
+          </div>
+          <div class="timeline-content">
+            <h3 class="timeline-title">Prototype Development</h3>
+            <p class="timeline-description">
+              Build research-driven prototypes that address real-world security challenges with practical solutions.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-icon">
+            <i class="bi bi-flask"></i>
+          </div>
+          <div class="timeline-content">
+            <h3 class="timeline-title">Lab Testing</h3>
+            <p class="timeline-description">
+              Rigorous testing in controlled environments to validate effectiveness and identify edge cases.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-icon">
+            <i class="bi bi-rocket-takeoff-fill"></i>
+          </div>
+          <div class="timeline-content">
+            <h3 class="timeline-title">Pilot Deployment</h3>
+            <p class="timeline-description">
+              Partner with early adopters for real-world validation, feedback, and continuous improvement.
+            </p>
           </div>
         </div>
       </div>
@@ -185,26 +426,46 @@
 
   <!-- Early Access Section -->
   <section class="early-access-section">
-    <div class="glow-effect glow-access"></div>
+    <div class="access-particles" id="accessParticles"></div>
     <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-10 text-center access-content">
-          <div class="access-icon">
-            <i class="bi bi-rocket-takeoff-fill"></i>
+      <div class="access-content">
+        <div class="access-icon">
+          <i class="bi bi-rocket-takeoff-fill"></i>
+        </div>
+        <h2 class="access-title">Early Access & Collaboration</h2>
+        <p class="access-description">
+          Our prototypes are currently being tested and refined. We welcome early collaborators to 
+          validate and shape their next iterations. Join leading organizations in securing AI systems.
+        </p>
+        
+        <div class="access-benefits">
+          <div class="benefit-item">
+            <i class="bi bi-check-circle-fill"></i>
+            <span>Priority access to new features</span>
           </div>
-          <h2 class="access-title">Early Access & Collaboration</h2>
-          <p class="access-description">
-            Our prototypes are currently being tested and refined. We welcome early collaborators to validate and 
-            shape their next iterations.
-          </p>
-          <div class="cta-buttons">
-            <a href="#contact" class="btn-primary-cta">
-              <i class="bi bi-envelope-fill"></i> Request Early Access
-            </a>
-            <a href="#collaborate" class="btn-outline-cta">
-              <i class="bi bi-people-fill"></i> Collaborate on Development
-            </a>
+          <div class="benefit-item">
+            <i class="bi bi-check-circle-fill"></i>
+            <span>Direct collaboration with research team</span>
           </div>
+          <div class="benefit-item">
+            <i class="bi bi-check-circle-fill"></i>
+            <span>Custom integration support</span>
+          </div>
+          <div class="benefit-item">
+            <i class="bi bi-check-circle-fill"></i>
+            <span>Discounted enterprise licensing</span>
+          </div>
+        </div>
+
+        <div class="access-cta">
+          <a href="contact.html" class="btn btn-primary-large">
+            <i class="bi bi-envelope-fill"></i>
+            Request Early Access
+          </a>
+          <a href="collaborate.html" class="btn btn-outline-large">
+            <i class="bi bi-people-fill"></i>
+            Collaborate with Us
+          </a>
         </div>
       </div>
     </div>
@@ -213,37 +474,40 @@
   <!-- Closing Section -->
   <section class="closing-section">
     <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <p class="closing-text">
-            Securing AI isn't a destination — it's an <span class="closing-highlight">evolving defense</span>. 
-            KalkiNetra builds the tools to stay ahead of what's next.
-          </p>
+      <div class="closing-content">
+        <div class="closing-quote">
+          <i class="bi bi-quote"></i>
+        </div>
+        <p class="closing-text">
+          Securing AI isn't a destination — it's an <span class="highlight">evolving defense</span>. 
+          KalkiNetra builds the tools to stay ahead of what's next.
+        </p>
+        <div class="closing-signature">
+          <span>— KalkiNetra Research Team</span>
         </div>
       </div>
     </div>
   </section>
 
-    <!-- Footer -->
-  <footer id="contact" class="footer-section py-5">
-    <div class="container py-4">
-      <div class="row g-4 mb-5">
-        <div class="col-lg-4 col-md-6">
-          <a class="footer-brand d-flex align-items-center mb-3" href="index.html">
-            <i class="bi bi-shield-lock-fill me-2"></i>
-            <span class="fw-bold">KalkiNetra</span>
+  <!-- Footer -->
+  <footer class="footer-section">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a class="footer-brand" href="index.html">
+            <i class="bi bi-shield-lock-fill"></i>
+            <span>KalkiNetra</span>
           </a>
-          <p class="footer-tagline mb-3">
-            Research & Threat Intelligence Lab
+          <p class="footer-tagline">Research & Threat Intelligence Lab</p>
+          <p class="footer-contact">
+            <i class="bi bi-envelope"></i>
+            contact@kalkinetra.com
           </p>
-          <p class="footer-contact mb-3">
-            <i class="bi bi-envelope me-2"></i>contact@kalkinetra.com
+          <p class="footer-contact">
+            <i class="bi bi-geo-alt"></i>
+            Research Lab, Innovation District
           </p>
-          <p class="footer-contact mb-4">
-            <i class="bi bi-geo-alt me-2"></i>Research Lab, Innovation
-            District
-          </p>
-          <div class="social-links d-flex gap-3">
+          <div class="social-links">
             <a href="#" class="social-link" aria-label="LinkedIn">
               <i class="bi bi-linkedin"></i>
             </a>
@@ -259,39 +523,39 @@
           </div>
         </div>
 
-        <div class="col-lg-2 col-md-6">
-          <h6 class="footer-heading mb-3">Research</h6>
-          <ul class="footer-links list-unstyled">
-            <li><a href="#research">Focus Areas</a></li>
+        <div class="footer-col">
+          <h6 class="footer-heading">Research</h6>
+          <ul class="footer-links">
+            <li><a href="research.html">Focus Areas</a></li>
             <li><a href="#">Publications</a></li>
             <li><a href="#">Case Studies</a></li>
             <li><a href="#">Resources</a></li>
           </ul>
         </div>
 
-        <div class="col-lg-2 col-md-6">
-          <h6 class="footer-heading mb-3">Tools</h6>
-          <ul class="footer-links list-unstyled">
-            <li><a href="#tools">Security Toolkit</a></li>
-            <li><a href="#tools">Injection Mitigation</a></li>
-            <li><a href="#tools">Testing Framework</a></li>
+        <div class="footer-col">
+          <h6 class="footer-heading">Solutions          </h6>
+          <ul class="footer-links">
+            <li><a href="solutions.html">Security Toolkit</a></li>
+            <li><a href="solutions.html">Injection Mitigation</a></li>
+            <li><a href="solutions.html">Testing Framework</a></li>
             <li><a href="#">Documentation</a></li>
           </ul>
         </div>
 
-        <div class="col-lg-2 col-md-6">
-          <h6 class="footer-heading mb-3">Company</h6>
-          <ul class="footer-links list-unstyled">
-            <li><a href="#">About Us</a></li>
-            <li><a href="#collaboration">Collaborate</a></li>
+        <div class="footer-col">
+          <h6 class="footer-heading">Company</h6>
+          <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="collaborate.html">Collaborate</a></li>
             <li><a href="#">Careers</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
 
-        <div class="col-lg-2 col-md-6">
-          <h6 class="footer-heading mb-3">Legal</h6>
-          <ul class="footer-links list-unstyled">
+        <div class="footer-col">
+          <h6 class="footer-heading">Legal</h6>
+          <ul class="footer-links">
             <li><a href="#">Privacy Policy</a></li>
             <li><a href="#">Terms of Service</a></li>
             <li><a href="#">Cookie Policy</a></li>
@@ -300,96 +564,69 @@
         </div>
       </div>
 
-      <hr class="footer-divider" />
+      <div class="footer-divider"></div>
 
-      <div class="row">
-        <div class="col-12 text-center">
-          <p class="footer-copyright mb-0">
-            © 2025 KalkiNetra Research & Threat Intelligence Lab. All rights
-            reserved.
-            <span class="d-inline-block ms-2">Built with <i class="bi bi-heart-fill text-danger"></i> for AI
-              Security</span>
-          </p>
-        </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">
+          © 2025 KalkiNetra Research & Threat Intelligence Lab. All rights reserved.
+          <span>Built with <i class="bi bi-heart-fill"></i> for AI Security</span>
+        </p>
       </div>
     </div>
   </footer>
 
-  <!-- Bootstrap 5 JS Bundle -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="bi bi-arrow-up"></i>
+  </button>
 
-  <script>
-    // Intersection Observer for scroll animations
-    const observerOptions = {
-      threshold: 0.15,
-      rootMargin: '0px 0px -100px 0px'
-    };
+  <!-- Request Access Modal -->
+  <div class="modal-overlay" id="requestModal">
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose">
+        <i class="bi bi-x"></i>
+      </button>
+      <div class="modal-header">
+        <i class="bi bi-envelope-fill"></i>
+        <h3>Request Early Access</h3>
+      </div>
+      <form class="modal-form" id="requestForm">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" required placeholder="John Doe">
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" required placeholder="john@company.com">
+        </div>
+        <div class="form-group">
+          <label for="company">Company / Organization</label>
+          <input type="text" id="company" placeholder="Your Company">
+        </div>
+        <div class="form-group">
+          <label for="solution">Solution of Interest</label>
+          <select id="solution" required>
+            <option value="">Select a solution</option>
+            <option value="adversarial">Cross-Model Adversarial Attack Simulator</option>
+            <option value="trojan">Trojan Detection Framework</option>
+            <option value="llm-monitor">LLM Data Leakage Monitor</option>
+            <option value="prompt-prevention">Prompt Injection Prevention Toolkit</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Additional Information</label>
+          <textarea id="message" rows="4" placeholder="Tell us about your use case..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary-modal">
+          <i class="bi bi-send-fill"></i>
+          Submit Request
+        </button>
+      </form>
+    </div>
+  </div>
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, index) => {
-        if (entry.isIntersecting) {
-          const animation = entry.target.getAttribute('data-animation');
-          const delay = index * 0.2; // Stagger animation
-          
-          setTimeout(() => {
-            entry.target.classList.add('visible');
-            if (animation) {
-              entry.target.classList.add(animation);
-            }
-          }, delay * 1000);
-          
-          observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-
-    // Observe all solution cards
-    document.addEventListener('DOMContentLoaded', () => {
-      const cards = document.querySelectorAll('.animate-on-scroll');
-      cards.forEach(card => observer.observe(card));
-    });
-
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          const offset = 80;
-          const targetPosition = target.offsetTop - offset;
-          window.scrollTo({
-            top: targetPosition,
-            behavior: 'smooth'
-          });
-        }
-      });
-    });
-
-    // Navbar scroll effect
-    const navbar = document.querySelector('.glass-navbar');
-    window.addEventListener('scroll', function () {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      if (scrollTop > 50) {
-        navbar.style.background = 'rgba(0, 0, 0, 0.95) !important';
-        navbar.style.boxShadow = '0 4px 30px rgba(0, 212, 255, 0.2)';
-      } else {
-        navbar.style.background = 'rgba(0, 0, 0, 0.85) !important';
-        navbar.style.boxShadow = '0 4px 30px rgba(0, 212, 255, 0.15)';
-      }
-    });
-
-    // Parallax effect for glow elements
-    window.addEventListener('scroll', () => {
-      const scrolled = window.pageYOffset;
-      const glows = document.querySelectorAll('.glow-effect');
-      
-      glows.forEach((glow, index) => {
-        const speed = 0.3 + (index * 0.1);
-        const yPos = -(scrolled * speed);
-        glow.style.transform = `translateY(${yPos}px)`;
-      });
-    });
-  </script>
+  <!-- Solutions JavaScript -->
+  <script src="solutions.js"></script>
 </body>
 
 </html>
