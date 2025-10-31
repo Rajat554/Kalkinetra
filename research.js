@@ -1,180 +1,13 @@
 // ========================================
-// DARKVEIL BACKGROUND CLASS
-// ========================================
-class DarkVeil {
-  constructor(container) {
-    this.container = container;
-    this.canvas = document.createElement('canvas');
-    this.ctx = this.canvas.getContext('2d', { alpha: false });
-    this.time = 0;
-    this.speed = 5;
-    this.hueShift = 0;
-    this.noiseIntensity = 0.02;
-    this.scanlineIntensity = 3;
-    this.scanlineFrequency = 0;
-    this.warpAmount = 4;
-    
-    this.container.appendChild(this.canvas);
-    this.resize();
-    this.init();
-    
-    window.addEventListener('resize', () => this.resize());
-  }
-  
-  resize() {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-    const dpr = Math.min(window.devicePixelRatio, 2);
-    
-    this.canvas.width = width * dpr;
-    this.canvas.height = height * dpr;
-    this.canvas.style.width = width + 'px';
-    this.canvas.style.height = height + 'px';
-    this.ctx.scale(dpr, dpr);
-    
-    this.width = width;
-    this.height = height;
-  }
-  
-  init() {
-    this.animate();
-  }
-  
-  cppn(x, y, t) {
-    const scale = 1.5;
-    x = x * scale;
-    y = y * scale;
-    
-    // Layer 1
-    const l1_1 = Math.sin(x * 3 + t * 0.3);
-    const l1_2 = Math.cos(y * 3 - t * 0.5);
-    const l1_3 = Math.sin((x + y) * 2 + t * 0.4);
-    const l1_4 = Math.cos((x - y) * 2.5 - t * 0.6);
-    
-    // Layer 2
-    const l2_1 = Math.tanh(l1_1 * 2 + l1_3 * 1.5);
-    const l2_2 = Math.tanh(l1_2 * 1.8 + l1_4 * 2.2);
-    const l2_3 = Math.tanh((l1_1 + l1_2) * 1.3);
-    
-    // Layer 3 - Blue Output
-    const intensity = ((Math.sin(l2_1 * Math.PI + t * 0.2) + Math.cos(l2_3 * Math.PI - t * 0.2)) + 2) / 4;
-    const r = 0.0 * intensity;
-    const g = 0.15 * intensity;
-    const b = 0.8 * intensity;
-    
-    return { r, g, b };
-  }
-  
-  hueShiftRGB(r, g, b, deg) {
-    const rad = (deg * Math.PI) / 180;
-    const cosA = Math.cos(rad);
-    const sinA = Math.sin(rad);
-    
-    const y = 0.299 * r + 0.587 * g + 0.114 * b;
-    const i = 0.596 * r - 0.274 * g - 0.322 * b;
-    const q = 0.211 * r - 0.523 * g + 0.312 * b;
-    
-    const i2 = i * cosA - q * sinA;
-    const q2 = i * sinA + q * cosA;
-    
-    r = y + 0.956 * i2 + 0.621 * q2;
-    g = y - 0.272 * i2 - 0.647 * q2;
-    b = y - 1.106 * i2 + 1.703 * q2;
-    
-    return {
-      r: Math.max(0, Math.min(1, r)),
-      g: Math.max(0, Math.min(1, g)),
-      b: Math.max(0, Math.min(1, b))
-    };
-  }
-  
-  animate() {
-    const width = this.width;
-    const height = this.height;
-        this.time += 0.016 * this.speed;
-    
-    const imageData = this.ctx.createImageData(width, height);
-    const data = imageData.data;
-    
-    const step = window.innerWidth < 768 ? 3 : 2;
-    
-    for (let y = 0; y < height; y += step) {
-      for (let x = 0; x < width; x += step) {
-        let nx = (x / width) * 2 - 1;
-        let ny = (y / height) * 2 - 1;
-        
-        nx += this.warpAmount * Math.sin(ny * 6.283 + this.time * 0.5) * 0.05;
-        ny += this.warpAmount * Math.cos(nx * 6.283 + this.time * 0.5) * 0.05;
-        
-        let color = this.cppn(nx, ny, this.time);
-        color = this.hueShiftRGB(color.r, color.g, color.b, this.hueShift);
-        
-        const scanline = Math.sin(y * this.scanlineFrequency) * 0.5 + 0.5;
-        const scanlineMult = 1 - (scanline * scanline) * this.scanlineIntensity;
-        
-        const noise = (Math.random() - 0.5) * this.noiseIntensity;
-        
-        const r = Math.max(0, Math.min(255, (color.r * scanlineMult + noise) * 255));
-        const g = Math.max(0, Math.min(255, (color.g * scanlineMult + noise) * 255));
-        const b = Math.max(0, Math.min(255, (color.b * scanlineMult + noise) * 255));
-        
-        for (let dy = 0; dy < step && y + dy < height; dy++) {
-          for (let dx = 0; dx < step && x + dx < width; dx++) {
-            const idx = ((y + dy) * width + (x + dx)) * 4;
-            data[idx] = r;
-            data[idx + 1] = g;
-            data[idx + 2] = b;
-            data[idx + 3] = 255;
-          }
-        }
-      }
-    }
-    
-    this.ctx.putImageData(imageData, 0, 0);
-    requestAnimationFrame(() => this.animate());
-  }
-}
-
-// ========================================
 // MAIN APPLICATION
 // ========================================
 
 window.addEventListener('DOMContentLoaded', function() {
   
   // ========================================
-  // INITIALIZE DARKVEIL BACKGROUND
-  // ========================================
-  let darkVeilContainer = document.getElementById('darkveil-background');
-  
-  if (!darkVeilContainer) {
-    darkVeilContainer = document.createElement('div');
-    darkVeilContainer.id = 'darkveil-background';
-    document.body.insertBefore(darkVeilContainer, document.body.firstChild);
-  }
-  
-  new DarkVeil(darkVeilContainer);
-  
-  // ========================================
-  // NAVBAR SCROLL EFFECT
-  // ========================================
-  const navbar = document.querySelector('.pill-navbar');
-  
-  function updateNavbar() {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    
-    if (scrollTop > 50) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
-  }
-  
-  window.addEventListener('scroll', updateNavbar);
-  updateNavbar();
-  
-  // ========================================
   // MOBILE MENU TOGGLE
   // ========================================
+  const navbar = document.querySelector('.pill-navbar');
   const menuToggle = document.getElementById('menuToggle');
   const navLinks = document.getElementById('navLinks');
   
@@ -195,7 +28,7 @@ window.addEventListener('DOMContentLoaded', function() {
     
     // Close menu when clicking outside
     document.addEventListener('click', function(e) {
-      if (!navbar.contains(e.target) && navLinks.classList.contains('show')) {
+      if (!navbar?.contains(e.target) && navLinks.classList.contains('show')) {
         navLinks.classList.remove('show');
         menuToggle.classList.remove('active');
       }
@@ -241,7 +74,7 @@ window.addEventListener('DOMContentLoaded', function() {
       }
     });
   }, observerOptions);
-  
+
   // Observe all animated elements
   const animatedElements = document.querySelectorAll('.animate-on-scroll');
   animatedElements.forEach(el => observer.observe(el));
@@ -366,7 +199,7 @@ window.addEventListener('DOMContentLoaded', function() {
     if (scrollTop > lastScrollTop) {
       document.body.classList.add('scrolling-down');
       document.body.classList.remove('scrolling-up');
-    } else {
+    } else if (scrollTop < lastScrollTop) {
       document.body.classList.add('scrolling-up');
       document.body.classList.remove('scrolling-down');
     }
@@ -440,7 +273,6 @@ document.addEventListener('DOMContentLoaded', function() {
       
       setTimeout(() => {
         this.style.transform = 'translateX(0)';
-        // Navigate or trigger action here
         console.log('Navigating to:', this.getAttribute('href'));
       }, 300);
     });

@@ -419,6 +419,54 @@
 // });
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // ========================================
 // DARKVEIL BACKGROUND IMPLEMENTATION
 // ========================================
@@ -444,17 +492,17 @@ class DarkVeil {
   }
   
   resize() {
-    // Force 100vw x 100vh coverage on ALL devices
+    // Get actual viewport dimensions
     const width = window.innerWidth;
     const height = window.innerHeight;
-    const dpr = Math.min(window.devicePixelRatio, 2);
     
-    this.canvas.width = width * dpr;
-    this.canvas.height = height * dpr;
+    // Set canvas size to match viewport exactly
+    this.canvas.width = width;
+    this.canvas.height = height;
     this.canvas.style.width = width + 'px';
     this.canvas.style.height = height + 'px';
-    this.ctx.scale(dpr, dpr);
     
+    // Store dimensions for rendering
     this.width = width;
     this.height = height;
   }
@@ -463,7 +511,7 @@ class DarkVeil {
     this.animate();
   }
   
-  // CPPN Neural Network Renderer (Simplified version)
+  // CPPN Neural Network Renderer
   cppn(x, y, t) {
     const scale = 1.5;
     x = x * scale;
@@ -524,14 +572,14 @@ class DarkVeil {
     const imageData = this.ctx.createImageData(width, height);
     const data = imageData.data;
     
-    // Dynamic step size for performance optimization
-    const step = window.innerWidth < 768 ? 3 : 2;
+    // Dynamic step size for performance
+    const step = window.innerWidth < 768 ? 4 : 2;
     
-    for (let y = 0; y < height; y += step) {
-      for (let x = 0; x < width; x += step) {
+    for (let py = 0; py < height; py += step) {
+      for (let px = 0; px < width; px += step) {
         // Normalize coordinates to -1 to 1
-        let nx = (x / width) * 2 - 1;
-        let ny = (y / height) * 2 - 1;
+        let nx = (px / width) * 2 - 1;
+        let ny = (py / height) * 2 - 1;
         
         // Add warp effect
         nx += this.warpAmount * Math.sin(ny * 6.283 + this.time * 0.5) * 0.05;
@@ -544,7 +592,7 @@ class DarkVeil {
         color = this.hueShiftRGB(color.r, color.g, color.b, this.hueShift);
         
         // Apply scanline effect
-        const scanline = Math.sin(y * this.scanlineFrequency) * 0.5 + 0.5;
+        const scanline = Math.sin(py * this.scanlineFrequency) * 0.5 + 0.5;
         const scanlineMult = 1 - (scanline * scanline) * this.scanlineIntensity;
         
         // Add noise
@@ -555,10 +603,10 @@ class DarkVeil {
         const g = Math.max(0, Math.min(255, (color.g * scanlineMult + noise) * 255));
         const b = Math.max(0, Math.min(255, (color.b * scanlineMult + noise) * 255));
         
-        // Draw block for performance
-        for (let dy = 0; dy < step && y + dy < height; dy++) {
-          for (let dx = 0; dx < step && x + dx < width; dx++) {
-            const idx = ((y + dy) * width + (x + dx)) * 4;
+        // Fill block
+        for (let dy = 0; dy < step && py + dy < height; dy++) {
+          for (let dx = 0; dx < step && px + dx < width; dx++) {
+            const idx = ((py + dy) * width + (px + dx)) * 4;
             data[idx] = r;
             data[idx + 1] = g;
             data[idx + 2] = b;

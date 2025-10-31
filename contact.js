@@ -1,205 +1,9 @@
 // ========================================
-// DARKVEIL BACKGROUND IMPLEMENTATION
-// ========================================
-
-class DarkVeil {
-  constructor(container) {
-    this.container = container;
-    this.canvas = document.createElement('canvas');
-    this.ctx = this.canvas.getContext('2d', { alpha: false });
-    this.time = 0;
-    this.speed = 5;
-    this.hueShift = 0;
-    this.noiseIntensity = 0.02;
-    this.scanlineIntensity = 3;
-    this.scanlineFrequency = 0;
-    this.warpAmount = 4;
-    
-    this.container.appendChild(this.canvas);
-    this.resize();
-    this.init();
-    
-    window.addEventListener('resize', () => this.resize());
-  }
-  
-  resize() {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-    const dpr = Math.min(window.devicePixelRatio, 2);
-    
-    this.canvas.width = width * dpr;
-    this.canvas.height = height * dpr;
-    this.canvas.style.width = width + 'px';
-    this.canvas.style.height = height + 'px';
-    this.ctx.scale(dpr, dpr);
-    
-    this.width = width;
-    this.height = height;
-  }
-  
-  init() {
-    this.animate();
-  }
-  
-  cppn(x, y, t) {
-    const scale = 1.5;
-    x = x * scale;
-    y = y * scale;
-    
-    // Layer 1
-    const l1_1 = Math.sin(x * 3 + t * 0.3);
-    const l1_2 = Math.cos(y * 3 - t * 0.5);
-    const l1_3 = Math.sin((x + y) * 2 + t * 0.4);
-    const l1_4 = Math.cos((x - y) * 2.5 - t * 0.6);
-    
-    // Layer 2
-    const l2_1 = Math.tanh(l1_1 * 2 + l1_3 * 1.5);
-    const l2_2 = Math.tanh(l1_2 * 1.8 + l1_4 * 2.2);
-    const l2_3 = Math.tanh((l1_1 + l1_2) * 1.3);
-    
-    // Layer 3 - Blue Output
-    const intensity = ((Math.sin(l2_1 * Math.PI + t * 0.2) + Math.cos(l2_3 * Math.PI - t * 0.2)) + 2) / 4;
-    const r = 0.0 * intensity;
-    const g = 0.15 * intensity;
-    const b = 0.8 * intensity;
-    
-    return { r, g, b };
-  }
-  
-  hueShiftRGB(r, g, b, deg) {
-    const rad = (deg * Math.PI) / 180;
-    const cosA = Math.cos(rad);
-    const sinA = Math.sin(rad);
-    
-    const y = 0.299 * r + 0.587 * g + 0.114 * b;
-    const i = 0.596 * r - 0.274 * g - 0.322 * b;
-    const q = 0.211 * r - 0.523 * g + 0.312 * b;
-    
-    const i2 = i * cosA - q * sinA;
-    const q2 = i * sinA + q * cosA;
-    
-    r = y + 0.956 * i2 + 0.621 * q2;
-    g = y - 0.272 * i2 - 0.647 * q2;
-    b = y - 1.106 * i2 + 1.703 * q2;
-    
-    return {
-      r: Math.max(0, Math.min(1, r)),
-      g: Math.max(0, Math.min(1, g)),
-      b: Math.max(0, Math.min(1, b))
-    };
-  }
-  
-  animate() {
-    const width = this.width;
-    const height = this.height;
-    
-    this.time += 0.016 * this.speed;
-    
-    const imageData = this.ctx.createImageData(width, height);
-    const data = imageData.data;
-    
-    const step = window.innerWidth < 768 ? 3 : 2;
-    
-    for (let y = 0; y < height; y += step) {
-      for (let x = 0; x < width; x += step) {
-        let nx = (x / width) * 2 - 1;
-        let ny = (y / height) * 2 - 1;
-        
-        nx += this.warpAmount * Math.sin(ny * 6.283 + this.time * 0.5) * 0.05;
-        ny += this.warpAmount * Math.cos(nx * 6.283 + this.time * 0.5) * 0.05;
-        
-        let color = this.cppn(nx, ny, this.time);
-        color = this.hueShiftRGB(color.r, color.g, color.b, this.hueShift);
-        
-        const scanline = Math.sin(y * this.scanlineFrequency) * 0.5 + 0.5;
-        const scanlineMult = 1 - (scanline * scanline) * this.scanlineIntensity;
-        
-        const noise = (Math.random() - 0.5) * this.noiseIntensity;
-        
-        const r = Math.max(0, Math.min(255, (color.r * scanlineMult + noise) * 255));
-        const g = Math.max(0, Math.min(255, (color.g * scanlineMult + noise) * 255));
-        const b = Math.max(0, Math.min(255, (color.b * scanlineMult + noise) * 255));
-        
-        for (let dy = 0; dy < step && y + dy < height; dy++) {
-          for (let dx = 0; dx < step && x + dx < width; dx++) {
-            const idx = ((y + dy) * width + (x + dx)) * 4;
-            data[idx] = r;
-            data[idx + 1] = g;
-            data[idx + 2] = b;
-            data[idx + 3] = 255;
-          }
-        }
-      }
-    }
-    
-    this.ctx.putImageData(imageData, 0, 0);
-    requestAnimationFrame(() => this.animate());
-  }
-}
-
-// ========================================
-// MAIN APPLICATION
+// KALKINETRA CONTACT PAGE SCRIPT
+// Cleaned: No Navbar | No Background Effects
 // ========================================
 
 window.addEventListener('DOMContentLoaded', function() {
-  
-  // ========================================
-  // INITIALIZE DARKVEIL BACKGROUND
-  // ========================================
-  let darkVeilContainer = document.getElementById('darkveil-background');
-  
-  if (!darkVeilContainer) {
-    darkVeilContainer = document.createElement('div');
-    darkVeilContainer.id = 'darkveil-background';
-    document.body.insertBefore(darkVeilContainer, document.body.firstChild);
-  }
-  
-  new DarkVeil(darkVeilContainer);
-  
-  // ========================================
-  // NAVBAR FUNCTIONALITY
-  // ========================================
-  const navbar = document.querySelector('.pill-navbar');
-  
-  function updateNavbar() {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    
-    if (scrollTop > 50) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
-  }
-  
-  window.addEventListener('scroll', updateNavbar);
-  updateNavbar();
-  
-  // Mobile menu toggle
-  const menuToggle = document.getElementById('menuToggle');
-  const navLinks = document.getElementById('navLinks');
-  
-  if (menuToggle && navLinks) {
-    menuToggle.addEventListener('click', function() {
-      navLinks.classList.toggle('show');
-      menuToggle.classList.toggle('active');
-    });
-    
-    // Close menu when clicking a link
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', function() {
-        navLinks.classList.remove('show');
-        menuToggle.classList.remove('active');
-      });
-    });
-    
-    // Close menu when clicking outside
-    document.addEventListener('click', function(e) {
-      if (!navbar.contains(e.target) && navLinks.classList.contains('show')) {
-        navLinks.classList.remove('show');
-        menuToggle.classList.remove('active');
-      }
-    });
-  }
   
   // ========================================
   // SMOOTH SCROLL FOR ANCHOR LINKS
@@ -285,15 +89,12 @@ window.addEventListener('DOMContentLoaded', function() {
     const field = document.getElementById(fieldId);
     const formGroup = field.closest('.form-group');
     
-    // Remove existing error message
     const existingError = formGroup.querySelector('.error-message');
     if (existingError) existingError.remove();
     
-    // Add error class
     formGroup.classList.add('error');
     formGroup.classList.remove('success');
     
-    // Add error message
     const errorDiv = document.createElement('div');
     errorDiv.className = 'error-message';
     errorDiv.innerHTML = `<i class="bi bi-exclamation-circle me-1"></i>${message}`;
@@ -304,11 +105,9 @@ window.addEventListener('DOMContentLoaded', function() {
     const field = document.getElementById(fieldId);
     const formGroup = field.closest('.form-group');
     
-    // Remove error message
     const existingError = formGroup.querySelector('.error-message');
     if (existingError) existingError.remove();
     
-    // Add success class
     formGroup.classList.remove('error');
     formGroup.classList.add('success');
   }
@@ -337,7 +136,6 @@ window.addEventListener('DOMContentLoaded', function() {
       clearFieldValidation('email');
     });
     
-    // Detect paste
     emailInput.addEventListener('paste', function() {
       setTimeout(() => {
         const pastedValue = this.value.trim();
@@ -374,14 +172,12 @@ window.addEventListener('DOMContentLoaded', function() {
     
     document.body.appendChild(notification);
     
-    // Close button functionality
     const closeBtn = notification.querySelector('.notification-close');
     closeBtn.addEventListener('click', () => {
       notification.style.animation = 'slideOutRight 0.3s ease-out';
       setTimeout(() => notification.remove(), 300);
     });
     
-    // Auto remove after duration
     setTimeout(() => {
       if (notification.parentElement) {
         notification.style.animation = 'slideOutRight 0.3s ease-out';
@@ -399,7 +195,6 @@ window.addEventListener('DOMContentLoaded', function() {
     contactForm.addEventListener('submit', async function(e) {
       e.preventDefault();
       
-      // Get form data
       const formData = {
         name: document.getElementById('name').value.trim(),
         email: document.getElementById('email').value.trim(),
@@ -411,7 +206,6 @@ window.addEventListener('DOMContentLoaded', function() {
         timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
       };
       
-      // Validate required fields
       let isValid = true;
       
       if (!formData.name) {
@@ -443,8 +237,7 @@ window.addEventListener('DOMContentLoaded', function() {
         isValid = false;
       }
       
-      // Check honeypot
-      const honeypot = this.querySelector('input[name="website"]');
+      const honeypot = contactForm.querySelector('input[name="website"]');
       if (honeypot && honeypot.value !== '') {
         console.warn('Spam detected - honeypot filled');
         return false;
@@ -455,8 +248,7 @@ window.addEventListener('DOMContentLoaded', function() {
         return;
       }
       
-      // Show loading state
-      const submitBtn = this.querySelector('.btn-submit');
+      const submitBtn = contactForm.querySelector('.btn-submit');
       const btnText = submitBtn.querySelector('.btn-text');
       const btnLoader = submitBtn.querySelector('.btn-loader');
       
@@ -464,19 +256,9 @@ window.addEventListener('DOMContentLoaded', function() {
       btnText.style.display = 'none';
       btnLoader.style.display = 'flex';
       
-      // Simulate API call (replace with actual API endpoint)
       try {
         await new Promise(resolve => setTimeout(resolve, 2000));
         
-        // ========================================
-        // PRINT FORM DATA TO CONSOLE
-        // ========================================
-        console.log('%c=================================', 'color: #0066ff; font-weight: bold;');
-        console.log('%c📧 CONTACT FORM SUBMISSION', 'color: #0066ff; font-size: 16px; font-weight: bold;');
-        console.log('%c=================================', 'color: #0066ff; font-weight: bold;');
-        console.log('%cSubmission Details:', 'color: #3388ff; font-weight: bold; font-size: 14px;');
-        console.table(formData);
-        console.log('%c=================================', 'color: #0066ff; font-weight: bold;');
         console.log('%c=================================', 'color: #0066ff; font-weight: bold;');
         console.log('%c📧 CONTACT FORM SUBMISSION', 'color: #0066ff; font-size: 16px; font-weight: bold;');
         console.log('%c=================================', 'color: #0066ff; font-weight: bold;');
@@ -486,27 +268,19 @@ window.addEventListener('DOMContentLoaded', function() {
         console.log(JSON.stringify(formData, null, 2));
         console.log('%c=================================', 'color: #0066ff; font-weight: bold;');
         
-        // Success
         showNotification(
           'success',
           'Message Sent!',
           'Thank you for contacting us. We\'ll get back to you within 24-48 hours.'
         );
         
-        // Reset form
         contactForm.reset();
         
-        // Clear all validations
         ['name', 'email', 'organization', 'inquiryType', 'message'].forEach(id => {
           clearFieldValidation(id);
         });
         
-        // Reset character counter
-        if (charCountDisplay) {
-          charCountDisplay.textContent = '0';
-        }
-        
-        // Clear draft from localStorage
+        if (charCountDisplay) charCountDisplay.textContent = '0';
         localStorage.removeItem('contactFormDraft');
         
       } catch (error) {
@@ -517,7 +291,6 @@ window.addEventListener('DOMContentLoaded', function() {
           'There was an error sending your message. Please try again.'
         );
       } finally {
-        // Reset button state
         submitBtn.disabled = false;
         btnText.style.display = 'flex';
         btnLoader.style.display = 'none';
@@ -534,27 +307,24 @@ window.addEventListener('DOMContentLoaded', function() {
     newsletterForm.addEventListener('submit', async function(e) {
       e.preventDefault();
       
-      const emailInput = this.querySelector('.newsletter-input');
-      const email = emailInput.value.trim();
+      const input = this.querySelector('.newsletter-input');
+      const email = input.value.trim();
       
       if (!validateEmail(email)) {
         showNotification('error', 'Invalid Email', 'Please enter a valid email address.');
-        emailInput.focus();
+        input.focus();
         return;
       }
       
       const submitBtn = this.querySelector('.btn-newsletter');
       const originalText = submitBtn.innerHTML;
       
-      // Show loading state
       submitBtn.disabled = true;
       submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Subscribing...';
       
       try {
-        // Simulate API call (replace with actual API endpoint)
         await new Promise(resolve => setTimeout(resolve, 1500));
         
-        // Log newsletter subscription
         console.log('%c=================================', 'color: #0066ff; font-weight: bold;');
         console.log('%c📰 NEWSLETTER SUBSCRIPTION', 'color: #0066ff; font-size: 16px; font-weight: bold;');
         console.log('%c=================================', 'color: #0066ff; font-weight: bold;');
@@ -562,25 +332,13 @@ window.addEventListener('DOMContentLoaded', function() {
         console.log('Timestamp:', new Date().toISOString());
         console.log('%c=================================', 'color: #0066ff; font-weight: bold;');
         
-        // Success
-        showNotification(
-          'success',
-          'Subscribed!',
-          'You\'ve been successfully subscribed to our newsletter.'
-        );
-        
-        // Reset form
+        showNotification('success', 'Subscribed!', 'You\'ve been successfully subscribed to our newsletter.');
         newsletterForm.reset();
         
       } catch (error) {
         console.error('Error subscribing:', error);
-        showNotification(
-          'error',
-          'Subscription Failed',
-          'There was an error. Please try again later.'
-        );
+        showNotification('error', 'Subscription Failed', 'There was an error. Please try again later.');
       } finally {
-        // Reset button state
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalText;
       }
@@ -595,15 +353,9 @@ window.addEventListener('DOMContentLoaded', function() {
       const faqItem = this.closest('.faq-item');
       const wasActive = faqItem.classList.contains('active');
       
-      // Close all FAQ items
-      document.querySelectorAll('.faq-item').forEach(item => {
-        item.classList.remove('active');
-      });
+      document.querySelectorAll('.faq-item').forEach(item => item.classList.remove('active'));
       
-      // Open clicked item if it wasn't already active
-      if (!wasActive) {
-        faqItem.classList.add('active');
-      }
+      if (!wasActive) faqItem.classList.add('active');
     });
   });
   
@@ -653,7 +405,6 @@ window.addEventListener('DOMContentLoaded', function() {
   let autoSaveInterval;
   
   if (contactForm) {
-    // Save draft every 15 seconds
     autoSaveInterval = setInterval(() => {
       const draft = {};
       formFields.forEach(field => {
@@ -665,17 +416,14 @@ window.addEventListener('DOMContentLoaded', function() {
       
       if (Object.keys(draft).length > 0) {
         localStorage.setItem('contactFormDraft', JSON.stringify(draft));
-        console.log('Draft auto-saved');
       }
     }, 15000);
     
-    // Load draft on page load
     const savedDraft = localStorage.getItem('contactFormDraft');
     if (savedDraft) {
       try {
         const draft = JSON.parse(savedDraft);
         
-        // Ask user if they want to restore draft
         setTimeout(() => {
           const restore = confirm('We found a saved draft of your message. Would you like to restore it?');
           
@@ -685,7 +433,6 @@ window.addEventListener('DOMContentLoaded', function() {
               if (element) {
                 element.value = draft[field];
                 
-                // Update character counter if message field
                 if (field === 'message' && charCountDisplay) {
                   charCountDisplay.textContent = draft[field].length;
                 }
@@ -712,14 +459,12 @@ window.addEventListener('DOMContentLoaded', function() {
     const hour = now.getHours();
     const day = now.getDay();
     
-    // Business hours: Mon-Fri, 9 AM - 6 PM
     const isWeekday = day >= 1 && day <= 5;
     const isWorkingHours = hour >= 9 && hour < 18;
     
     return isWeekday && isWorkingHours;
   }
   
-  // Update response banner based on business hours
   const bannerDescription = document.querySelector('.banner-description');
   if (bannerDescription) {
     const statusHtml = isBusinessHours() 
@@ -770,7 +515,6 @@ window.addEventListener('DOMContentLoaded', function() {
   }
   
   if (contactForm) {
-    const originalSubmit = contactForm.onsubmit;
     contactForm.addEventListener('submit', function(e) {
       if (!canSubmitForm() && lastSubmissionTime > 0) {
         e.preventDefault();
@@ -781,7 +525,6 @@ window.addEventListener('DOMContentLoaded', function() {
           `You can submit another message in ${remainingSeconds} seconds.`
         );
         
-        // Reset button state
         const submitBtn = this.querySelector('.btn-submit');
         const btnText = submitBtn.querySelector('.btn-text');
         const btnLoader = submitBtn.querySelector('.btn-loader');
@@ -801,19 +544,17 @@ window.addEventListener('DOMContentLoaded', function() {
   document.addEventListener('keydown', function(e) {
     // Ctrl/Cmd + Enter to submit form
     if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
-      if (document.activeElement.tagName === 'TEXTAREA') {
-        e.preventDefault();
+      if (document.activeElement?.tagName === 'TEXTAREA') {
         const form = document.activeElement.closest('form');
         if (form) {
-          form.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+          form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
         }
       }
     }
     
     // ESC to close notifications
     if (e.key === 'Escape') {
-      const notifications = document.querySelectorAll('.notification');
-      notifications.forEach(notification => {
+      document.querySelectorAll('.notification').forEach(notification => {
         notification.style.animation = 'slideOutRight 0.3s ease-out';
         setTimeout(() => notification.remove(), 300);
       });
@@ -825,22 +566,18 @@ window.addEventListener('DOMContentLoaded', function() {
   // ========================================
   document.querySelectorAll('.contact-method').forEach(method => {
     method.addEventListener('click', function(e) {
-      // Only for email links
       if (this.href && this.href.startsWith('mailto:')) {
         e.preventDefault();
         
         const email = this.href.replace('mailto:', '');
         
-        // Try to copy to clipboard
         if (navigator.clipboard) {
           navigator.clipboard.writeText(email).then(() => {
             showNotification('success', 'Email Copied!', `${email} has been copied to your clipboard.`, 3000);
           }).catch(() => {
-            // Fallback: just open email client
             window.location.href = this.href;
           });
         } else {
-          // No clipboard API, just open email client
           window.location.href = this.href;
         }
       }
@@ -891,19 +628,14 @@ window.addEventListener('DOMContentLoaded', function() {
         }
         
         @keyframes ripple-animation {
-          to {
-            transform: scale(4);
-            opacity: 0;
-          }
+          to { transform: scale(4); opacity: 0; }
         }
       `;
       document.head.appendChild(rippleStyle);
     }
     
-    const existingRipple = button.querySelector('.ripple');
-    if (existingRipple) {
-      existingRipple.remove();
-    }
+    const existing = button.querySelector('.ripple');
+    if (existing) existing.remove();
     
     button.style.position = 'relative';
     button.style.overflow = 'hidden';
@@ -913,31 +645,29 @@ window.addEventListener('DOMContentLoaded', function() {
   }
   
   const buttons = document.querySelectorAll('.btn-submit, .btn-newsletter');
-  buttons.forEach(button => {
-    button.addEventListener('click', createRipple);
-  });
+  buttons.forEach(btn => btn.addEventListener('click', createRipple));
   
   // ========================================
   // NETWORK STATUS MONITORING
   // ========================================
-  window.addEventListener('online', function() {
+  window.addEventListener('online', () => {
     showNotification('success', 'Back Online', 'Your internet connection has been restored.', 3000);
   });
   
-  window.addEventListener('offline', function() {
+  window.addEventListener('offline', () => {
     showNotification('error', 'No Internet', 'You appear to be offline. Please check your connection.', 5000);
   });
   
   // ========================================
   // DYNAMIC PAGE TITLE ON BLUR
   // ========================================
-  let originalTitle = document.title;
+  const originalTitle = document.title;
   
-  window.addEventListener('blur', function() {
+  window.addEventListener('blur', () => {
     document.title = '👋 Come back! - ' + originalTitle;
   });
   
-  window.addEventListener('focus', function() {
+  window.addEventListener('focus', () => {
     document.title = originalTitle;
   });
   
@@ -947,13 +677,11 @@ window.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('a[href]').forEach(link => {
     link.addEventListener('mouseenter', function() {
       const href = this.getAttribute('href');
-      
-      // Only prefetch internal pages
       if (href && href.endsWith('.html') && !href.startsWith('http')) {
-        const prefetchLink = document.createElement('link');
-        prefetchLink.rel = 'prefetch';
-        prefetchLink.href = href;
-        document.head.appendChild(prefetchLink);
+        const prefetch = document.createElement('link');
+        prefetch.rel = 'prefetch';
+        prefetch.href = href;
+        document.head.appendChild(prefetch);
       }
     });
   });
@@ -966,31 +694,7 @@ window.addEventListener('DOMContentLoaded', function() {
   console.log('%cNeed help? Email: contact@kalkinetra.com', 'color: #1a75ff; font-size: 12px;');
   
   // ========================================
-  // DETECT SCROLL DIRECTION
-  // ========================================
-  let lastScrollTop = 0;
-  
-  window.addEventListener('scroll', function() {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    
-    if (scrollTop > lastScrollTop) {
-      document.body.classList.add('scrolling-down');
-      document.body.classList.remove('scrolling-up');
-    } else {
-      document.body.classList.add('scrolling-up');
-      document.body.classList.remove('scrolling-down');
-    }
-    
-    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-  }, false);
-  
-  // ========================================
-  // TRACK
-
-
-
-    // ========================================
-  // TRACK FORM ANALYTICS (WITHOUT PERSONAL DATA)
+  // FORM ANALYTICS TRACKING
   // ========================================
   function trackFormInteraction(action, label = '') {
     console.log('%cForm Analytics:', 'color: #0066ff; font-weight: bold;', {
@@ -1000,16 +704,12 @@ window.addEventListener('DOMContentLoaded', function() {
       userAgent: navigator.userAgent,
       timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
     });
-    
-    // Replace with your analytics service (Google Analytics, Mixpanel, etc.)
-    // Example: gtag('event', action, { 'event_label': label });
   }
   
   // Track form start
   if (contactForm) {
     let formStarted = false;
-    
-    contactForm.addEventListener('focusin', function() {
+    contactForm.addEventListener('focusin', () => {
       if (!formStarted) {
         trackFormInteraction('form_started');
         formStarted = true;
@@ -1017,7 +717,7 @@ window.addEventListener('DOMContentLoaded', function() {
     });
   }
   
-  // Track inquiry type selection
+  // Track inquiry type
   if (inquiryTypeSelect) {
     inquiryTypeSelect.addEventListener('change', function() {
       trackFormInteraction('inquiry_type_selected', this.value);
@@ -1027,14 +727,14 @@ window.addEventListener('DOMContentLoaded', function() {
   // ========================================
   // PERFORMANCE MONITORING
   // ========================================
-  window.addEventListener('load', function() {
+  window.addEventListener('load', () => {
     const perfData = window.performance.timing;
-    const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
+    const loadTime = perfData.loadEventEnd - perfData.navigationStart;
     
     console.log('%cPerformance Metrics:', 'color: #0066ff; font-weight: bold;');
-    console.log('Page Load Time:', pageLoadTime + 'ms');
+    console.log('Page Load Time:', loadTime + 'ms');
     
-    if (pageLoadTime > 3000) {
+    if (loadTime > 3000) {
       console.warn('⚠️ Page load time is high. Consider optimizing assets.');
     } else {
       console.log('✅ Page load time is optimal');
@@ -1042,23 +742,20 @@ window.addEventListener('DOMContentLoaded', function() {
   });
   
   // ========================================
-  // ANALYTICS: TRACK TIME ON PAGE
+  // TIME ON PAGE TRACKING
   // ========================================
-  let pageLoadTime = Date.now();
+  const pageLoadTime = Date.now();
   
-  window.addEventListener('beforeunload', function() {
+  window.addEventListener('beforeunload', () => {
     const timeOnPage = Math.floor((Date.now() - pageLoadTime) / 1000);
     console.log('Time on page:', timeOnPage, 'seconds');
-    
-    // Send to analytics
     trackFormInteraction('time_on_page', `${timeOnPage}s`);
   });
   
   // ========================================
-  // FORM FIELD AUTO-FILL DETECTION
+  // AUTO-FILL DETECTION
   // ========================================
   document.querySelectorAll('.glass-input').forEach(input => {
-    // Detect browser autofill
     const checkAutofill = () => {
       if (input.matches(':-webkit-autofill')) {
         input.classList.add('autofilled');
@@ -1067,20 +764,17 @@ window.addEventListener('DOMContentLoaded', function() {
     };
     
     requestAnimationFrame(checkAutofill);
-    
-    // Check periodically
-    setTimeout(checkAutofill, 100);
-    setTimeout(checkAutofill, 500);
+    [100, 500].forEach(t => setTimeout(checkAutofill, t));
   });
   
   // ========================================
-  // SCROLL TO TOP ON PAGE LOAD IF HASH
+  // SCROLL TO HASH ON LOAD
   // ========================================
   if (window.location.hash) {
     setTimeout(() => {
-      const element = document.querySelector(window.location.hash);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const el = document.querySelector(window.location.hash);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     }, 100);
   }
@@ -1089,47 +783,29 @@ window.addEventListener('DOMContentLoaded', function() {
   // EASTER EGG - KONAMI CODE
   // ========================================
   let konamiCode = [];
-  const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+  const konamiSequence = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
   
   document.addEventListener('keydown', (e) => {
     konamiCode.push(e.key);
-    konamiCode.splice(-konamiSequence.length - 1, konamiCode.length - konamiSequence.length);
+    konamiCode = konamiCode.slice(-10);
     
     if (konamiCode.join('') === konamiSequence.join('')) {
       showNotification('success', '🎉 Secret Unlocked!', 'You found the Konami code! Welcome to the secret club.', 5000);
       
-      // Add fun animation
       document.body.style.animation = 'rainbow 3s ease infinite';
-      setTimeout(() => {
-        document.body.style.animation = '';
-      }, 10000);
+      setTimeout(() => document.body.style.animation = '', 10000);
       
       console.log('%c🎮 KONAMI CODE ACTIVATED! 🎮', 'color: #00ff88; font-size: 20px; font-weight: bold;');
     }
   });
   
-  // Add rainbow animation
+  // Add rainbow animation if not present
   if (!document.querySelector('style[data-rainbow]')) {
     const style = document.createElement('style');
     style.setAttribute('data-rainbow', 'true');
     style.textContent = `
-      @keyframes rainbow {
-        0%, 100% { filter: hue-rotate(0deg); }
-        50% { filter: hue-rotate(360deg); }
-      }
-      
-      .autofilled {
-        animation: autofill-detected 0.3s ease-out;
-      }
-      
-      @keyframes autofill-detected {
-        from {
-          transform: scale(0.98);
-        }
-        to {
-          transform: scale(1);
-        }
-      }
+      @keyframes rainbow { 0% { filter: hue-rotate(0deg); } 100% { filter: hue-rotate(360deg); } }
+      @keyframes autofill-detected { from { transform: scale(0.98); } to { transform: scale(1); } }
     `;
     document.head.appendChild(style);
   }
@@ -1137,37 +813,32 @@ window.addEventListener('DOMContentLoaded', function() {
   // ========================================
   // ERROR HANDLING
   // ========================================
-  window.addEventListener('error', function(e) {
+  window.addEventListener('error', (e) => {
     console.error('JavaScript Error:', e.error);
-    
-    // Optionally show user-friendly error message in development
-    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-      showNotification('error', 'Error Detected', 'A JavaScript error occurred. Check console for details.', 5000);
-    }
   });
   
   // ========================================
-  // PREVENT FORM RESUBMISSION ON PAGE REFRESH
+  // PREVENT FORM RESUBMISSION ON REFRESH
   // ========================================
-  if (window.history.replaceState) {
-    window.history.replaceState(null, null, window.location.href);
+  if (history.replaceState) {
+    history.replaceState(null, null, window.location.href);
   }
   
   // ========================================
-  // DETECT ADBLOCK (OPTIONAL)
+  // ADBLOCK DETECTION (OPTIONAL)
   // ========================================
   function detectAdBlock() {
-    const testAd = document.createElement('div');
-    testAd.innerHTML = '&nbsp;';
-    testAd.className = 'adsbox ad-placement ad-placeholder';
-    testAd.style.height = '1px';
-    document.body.appendChild(testAd);
+    const test = document.createElement('div');
+    test.innerHTML = '&nbsp;';
+    test.className = 'adsbox ad-placement';
+    test.style.height = '1px';
+    document.body.appendChild(test);
     
-    window.setTimeout(function() {
-      if (testAd.offsetHeight === 0) {
+    setTimeout(() => {
+      if (test.offsetHeight === 0) {
         console.log('ℹ️ Ad blocker detected - Some features may be affected');
       }
-      testAd.remove();
+      test.remove();
     }, 100);
   }
   
@@ -1177,12 +848,10 @@ window.addEventListener('DOMContentLoaded', function() {
   // SMART FORM SUGGESTIONS
   // ========================================
   if (contactForm) {
-    // Suggest name capitalization
     const nameInput = document.getElementById('name');
     if (nameInput) {
       nameInput.addEventListener('blur', function() {
         if (this.value) {
-          // Capitalize first letter of each word
           this.value = this.value
             .split(' ')
             .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
@@ -1191,15 +860,12 @@ window.addEventListener('DOMContentLoaded', function() {
       });
     }
     
-    // Email domain suggestions
-    const commonDomains = ['gmail.com', 'yahoo.com', 'outlook.com', 'hotmail.com', 'icloud.com'];
     if (emailInput) {
-      emailInput.addEventListener('blur', function() {
+      emailInput.addEventListener('blur',      function() {
         const email = this.value.trim();
         if (email.includes('@')) {
           const [localPart, domain] = email.split('@');
           
-          // Check for common typos
           const typoFixes = {
             'gmial.com': 'gmail.com',
             'gmai.com': 'gmail.com',
@@ -1210,8 +876,7 @@ window.addEventListener('DOMContentLoaded', function() {
           
           if (typoFixes[domain]) {
             const suggestion = `${localPart}@${typoFixes[domain]}`;
-            const useSuggestion = confirm(`Did you mean: ${suggestion}?`);
-            if (useSuggestion) {
+            if (confirm(`Did you mean: ${suggestion}?`)) {
               this.value = suggestion;
               showFieldSuccess('email');
             }
@@ -1224,20 +889,16 @@ window.addEventListener('DOMContentLoaded', function() {
   // ========================================
   // ACCESSIBILITY ENHANCEMENTS
   // ========================================
-  
-  // Announce form errors to screen readers
   function announceToScreenReader(message) {
-    const announcement = document.createElement('div');
-    announcement.setAttribute('role', 'status');
-    announcement.setAttribute('aria-live', 'polite');
-    announcement.className = 'sr-only';
-    announcement.textContent = message;
-    document.body.appendChild(announcement);
-    
-    setTimeout(() => announcement.remove(), 3000);
+    const el = document.createElement('div');
+    el.setAttribute('role', 'status');
+    el.setAttribute('aria-live', 'polite');
+    el.className = 'sr-only';
+    el.textContent = message;
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 3000);
   }
-  
-  // Add screen reader only class
+
   if (!document.querySelector('style[data-sr-only]')) {
     const srStyle = document.createElement('style');
     srStyle.setAttribute('data-sr-only', 'true');
@@ -1251,7 +912,7 @@ window.addEventListener('DOMContentLoaded', function() {
         overflow: hidden;
         clip: rect(0, 0, 0, 0);
         white-space: nowrap;
-        border-width: 0;
+        border: 0;
       }
     `;
     document.head.appendChild(srStyle);
@@ -1261,14 +922,12 @@ window.addEventListener('DOMContentLoaded', function() {
   // MOBILE OPTIMIZATIONS
   // ========================================
   if (window.innerWidth < 768) {
-    // Disable parallax on mobile for better performance
-    window.removeEventListener('scroll', () => {});
-    
-    // Reduce animation complexity
+    // Reduce animation intensity
     document.querySelectorAll('.animate-on-scroll').forEach(el => {
       el.style.animation = 'fadeIn 0.5s ease-out forwards';
     });
     
+    // Log device context
     console.log('📱 Mobile optimizations applied');
   }
   
@@ -1276,7 +935,6 @@ window.addEventListener('DOMContentLoaded', function() {
   // SESSION STORAGE FOR FORM PROGRESS
   // ========================================
   if (contactForm) {
-    // Save form progress on input
     contactForm.addEventListener('input', function(e) {
       const progress = {
         currentField: e.target.id,
@@ -1285,15 +943,13 @@ window.addEventListener('DOMContentLoaded', function() {
       sessionStorage.setItem('formProgress', JSON.stringify(progress));
     });
     
-    // Check if user was filling form recently
     const savedProgress = sessionStorage.getItem('formProgress');
     if (savedProgress) {
       try {
         const progress = JSON.parse(savedProgress);
         const timeDiff = Date.now() - progress.timestamp;
         
-        // If less than 5 minutes ago
-        if (timeDiff < 300000) {
+        if (timeDiff < 300000) { // < 5 minutes
           const field = document.getElementById(progress.currentField);
           if (field) {
             setTimeout(() => {
@@ -1309,35 +965,30 @@ window.addEventListener('DOMContentLoaded', function() {
   }
   
   // ========================================
-  // INITIALIZE ALL FEATURES
+  // FINAL INITIALIZATION
   // ========================================
   console.log('%c✅ Contact page initialized successfully', 'color: #00ff88; font-weight: bold;');
   
-  // Track page view
-  trackFormInteraction('page_view', window.location.pathname);
+  // Track initial page view
+  console.log('%cPage View:', 'color: #3388ff; font-weight: bold;', window.location.pathname);
   
-  // Log system info for debugging
+  // Log system info (for debugging)
   console.log('%cSystem Info:', 'color: #3388ff; font-weight: bold;');
-  console.table({
+  console.log({
     'User Agent': navigator.userAgent,
-    'Screen Size': `${window.innerWidth}x${window.innerHeight}`,
+    'Screen Size': `${window.innerWidth}×${window.innerHeight}`,
     'Time Zone': Intl.DateTimeFormat().resolvedOptions().timeZone,
-    'Business Hours': isBusinessHours() ? 'Yes' : 'No',
-    'Online Status': navigator.onLine ? 'Online' : 'Offline'
+    'Is Business Hours': isBusinessHours(),
+    'Online': navigator.onLine
   });
   
-  // Add page loaded class
+  // Add loaded class to body
   document.body.classList.add('page-loaded');
   
-  // Cleanup on page unload
+  // Cleanup interval on unload
   window.addEventListener('beforeunload', function() {
     if (autoSaveInterval) {
       clearInterval(autoSaveInterval);
     }
   });
-  
 });
-
-// ========================================
-// END OF SCRIPT
-// ========================================

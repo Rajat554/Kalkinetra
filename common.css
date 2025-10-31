@@ -1,0 +1,455 @@
+/* ========================================
+   COMMON STYLES - NAVBAR, FOOTER, BACKGROUND
+   ======================================== */
+
+/* ========================================
+   CSS RESET & ROOT VARIABLES
+   ======================================== */
+:root {
+  /* Simplified Blue Palette */
+  --color-primary: #0066ff;
+  --color-secondary: #3388ff;
+  --color-accent: #1a75ff;
+  --color-dark: #000000;
+  
+  /* Text Colors */
+  --color-text-primary: #ffffff;
+  --color-text-secondary: rgba(255, 255, 255, 0.8);
+  --color-text-muted: rgba(255, 255, 255, 0.5);
+  
+  /* Blue Glow Effects */
+  --glow-blue: rgba(0, 102, 255, 0.5);
+  --glow-blue-soft: rgba(0, 102, 255, 0.3);
+  
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  
+  --blue: #0066ff;
+  --glow: rgba(0, 102, 255, 0.4);
+  --blur: 18px;
+  --transition: 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+  background: #000;
+  margin: 0;
+}
+
+/* ========================================
+   DARKVEIL FIXED BACKGROUND
+   ======================================== */
+#darkveil-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: -1;
+  pointer-events: none;
+}
+
+#darkveil-background canvas {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* ========================================
+   FLOATING GLASS PILL NAVBAR
+   ======================================== */
+.pill-navbar {
+  position: fixed;
+  top: 2rem;
+  width: 100%;
+  z-index: 999;
+  transition: all var(--transition);
+}
+
+.pill-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  backdrop-filter: blur(var(--blur)) saturate(1.8);
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(1.8);
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    inset 0 0 20px rgba(255, 255, 255, 0.05),
+    0 4px 20px rgba(0, 102, 255, 0.25);
+  border-radius: 50px;
+  padding: 0.7rem 1.5rem;
+  min-width: 65%;
+  max-width: 900px;
+  margin: 0 auto;
+  transition: all var(--transition);
+}
+
+/* Glow effect on scroll */
+.pill-navbar.scrolled .pill-container {
+  background: rgba(0, 0, 0, 0.55);
+  box-shadow:
+    inset 0 0 30px rgba(255, 255, 255, 0.05),
+    0 4px 35px rgba(0, 102, 255, 0.4);
+}
+
+/* Optional floating blur sheen */
+.pill-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50px;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.08), transparent 60%);
+  pointer-events: none;
+}
+
+/* ========================================
+   NAVBAR BRAND
+   ======================================== */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+
+.brand img {
+  height: 40px;
+  width: auto;
+  border-radius: 8px;
+  filter: drop-shadow(0 0 10px var(--glow));
+  transition: var(--transition);
+}
+
+.brand:hover img {
+  transform: scale(1.07);
+  filter: drop-shadow(0 0 18px var(--blue));
+}
+
+/* ========================================
+   NAVBAR LINKS
+   ======================================== */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  position: relative;
+  transition: var(--transition);
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+}
+
+.nav-links a:hover {
+  background: rgba(0, 102, 255, 0.1);
+  color: var(--blue);
+  box-shadow: 0 0 8px var(--glow) inset;
+}
+
+.nav-links a.active {
+  background: rgba(0, 102, 255, 0.15);
+  color: var(--blue);
+}
+
+/* ========================================
+   MOBILE MENU TOGGLE
+   ======================================== */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: var(--transition);
+}
+
+.menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* ========================================
+   FOOTER SECTION
+   ======================================== */
+.footer-section {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 5rem 0 2rem;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.footer-brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  text-decoration: none;
+  transition: all var(--transition-normal);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-brand:hover {
+  color: var(--color-secondary);
+}
+
+.footer-brand i {
+  color: var(--color-primary);
+  font-size: 1.8rem;
+}
+
+.footer-tagline {
+  font-size: 1rem;
+  color: var(--color-secondary);
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+.footer-contact {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-contact i {
+  color: var(--color-primary);
+  font-size: 1.1rem;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.social-link {
+  width: 45px;
+  height: 45px;
+  background: rgba(0, 102, 255, 0.15);
+  border: 1px solid rgba(0, 102, 255, 0.3);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-secondary);
+  font-size: 1.3rem;
+  transition: all var(--transition-normal);
+  text-decoration: none;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.social-link:hover {
+  background: rgba(0, 102, 255, 0.3);
+  border-color: var(--color-primary);
+  color: var(--color-text-primary);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 102, 255, 0.4);
+}
+
+.footer-heading {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 1rem;
+}
+
+.footer-links a {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: all var(--transition-normal);
+  display: inline-block;
+}
+
+.footer-links a:hover {
+  color: var(--color-secondary);
+  transform: translateX(5px);
+}
+
+.footer-divider {
+  border: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(0, 102, 255, 0.3), transparent);
+  margin: 3rem 0;
+}
+
+.footer-copyright {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.footer-copyright i.bi-heart-fill {
+  color: #0066ff;
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  10%, 30% {
+    transform: scale(1.1);
+  }
+  20%, 40% {
+    transform: scale(1);
+  }
+}
+
+/* ========================================
+   MOBILE RESPONSIVE STYLES
+   ======================================== */
+@media (max-width: 900px) {
+  .pill-container {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    min-width: auto;
+    width: 90%;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    width: 100%;
+    flex-direction: column;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.4s ease;
+  }
+
+  .nav-links.open {
+    max-height: 400px;
+    margin-top: 0.5rem;
+  }
+
+  .nav-links li {
+    padding: 0.4rem 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .pill-navbar {
+    top: 1rem;
+  }
+
+  .brand img {
+    height: 35px;
+  }
+}
+
+@media (max-width: 575px) {
+  .brand img {
+    height: 30px;
+  }
+
+  .social-links {
+    flex-wrap: wrap;
+  }
+}
+
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+::selection {
+  background: rgba(0, 102, 255, 0.3);
+  color: var(--color-text-primary);
+}
+
+::-moz-selection {
+  background: rgba(0, 102, 255, 0.3);
+  color: var(--color-text-primary);
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 6px;
+  border: 2px solid rgba(0, 0, 0, 0.5);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-secondary);
+  box-shadow: 0 0 10px var(--glow-blue);
+}
+
+a:focus,
+button:focus {
+  outline: 2px solid rgba(0, 102, 255, 0.5);
+  outline-offset: 3px;
+}

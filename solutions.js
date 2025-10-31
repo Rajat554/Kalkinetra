@@ -1,249 +1,13 @@
 // ========================================
-// SOLUTIONS PAGE - COMPLETE JAVASCRIPT
-// KalkiNetra Theme
+// SOLUTIONS PAGE - CLEANED JAVASCRIPT
+// KalkiNetra Theme (No Navbar | No Background Effects)
 // ========================================
-
-// ========================================
-// DARKVEIL BACKGROUND
-// ========================================
-
-class DarkVeil {
-  constructor(container) {
-    this.container = container;
-    this.canvas = document.createElement('canvas');
-    this.ctx = this.canvas.getContext('2d', { alpha: false });
-    this.time = 0;
-    this.speed = 5;
-    this.hueShift = 0;
-    this.noiseIntensity = 0.02;
-    this.scanlineIntensity = 3;
-    this.scanlineFrequency = 0;
-    this.warpAmount = 4;
-    
-    this.container.appendChild(this.canvas);
-    this.resize();
-    this.init();
-    
-    window.addEventListener('resize', () => this.resize());
-  }
-  
-  resize() {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-    const dpr = Math.min(window.devicePixelRatio, 2);
-    
-    this.canvas.width = width * dpr;
-    this.canvas.height = height * dpr;
-    this.canvas.style.width = width + 'px';
-    this.canvas.style.height = height + 'px';
-    this.ctx.scale(dpr, dpr);
-    
-    this.width = width;
-    this.height = height;
-  }
-  
-  init() {
-    this.animate();
-  }
-  
-  cppn(x, y, t) {
-    const scale = 1.5;
-    x = x * scale;
-    y = y * scale;
-    
-    const l1_1 = Math.sin(x * 3 + t * 0.3);
-    const l1_2 = Math.cos(y * 3 - t * 0.5);
-    const l1_3 = Math.sin((x + y) * 2 + t * 0.4);
-    const l1_4 = Math.cos((x - y) * 2.5 - t * 0.6);
-    
-    const l2_1 = Math.tanh(l1_1 * 2 + l1_3 * 1.5);
-    const l2_2 = Math.tanh(l1_2 * 1.8 + l1_4 * 2.2);
-    const l2_3 = Math.tanh((l1_1 + l1_2) * 1.3);
-    
-    const intensity = ((Math.sin(l2_1 * Math.PI + t * 0.2) + Math.cos(l2_3 * Math.PI - t * 0.2)) + 2) / 4;
-    const r = 0.0 * intensity;
-    const g = 0.15 * intensity;
-    const b = 0.8 * intensity;
-    
-    return { r, g, b };
-  }
-  
-  hueShiftRGB(r, g, b, deg) {
-    const rad = (deg * Math.PI) / 180;
-    const cosA = Math.cos(rad);
-    const sinA = Math.sin(rad);
-    
-    const y = 0.299 * r + 0.587 * g + 0.114 * b;
-    const i = 0.596 * r - 0.274 * g - 0.322 * b;
-    const q = 0.211 * r - 0.523 * g + 0.312 * b;
-    
-    const i2 = i * cosA - q * sinA;
-    const q2 = i * sinA + q * cosA;
-    
-    r = y + 0.956 * i2 + 0.621 * q2;
-    g = y - 0.272 * i2 - 0.647 * q2;
-    b = y - 1.106 * i2 + 1.703 * q2;
-    
-    return {
-      r: Math.max(0, Math.min(1, r)),
-      g: Math.max(0, Math.min(1, g)),
-      b: Math.max(0, Math.min(1, b))
-    };
-  }
-  
-  animate() {
-    const width = this.width;
-    const height = this.height;
-    
-    this.time += 0.016 * this.speed;
-    
-    const imageData = this.ctx.createImageData(width, height);
-    const data = imageData.data;
-    
-    const step = window.innerWidth < 768 ? 3 : 2;
-    
-    for (let y = 0; y < height; y += step) {
-      for (let x = 0; x < width; x += step) {
-        let nx = (x / width) * 2 - 1;
-        let ny = (y / height) * 2 - 1;
-        
-        nx += this.warpAmount * Math.sin(ny * 6.283 + this.time * 0.5) * 0.05;
-        ny += this.warpAmount * Math.cos(nx * 6.283 + this.time * 0.5) * 0.05;
-        
-        let color = this.cppn(nx, ny, this.time);
-        color = this.hueShiftRGB(color.r, color.g, color.b, this.hueShift);
-        
-        const scanline = Math.sin(y * this.scanlineFrequency) * 0.5 + 0.5;
-        const scanlineMult = 1 - (scanline * scanline) * this.scanlineIntensity;
-        
-        const noise = (Math.random() - 0.5) * this.noiseIntensity;
-        
-        const r = Math.max(0, Math.min(255, (color.r * scanlineMult + noise) * 255));
-        const g = Math.max(0, Math.min(255, (color.g * scanlineMult + noise) * 255));
-        const b = Math.max(0, Math.min(255, (color.b * scanlineMult + noise) * 255));
-        
-        for (let dy = 0; dy < step && y + dy < height; dy++) {
-          for (let dx = 0; dx < step && x + dx < width; dx++) {
-            const idx = ((y + dy) * width + (x + dx)) * 4;
-            data[idx] = r;
-            data[idx + 1] = g;
-            data[idx + 2] = b;
-            data[idx + 3] = 255;
-          }
-        }
-      }
-    }
-    
-    this.ctx.putImageData(imageData, 0, 0);
-    
-    requestAnimationFrame(() => this.animate());
-  }
-}
-
-// ========================================
-// PARTICLE SYSTEM
-// ========================================
-
-class ParticleSystem {
-  constructor(container, count = 50) {
-    this.container = container;
-    this.particles = [];
-    this.count = count;
-    
-    this.init();
-  }
-  
-  init() {
-    for (let i = 0; i < this.count; i++) {
-      const particle = document.createElement('div');
-      particle.className = 'particle';
-      particle.style.cssText = `
-        position: absolute;
-        width: ${Math.random() * 4 + 2}px;
-        height: ${Math.random() * 4 + 2}px;
-        background: radial-gradient(circle, rgba(0, 102, 255, ${Math.random() * 0.5 + 0.3}), transparent);
-        border-radius: 50%;
-        left: ${Math.random() * 100}%;
-        top: ${Math.random() * 100}%;
-        animation: float ${Math.random() * 10 + 10}s ease-in-out infinite;
-        animation-delay: ${Math.random() * 5}s;
-        pointer-events: none;
-      `;
-      this.container.appendChild(particle);
-      this.particles.push(particle);
-    }
-  }
-}
 
 // ========================================
 // MAIN APPLICATION
 // ========================================
 
 document.addEventListener('DOMContentLoaded', function() {
-  
-  // Initialize DarkVeil Background
-  const darkVeilContainer = document.getElementById('darkveil-background');
-  if (darkVeilContainer) {
-    new DarkVeil(darkVeilContainer);
-  }
-  
-  // Initialize Particle Systems
-  const heroParticles = document.getElementById('heroParticles');
-  if (heroParticles) {
-    new ParticleSystem(heroParticles, 30);
-  }
-  
-  const accessParticles = document.getElementById('accessParticles');
-  if (accessParticles) {
-    new ParticleSystem(accessParticles, 20);
-  }
-  
-  // ========================================
-  // NAVBAR FUNCTIONALITY
-  // ========================================
-  
-  const navbar = document.getElementById('navbar');
-  const menuToggle = document.getElementById('menuToggle');
-  const navLinks = document.getElementById('navLinks');
-  
-  // Mobile menu toggle
-  if (menuToggle && navLinks) {
-    menuToggle.addEventListener('click', function(e) {
-      e.stopPropagation();
-      navLinks.classList.toggle('open');
-      menuToggle.classList.toggle('active');
-    });
-    
-    // Close menu when clicking outside
-    document.addEventListener('click', function(e) {
-      if (!navbar.contains(e.target) && navLinks.classList.contains('open')) {
-        navLinks.classList.remove('open');
-        menuToggle.classList.remove('active');
-      }
-    });
-    
-    // Close menu when clicking on a link
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', function() {
-        navLinks.classList.remove('open');
-        menuToggle.classList.remove('active');
-      });
-    });
-  }
-  
-  // Navbar scroll effect
-  function updateNavbar() {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    
-    if (scrollTop > 50) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
-  }
-  
-  window.addEventListener('scroll', updateNavbar);
-  updateNavbar();
   
   // ========================================
   // SMOOTH SCROLL
@@ -336,42 +100,40 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   }, observerOptions);
-  
+
   // Observe all animatable elements
-// Observe all animatable elements
-document.querySelectorAll('.intro-content, .access-content, .closing-content').forEach(el => {
-  fadeObserver.observe(el);
-});
-
-// Separate observer for timeline items
-const timelineObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
-      entry.target.classList.add('animate', 'animated');
-      timelineObserver.unobserve(entry.target);
-    }
+  document.querySelectorAll('.intro-content, .access-content, .closing-content').forEach(el => {
+    fadeObserver.observe(el);
   });
-}, observerOptions);
 
-document.querySelectorAll('.timeline-item').forEach(item => {
-  timelineObserver.observe(item);
-});
+  // Separate observer for timeline items
+  const timelineObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+        entry.target.classList.add('animate', 'animated');
+        timelineObserver.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.timeline-item').forEach(item => {
+    timelineObserver.observe(item);
+  });
   
-  // Solution cards already have data-solution animations in CSS
-// Solution cards observer - prevent multiple triggers
-const cardObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
-      entry.target.classList.add('animate', 'animated');
-      entry.target.style.animationPlayState = 'running';
-      cardObserver.unobserve(entry.target);
-    }
-  });
-}, observerOptions);
+  // Solution cards observer - prevent multiple triggers
+  const cardObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+        entry.target.classList.add('animate', 'animated');
+        entry.target.style.animationPlayState = 'running';
+        cardObserver.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
 
-document.querySelectorAll('.solution-card').forEach(card => {
-  cardObserver.observe(card);
-});
+  document.querySelectorAll('.solution-card').forEach(card => {
+    cardObserver.observe(card);
+  });
   
   // ========================================
   // MODAL FUNCTIONALITY
@@ -407,7 +169,7 @@ document.querySelectorAll('.solution-card').forEach(card => {
   }
   
   // Close modal when clicking outside
-  modal.addEventListener('click', function(e) {
+  modal?.addEventListener('click', function(e) {
     if (e.target === modal) {
       closeModal();
     }
@@ -415,7 +177,7 @@ document.querySelectorAll('.solution-card').forEach(card => {
   
   // Close modal with Escape key
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && modal.classList.contains('active')) {
+    if (e.key === 'Escape' && modal?.classList.contains('active')) {
       closeModal();
     }
   });
@@ -478,87 +240,53 @@ document.querySelectorAll('.solution-card').forEach(card => {
   // ========================================
   // CARD HOVER EFFECTS (3D TILT)
   // ========================================
-// CARD HOVER EFFECTS (3D TILT) - Fixed to prevent animation conflict
-if (window.innerWidth > 768) {
-  const cards = document.querySelectorAll('.solution-card, .timeline-content, .benefit-item');
-  
-  cards.forEach(card => {
-    card.addEventListener('mouseenter', function() {
-      this.style.transition = 'transform 0.3s ease';
-    });
+  if (window.innerWidth > 768) {
+    const cards = document.querySelectorAll('.solution-card, .timeline-content, .benefit-item');
     
-    card.addEventListener('mousemove', function(e) {
-      if (!this.classList.contains('animated')) return;
+    cards.forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        this.style.transition = 'transform 0.3s ease';
+      });
       
-      const rect = this.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+      card.addEventListener('mousemove', function(e) {
+        if (!this.classList.contains('animated')) return;
+        
+        const rect = this.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = (y - centerY) / 20;
+        const rotateY = (centerX - x) / 20;
+        
+        this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+      });
       
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      
-      const rotateX = (y - centerY) / 20;
-      const rotateY = (centerX - x) / 20;
-      
-      this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+      card.addEventListener('mouseleave', function() {
+        this.style.transition = 'transform 0.5s ease';
+        this.style.transform = 'none';
+      });
     });
-    
-    card.addEventListener('mouseleave', function() {
-      this.style.transition = 'transform 0.5s ease';
-      this.style.transform = 'none';
-    });
-  });
-}
+  }
   
   // ========================================
   // PARALLAX EFFECT ON SCROLL
   // ========================================
-  
- // PARALLAX EFFECT ON SCROLL - Throttled to prevent jank
-const handleParallax = throttle(function() {
-  const scrolled = window.pageYOffset;
-  
-  // Parallax for particles only
-  const particles = document.querySelectorAll('.particle');
-  particles.forEach((particle, index) => {
-    const speed = 0.3 + (index % 3) * 0.1;
-    const yPos = -(scrolled * speed);
-    particle.style.transform = `translateY(${yPos}px)`;
-  });
-}, 16);
+  const handleParallax = throttle(function() {
+    const scrolled = window.pageYOffset;
+    
+    // Parallax for particles only
+    const particles = document.querySelectorAll('.particle');
+    particles.forEach((particle, index) => {
+      const speed = 0.3 + (index % 3) * 0.1;
+      const yPos = -(scrolled * speed);
+      particle.style.transform = `translateY(${yPos}px)`;
+    });
+  }, 16);
 
-window.addEventListener('scroll', handleParallax, { passive: true });
-  
-  // ========================================
-  // ACTIVE NAVIGATION ON SCROLL
-  // ========================================
-  
-  function updateActiveNav() {
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-links a');
-    
-    let current = '';
-    const scrollPos = window.pageYOffset + 200;
-    
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop;
-      const sectionBottom = sectionTop + section.offsetHeight;
-      
-      if (scrollPos >= sectionTop && scrollPos < sectionBottom) {
-        current = section.getAttribute('id');
-      }
-    });
-    
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === '#' + current) {
-        link.classList.add('active');
-      }
-    });
-  }
-  
-  window.addEventListener('scroll', updateActiveNav);
-  updateActiveNav();
+  window.addEventListener('scroll', handleParallax, { passive: true });
   
   // ========================================
   // PROGRESSIVE IMAGE LOADING
@@ -617,9 +345,6 @@ window.addEventListener('scroll', handleParallax, { passive: true });
     card.addEventListener('mouseenter', function() {
       const solutionNumber = this.getAttribute('data-solution');
       console.log(`User viewing solution ${solutionNumber}`);
-      
-      // Track analytics here if needed
-      // Example: gtag('event', 'view_solution', { solution_id: solutionNumber });
     });
   });
   
@@ -655,7 +380,6 @@ window.addEventListener('scroll', handleParallax, { passive: true });
     if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
       e.preventDefault();
       console.log('Search triggered');
-      // Implement search functionality here
     }
     
     // Arrow keys for card navigation
@@ -674,11 +398,8 @@ window.addEventListener('scroll', handleParallax, { passive: true });
   
   function showCookieConsent() {
     const consent = localStorage.getItem('cookieConsent');
-    
     if (!consent) {
-      // Show cookie banner
       console.log('Show cookie consent banner');
-      // Implement your cookie consent UI here
     }
   }
   
@@ -689,13 +410,11 @@ window.addEventListener('scroll', handleParallax, { passive: true });
   // PERFORMANCE MONITORING
   // ========================================
   
-  // Log page load time
   window.addEventListener('load', function() {
     const loadTime = performance.now();
     console.log(`Page loaded in ${loadTime.toFixed(2)}ms`);
   });
   
-  // Monitor scroll performance
   let scrollTimeout;
   window.addEventListener('scroll', function() {
     clearTimeout(scrollTimeout);
@@ -711,8 +430,6 @@ window.addEventListener('scroll', handleParallax, { passive: true });
   document.querySelectorAll('img').forEach(img => {
     img.addEventListener('error', function() {
       console.warn('Failed to load image:', this.src);
-      // Set placeholder image
-      // this.src = 'assets/placeholder.png';
     });
   });
   
@@ -723,10 +440,8 @@ window.addEventListener('scroll', handleParallax, { passive: true });
   document.addEventListener('visibilitychange', function() {
     if (document.hidden) {
       console.log('Page hidden');
-      // Pause animations, videos, etc.
     } else {
       console.log('Page visible');
-      // Resume animations, videos, etc.
     }
   });
   
@@ -738,7 +453,6 @@ window.addEventListener('scroll', handleParallax, { passive: true });
     if (navigator.clipboard) {
       navigator.clipboard.writeText(text).then(() => {
         console.log('Copied to clipboard:', text);
-        // Show success message
       }).catch(err => {
         console.error('Failed to copy:', err);
       });
@@ -851,10 +565,8 @@ window.addEventListener('scroll', handleParallax, { passive: true });
   function updateOnlineStatus() {
     if (!navigator.onLine) {
       console.warn('You are offline');
-      // Show offline indicator
     } else {
       console.log('You are online');
-      // Hide offline indicator
     }
   }
   
@@ -867,15 +579,12 @@ window.addEventListener('scroll', handleParallax, { passive: true });
   
   window.addEventListener('beforeprint', function() {
     console.log('Preparing to print');
-    // Expand all collapsed sections, etc.
   });
   
   window.addEventListener('afterprint', function() {
     console.log('Print completed');
-    // Restore collapsed sections
   });
-  
-  // ========================================
+    // ========================================
   // INITIALIZATION COMPLETE
   // ========================================
   
@@ -960,7 +669,7 @@ function getScrollPercent() {
 // ========================================
 
 // Uncomment if using as module
-// export { DarkVeil, ParticleSystem, debounce, throttle, isInViewport, getScrollPercent };
+// export { debounce, throttle, isInViewport, getScrollPercent };
 
 // ========================================
 // END OF SOLUTIONS.JS
