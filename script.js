@@ -636,37 +636,49 @@ window.addEventListener('load', function () {
   // ========================================
   // SPLIT TEXT ANIMATION
   // ========================================
-  function initSplitText() {
-    const splitTextElements = document.querySelectorAll('.split-text');
+function initSplitText() {
+  const splitTextElements = document.querySelectorAll('.split-text');
 
-    splitTextElements.forEach((element, lineIndex) => {
-      const text = element.getAttribute('data-text');
-      if (!text) return;
+  splitTextElements.forEach((element, lineIndex) => {
+    const text = element.getAttribute('data-text');
+    if (!text) return;
 
-      element.innerHTML = '';
-      element.style.display = 'inline-block';
+    element.innerHTML = '';
+    element.style.display = 'inline-block';
+    element.style.whiteSpace = 'normal';
+    element.style.wordBreak = 'keep-all';
+    element.style.overflowWrap = 'normal';
 
-      const letters = text.split('');
-      letters.forEach((char, charIndex) => {
+    const words = text.split(' '); // split by words
+    words.forEach((word, wordIndex) => {
+      const wordSpan = document.createElement('span');
+      wordSpan.className = 'word';
+      wordSpan.style.display = 'inline-block';
+      wordSpan.style.whiteSpace = 'nowrap'; // letters stay together in one word
+
+      // Split letters for animation
+      word.split('').forEach((char, charIndex) => {
         const span = document.createElement('span');
         span.className = 'letter';
-
-        if (char === ' ') {
-          span.innerHTML = '&nbsp;';
-        } else {
-          span.textContent = char;
-        }
-
         const baseDelay = lineIndex * 1000;
-        const charDelay = charIndex * 40;
+        const charDelay = (wordIndex * 100 + charIndex * 40);
         span.style.animationDelay = `${baseDelay + charDelay}ms`;
-
-        element.appendChild(span);
+        span.textContent = char;
+        wordSpan.appendChild(span);
       });
-    });
-  }
 
-  initSplitText();
+      element.appendChild(wordSpan);
+
+      // Add a real space (allows wrapping)
+      if (wordIndex < words.length - 1) {
+        element.appendChild(document.createTextNode(' '));
+      }
+    });
+  });
+}
+
+initSplitText();
+
 
   // ========================================
   // SMOOTH SCROLL FOR ANCHOR LINKS
