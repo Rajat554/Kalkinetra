@@ -14,40 +14,126 @@
 
   <!-- Custom CSS -->
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="/Kalkinetra/common.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/x-icon" href="/Kalkinetra/assets/Screenshot 2025-10-25 170112.png">
 </head>
 
 <body>
   <!-- Fixed DarkVeil Background -->
-  <div id="darkveil-background"></div>
+  <!-- <div id="darkveil-background"></div> -->
+
+  <!-- Video Background -->
+  <div id="video-background">
+    <video autoplay muted loop playsinline>
+      <source src="/Kalkinetra/assets/82170-577893740_small.mp4" type="video/mp4">
+      <!-- Add your video path above -->
+    </video>
+    <div class="video-overlay"></div>
+  </div>
+
 
 
   <!-- Floating Glass Pill Navbar -->
-  <nav class="pill-navbar">
-    <div class="pill-container">
-      <a href="index.html" class="brand">
-        <img src="/Kalkinetra/assets/Screenshot 2025-10-25 170112.png" alt="Logo" />
-        <span>KalkiNetra</span>
-      </a>
+<!-- Modern Professional Navbar (ST FOX Style) -->
+<!-- <nav class="pill-navbar">
+  <div class="pill-container">
+    <a href="index.html" class="brand">
+      <img src="/Kalkinetra/assets/Screenshot 2025-10-25 170112.png" alt="KalkiNetra Logo" />
+      <span>KalkiNetra</span>
+    </a>
 
-      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </button>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
 
-      <ul class="nav-links" id="navLinks">
-        <li><a href="about.html">About</a></li>
-        <li><a href="research.html">Research</a></li>
-        <li><a href="solutions.html">Solutions</a></li>
-        <li><a href="inside.html">Insights</a></li>
-        <li><a href="collaborate.html">Collaborate</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </div>
-  </nav>
-  <!-- Hero Section -->
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="solutions.html">Solutions</a></li>
+      <li><a href="inside.html">Insights</a></li>
+      <li><a href="collaborate.html">Collaborate</a></li>
+      <li><a href="contact.html" class="btn-nav-cta">Contact Us</a></li>
+    </ul>
+  </div>
+</nav> -->
+
+
+<!-- EXACT ST FOX NAVBAR -->
+<nav class="stfox-navbar">
+  <div class="stfox-navbar-inner">
+    
+    <!-- Logo/Brand -->
+    <a href="index.html" class="stfox-brand">
+      <img src="/Kalkinetra/assets/Screenshot 2025-10-25 170112.png" alt="KalkiNetra" />
+      <span>KalkiNetra</span>
+    </a>
+
+    <!-- Mobile Toggle Button -->
+    <button class="stfox-mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Navigation Menu -->
+    <ul class="stfox-nav" id="mainNav">
+
+      <!-- Solutions Dropdown -->
+      <li class="has-dropdown">
+        <button class="stfox-nav-link" onclick="toggleDropdown(this)">
+          Solutions
+          <span class="dropdown-arrow">▼</span>
+        </button>
+        <ul class="stfox-dropdown">
+          <li><a href="solutions.html">AI Security Assessment</a></li>
+          <li><a href="solutions.html">Prompt Injection Defense</a></li>
+          <li><a href="solutions.html">Adversarial Testing</a></li>
+          <li><a href="solutions.html">Risk Management</a></li>
+          <li><a href="solutions.html">Model Protection</a></li>
+        </ul>
+      </li>
+
+      <!-- Company Dropdown -->
+      <li class="has-dropdown">
+        <button class="stfox-nav-link" onclick="toggleDropdown(this)">
+          Company
+          <span class="dropdown-arrow">▼</span>
+        </button>
+        <ul class="stfox-dropdown">
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="about.html">Corporate Sustainability</a></li>
+          <li><a href="research.html">Privacy Policy</a></li>
+          <li><a href="inside.html">Insights</a></li>
+          <li><a href="collaborate.html">Careers</a></li>
+        </ul>
+      </li>
+
+      <!-- Research Link -->
+      <li>
+        <a href="research.html" class="stfox-nav-link">Research</a>
+      </li>
+
+      <!-- CTA Button -->
+      <li>
+        <a href="contact.html" class="stfox-cta-btn btn-primary">Experiencing a Breach?</a>
+      </li>
+
+    </ul>
+
+  </div>
+</nav>
+
+
+
+
+<!-- Hero Section -->
   <section id="home" class="hero-section">
     <div class="container">
-      <div class="row min-vh-100 align-items-center justify-content-center text-center">
+      <div class="row min-vh-75 align-items-center justify-content-center text-center">
         <div class="col-lg-10">
           <h1 class="hero-title mb-4">
             <span class="split-text" data-text="Exploring Vulnerabilities">Exploring Vulnerabilities</span>
@@ -587,7 +673,7 @@
           <p class="footer-copyright mb-0">
             © 2025 KalkiNetra Research & Threat Intelligence Lab. All rights
             reserved.
-            <span class="d-inline-block ms-2">Built with <i class="bi bi-heart-fill text-danger"></i> for AI
+            <span class="d-inline-block ms-2">Built with</i> for AI
               Security</span>
           </p>
         </div>

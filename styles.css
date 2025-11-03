@@ -44,7 +44,7 @@ body {
   color: var(--color-text-primary);
   line-height: 1.6;
   position: relative;
-  background: #000;
+  background: rgb(0, 1, 3);
   margin: 0;
   padding: 0;
   width: 100%;
@@ -3570,3 +3570,86 @@ body {
 }
 
 
+
+
+
+/* ========================================
+    VIDEO BACKGROUND
+    ======================================== */
+  #video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -1;
+  }
+
+  #video-background video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit:initial;
+    opacity: 50%;
+  }
+
+  .video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+  }
+
+
+
+
+  /* ========================================
+    VIDEO BACKGROUND
+    ======================================== */
+  #video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -1;
+  }
+
+  #video-background video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    padding-top: 70px;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+  }
+
+  .video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+
+  /* After video section, show bright background */
+  .hero-section ~ section {
+    background: linear-gradient(180deg, #00050c 0%, #00050c 100%) !important;
+  }
+  
