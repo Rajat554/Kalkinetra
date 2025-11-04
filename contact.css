@@ -1505,3 +1505,76 @@ focus-visible {
   }
 }
 
+
+.contact-hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 0;
+  /* background: linear-gradient(135deg, #0066ff 0%, #000000 100%); */
+  /* background: linear-gradient(135deg, #3388ff 0%, #0066ff 100%); */
+  /* background: linear-gradient(180deg, #0066ff 0%, #001a4d 100%); */
+  background: linear-gradient(135deg, #1a75ff 0%, #0033cc 50%, #000000 100%);
+  /* background: linear-gradient(135deg, #3399ff 0%, #0052cc 100%); */
+  overflow: hidden;
+}
+
+.contact-hero > .container {
+  position: relative;
+  z-index: 2;
+}
+
+.contact-hero .glow-effect {
+  position: absolute;
+  z-index: 1;
+}
+/* Gradient Background for Hero Section */
+.contact-hero {
+  position: relative;
+  background: linear-gradient(135deg, 
+    rgba(99, 102, 241, 0.15) 0%,
+    rgba(139, 92, 246, 0.15) 25%,
+    rgba(236, 72, 153, 0.15) 50%,
+    rgba(59, 130, 246, 0.15) 75%,
+    rgba(99, 102, 241, 0.15) 100%);
+  background-size: 400% 400%;w
+  animation: gradientShift 15s ease infinite;
+  overflow: hidden;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Enhance with additional glow layers */
+.contact-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at 50% 0%, 
+    rgba(37, 65, 177, 0.576) 0%,
+    transparent 70%);
+  pointer-events: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
