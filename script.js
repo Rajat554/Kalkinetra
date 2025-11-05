@@ -532,3 +532,260 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   
 });
+
+// ========================================
+// KALKINETRA - Clean JavaScript
+// ========================================
+
+document.addEventListener('DOMContentLoaded', function() {
+  
+  // ========================================
+  // MOBILE NAVIGATION TOGGLE
+  // ========================================
+  const mobileToggle = document.getElementById('mobileToggle');
+  const mainNav = document.getElementById('mainNav');
+  const body = document.body;
+
+  if (mobileToggle && mainNav) {
+    mobileToggle.addEventListener('click', function() {
+      this.classList.toggle('active');
+      mainNav.classList.toggle('active');
+      body.classList.toggle('menu-open');
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.stfox-navbar')) {
+        mainNav.classList.remove('active');
+        mobileToggle.classList.remove('active');
+        body.classList.remove('menu-open');
+      }
+    });
+
+    // Close menu on window resize
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 992) {
+        mainNav.classList.remove('active');
+        mobileToggle.classList.remove('active');
+        body.classList.remove('menu-open');
+        document.querySelectorAll('.has-dropdown').forEach(item => {
+          item.classList.remove('dropdown-open');
+        });
+      }
+    });
+  }
+
+  // ========================================
+  // DROPDOWN TOGGLE FOR MOBILE
+  // ========================================
+  window.toggleDropdown = function(element) {
+    if (window.innerWidth <= 992) {
+      const parentLi = element.closest('li');
+      parentLi.classList.toggle('dropdown-open');
+    }
+  };
+
+  // ========================================
+  // FADE-IN ANIMATION ON SCROLL
+  // ========================================
+  const observerOptions = {
+    threshold: 0.15,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const fadeInObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('fade-in-visible');
+        fadeInObserver.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  // Observe all sections and cards
+  const fadeElements = document.querySelectorAll(`
+    .logo-loop-section,
+    .founder-image-wrapper,
+    .founder-quote-card,
+    .impact-card,
+    .research-card,
+    .tool-card,
+    .collaboration-section,
+    .newsletter-card,
+    .section-title,
+    .section-subtitle
+  `);
+
+  fadeElements.forEach(el => {
+    el.classList.add('fade-in-element');
+    fadeInObserver.observe(el);
+  });
+
+  // ========================================
+  // COUNT-UP ANIMATION FOR IMPACT NUMBERS
+  // ========================================
+  const impactNumbers = document.querySelectorAll('.impact-number');
+  
+  const countUpObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+        entry.target.classList.add('counted');
+        animateCountUp(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  function animateCountUp(element) {
+    const target = parseInt(element.getAttribute('data-target'));
+    const duration = 2000;
+    const increment = target / (duration / 16);
+    let current = 0;
+
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        element.textContent = target + '+';
+        clearInterval(timer);
+      } else {
+        element.textContent = Math.floor(current) + '+';
+      }
+    }, 16);
+  }
+
+  impactNumbers.forEach(number => {
+    countUpObserver.observe(number);
+  });
+
+  // ========================================
+  // SMOOTH SCROLL FOR ANCHOR LINKS
+  // ========================================
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if (href !== '#' && href !== '') {
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          const offset = 80;
+          const targetPosition = target.offsetTop - offset;
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+          
+          // Close mobile menu if open
+          if (mainNav && mainNav.classList.contains('active')) {
+            mainNav.classList.remove('active');
+            mobileToggle.classList.remove('active');
+            body.classList.remove('menu-open');
+          }
+        }
+      }
+    });
+  });
+
+  // ========================================
+  // NEWSLETTER FORM SUBMISSION
+  // ========================================
+  const newsletterForm = document.querySelector('.newsletter-form');
+  if (newsletterForm) {
+    newsletterForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = this.querySelector('input[type="email"]').value;
+      alert('Thank you for subscribing! We\'ll send updates to: ' + email);
+      this.reset();
+    });
+  }
+
+  // ========================================
+  // NAVBAR SCROLL EFFECT (OPTIONAL)
+  // ========================================
+  const navbar = document.querySelector('.stfox-navbar');
+  
+  function updateNavbar() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    if (scrollTop > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  }
+
+  if (navbar) {
+    window.addEventListener('scroll', updateNavbar);
+    updateNavbar();
+  }
+
+  // ========================================
+  // ACTIVE NAV LINK ON SCROLL
+  // ========================================
+  function updateActiveNav() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.stfox-nav-link[href^="#"]');
+    
+    let current = '';
+    const scrollPos = window.pageYOffset + 200;
+
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionBottom = sectionTop + section.offsetHeight;
+
+      if (scrollPos >= sectionTop && scrollPos < sectionBottom) {
+        current = section.getAttribute('id');
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) {
+        link.classList.add('active');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', updateActiveNav);
+  updateActiveNav();
+
+  // ========================================
+  // MOUSE MOVE EFFECT FOR CARDS (SUBTLE 3D)
+  // ========================================
+  const interactiveCards = document.querySelectorAll('.impact-card, .research-card, .tool-card');
+  
+  interactiveCards.forEach(card => {
+    card.addEventListener('mousemove', function(e) {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      const rotateX = (y - centerY) / 20;
+      const rotateY = (centerX - x) / 20;
+      
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+    });
+    
+    card.addEventListener('mouseleave', function() {
+      card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+    });
+  });
+
+  // ========================================
+  // PREVENT HORIZONTAL OVERFLOW
+  // ========================================
+  function checkOverflow() {
+    const body = document.body;
+    const html = document.documentElement;
+    
+    if (body.scrollWidth > html.clientWidth) {
+      console.warn('Horizontal overflow detected');
+    }
+  }
+
+  window.addEventListener('resize', checkOverflow);
+  checkOverflow();
+
+  console.log('✅ KalkiNetra - Research & Threat Intelligence Lab initialized');
+});

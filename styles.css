@@ -3653,3 +3653,942 @@ body {
     background: linear-gradient(180deg, #00050c 0%, #00050c 100%) !important;
   }
   
+
+
+  /* ========================================
+   FADE-IN ANIMATION SYSTEM
+   ======================================== */
+
+/* Initial state - hidden */
+.fade-in-element {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Visible state - animated in */
+.fade-in-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* Specific animations for different components */
+
+/* Cards fade up */
+.impact-card.fade-in-element,
+.research-card.fade-in-element,
+.tool-card.fade-in-element {
+  transform: translateY(60px);
+}
+
+/* Founder section - slide from left */
+.founder-image-wrapper.fade-in-element {
+  transform: translateX(-80px);
+}
+
+/* Founder quote - slide from right */
+.founder-quote-card.fade-in-element {
+  transform: translateX(80px);
+}
+
+/* Section titles - fade from top */
+section .section-title.fade-in-element,
+section .section-subtitle.fade-in-element {
+  transform: translateY(-30px);
+}
+
+/* Newsletter card - scale up */
+.newsletter-card.fade-in-element {
+  transform: scale(0.95) translateY(30px);
+}
+
+.newsletter-card.fade-in-visible {
+  transform: scale(1) translateY(0) !important;
+}
+
+/* Collaboration icon - bounce effect */
+.collab-icon.fade-in-element {
+  transform: scale(0.5);
+}
+
+.collab-icon.fade-in-visible {
+  transform: scale(1) !important;
+  animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.5);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Logo loop - fade only */
+.logo-loop-section.fade-in-element {
+  transform: none;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .fade-in-element {
+    transform: none !important;
+    transition: opacity 0.3s ease !important;
+  }
+  
+  .fade-in-visible {
+    opacity: 1 !important;
+  }
+}
+
+/* ========================================
+   ANIMATION PERFORMANCE OPTIMIZATION
+   ======================================== */
+
+/* Force GPU acceleration */
+.fade-in-element,
+.letter,
+.impact-number,
+.hero-title,
+.hero-subtitle,
+.hero-tagline,
+.hero-cta-buttons {
+  will-change: transform, opacity;
+}
+
+/* Remove will-change after animation completes */
+.fade-in-visible {
+  will-change: auto;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Prevent text shifting during animation */
+.hero-title {
+  min-height: 200px; /* Adjust based on your title size */
+}
+
+
+/* ========================================
+   FADE-IN ANIMATION SYSTEM - ENHANCED
+   ======================================== */
+
+/* Initial state - hidden */
+.fade-in-element {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Visible state - animated in */
+.fade-in-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* ========================================
+   SLOW ANIMATIONS FOR RESEARCH & TOOLS
+   ======================================== */
+
+/* Research cards - SLOW fade up with deeper start */
+.research-card.fade-in-element {
+  opacity: 0;
+  transform: translateY(80px); /* Start from lower */
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Tool cards - SLOW fade up with scale */
+.tool-card.fade-in-element {
+  opacity: 0;
+  transform: translateY(80px) scale(0.95); /* Start from lower + smaller */
+  transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tool-card.fade-in-visible {
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
+}
+
+/* Smooth entrance for research icons */
+.research-card.fade-in-visible .research-icon {
+  animation: iconFloatIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s backwards;
+}
+
+@keyframes iconFloatIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Smooth entrance for tool icons */
+.tool-card.fade-in-visible .tool-icon-wrapper {
+  animation: iconBounceIn 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.4s backwards;
+}
+
+@keyframes iconBounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) rotate(-45deg);
+  }
+  50% {
+    transform: scale(1.1) rotate(5deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* Animate research title after card appears */
+.research-card.fade-in-visible .research-title {
+  animation: fadeInTitle 0.8s ease 0.5s backwards;
+}
+
+.tool-card.fade-in-visible .tool-title {
+  animation: fadeInTitle 0.8s ease 0.6s backwards;
+}
+
+@keyframes fadeInTitle {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animate description text */
+.research-card.fade-in-visible .research-description,
+.tool-card.fade-in-visible .tool-description {
+  animation: fadeInText 0.8s ease 0.7s backwards;
+}
+
+@keyframes fadeInText {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Animate tool features list items one by one */
+.tool-card.fade-in-visible .tool-features li {
+  animation: fadeInListItem 0.5s ease backwards;
+}
+
+.tool-card.fade-in-visible .tool-features li:nth-child(1) {
+  animation-delay: 0.9s;
+}
+
+.tool-card.fade-in-visible .tool-features li:nth-child(2) {
+  animation-delay: 1.1s;
+}
+
+.tool-card.fade-in-visible .tool-features li:nth-child(3) {
+  animation-delay: 1.3s;
+}
+
+@keyframes fadeInListItem {
+  0% {
+    opacity: 0;
+    transform: translateX(-15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animate buttons */
+.research-card.fade-in-visible .research-link,
+.tool-card.fade-in-visible .btn-tool-action {
+  animation: fadeInButton 0.6s ease 1.5s backwards;
+}
+
+@keyframes fadeInButton {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animate research number */
+.research-card.fade-in-visible .research-number {
+  animation: numberFadeIn 1.5s ease 0.2s backwards;
+}
+
+@keyframes numberFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(1.5) rotate(10deg);
+  }
+  100% {
+    opacity: 0.1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* ========================================
+   OTHER COMPONENTS - NORMAL SPEED
+   ======================================== */
+
+/* Impact cards - normal speed */
+.impact-card.fade-in-element {
+  transform: translateY(60px);
+}
+
+/* Founder section - slide from sides */
+.founder-image-wrapper.fade-in-element {
+  transform: translateX(-80px);
+}
+
+.founder-quote-card.fade-in-element {
+  transform: translateX(80px);
+}
+
+/* Section titles - fade from top */
+section .section-title.fade-in-element,
+section .section-subtitle.fade-in-element {
+  transform: translateY(-30px);
+}
+
+/* Newsletter card - scale up */
+.newsletter-card.fade-in-element {
+  transform: scale(0.95) translateY(30px);
+}
+
+.newsletter-card.fade-in-visible {
+  transform: scale(1) translateY(0) !important;
+}
+
+/* Collaboration icon - bounce effect */
+.collab-icon.fade-in-element {
+  transform: scale(0.5);
+}
+
+.collab-icon.fade-in-visible {
+  transform: scale(1) !important;
+  animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.5);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Logo loop - fade only */
+.logo-loop-section.fade-in-element {
+  transform: none;
+}
+
+/* ========================================
+   RESPONSIVE ADJUSTMENTS
+   ======================================== */
+
+/* Mobile - reduce animation complexity */
+@media (max-width: 768px) {
+  .research-card.fade-in-element,
+  .tool-card.fade-in-element {
+    transition-duration: 1s;
+  }
+  
+  /* Disable internal animations on mobile for performance */
+  .research-card.fade-in-visible .research-icon,
+  .tool-card.fade-in-visible .tool-icon-wrapper,
+  .research-card.fade-in-visible .research-title,
+  .tool-card.fade-in-visible .tool-title,
+  .research-card.fade-in-visible .research-description,
+  .tool-card.fade-in-visible .tool-description,
+  .tool-card.fade-in-visible .tool-features li,
+  .research-card.fade-in-visible .research-link,
+  .tool-card.fade-in-visible .btn-tool-action,
+  .research-card.fade-in-visible .research-number {
+    animation: none !important;
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .fade-in-element,
+  .research-card.fade-in-element,
+  .tool-card.fade-in-element {
+    transform: none !important;
+    transition: opacity 0.3s ease !important;
+  }
+  
+  .fade-in-visible {
+    opacity: 1 !important;
+  }
+  
+  /* Disable all internal animations */
+  .research-card.fade-in-visible .research-icon,
+  .tool-card.fade-in-visible .tool-icon-wrapper,
+  .research-card.fade-in-visible .research-title,
+  .tool-card.fade-in-visible .tool-title,
+  .tool-card.fade-in-visible .tool-features li,
+  .research-card.fade-in-visible .research-number {
+    animation: none !important;
+  }
+}
+
+/* ========================================
+    STFOX NAVBAR - COMPLETE PC & MOBILE
+    ======================================== */
+
+.stfox-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 1rem 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0, 102, 255, 0.3);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.stfox-navbar.scrolled {
+  background: rgba(0, 0, 0, 0.95);
+  padding: 0.75rem 0;
+  box-shadow: 0 4px 30px rgba(0, 102, 255, 0.3);
+}
+
+.stfox-navbar-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ========================================
+    BRAND / LOGO
+    ======================================== */
+
+.stfox-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: var(--color-text-primary);
+  font-weight: 700;
+  font-size: 1.25rem;
+  transition: all var(--transition-normal);
+  z-index: 1001;
+}
+
+.stfox-brand img {
+  height: 45px;
+  width: auto;
+  border-radius: 8px;
+  filter: drop-shadow(0 0 15px var(--glow-blue));
+  transition: all var(--transition-normal);
+}
+
+.stfox-brand:hover {
+  color: var(--color-primary);
+}
+
+.stfox-brand:hover img {
+  filter: drop-shadow(0 0 25px var(--color-primary));
+  transform: scale(1.05);
+}
+
+/* ========================================
+    NAVIGATION MENU - DESKTOP
+    ======================================== */
+
+.stfox-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.stfox-nav > li {
+  position: relative;
+}
+
+/* ========================================
+    NAV LINKS - DESKTOP
+    ======================================== */
+
+.stfox-nav-link {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  transition: all var(--transition-normal);
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.stfox-nav-link:hover {
+  color: var(--color-primary);
+  background: rgba(0, 102, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Active state */
+.stfox-nav-link.active {
+  color: var(--color-primary);
+  background: rgba(0, 102, 255, 0.15);
+}
+
+/* ========================================
+    DROPDOWN ARROW
+    ======================================== */
+
+.dropdown-arrow {
+  font-size: 0.7rem;
+  transition: transform var(--transition-normal);
+  display: inline-block;
+}
+
+.has-dropdown:hover .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+/* ========================================
+    DROPDOWN MENU - DESKTOP (FIXED)
+    ======================================== */
+
+.stfox-dropdown {
+  position: absolute;
+  top: calc(100% + 0.75rem);
+  left: 0;
+  background: rgba(0, 0, 0, 0.98);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(0, 102, 255, 0.4);
+  border-radius: 12px;
+  padding: 0.75rem 0;
+  min-width: 220px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-15px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  list-style: none;
+  margin: 0;
+  box-shadow: 0 10px 40px rgba(0, 102, 255, 0.3);
+  z-index: 1000;
+  pointer-events: none;
+}
+
+/* Show dropdown on hover */
+.has-dropdown:hover .stfox-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Dropdown items */
+.stfox-dropdown li {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.stfox-dropdown a {
+  display: block;
+  padding: 0.85rem 1.5rem;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  font-size: 0.95rem;
+  font-weight: 500;
+  white-space: nowrap;
+  border-left: 3px solid transparent;
+}
+
+.stfox-dropdown a:hover {
+  color: var(--color-primary);
+  background: rgba(0, 102, 255, 0.15);
+  border-left-color: var(--color-primary);
+  padding-left: 2rem;
+}
+
+/* Dropdown animation with delay */
+.stfox-dropdown li {
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.3s ease;
+}
+
+.has-dropdown:hover .stfox-dropdown li:nth-child(1) {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.05s;
+}
+
+.has-dropdown:hover .stfox-dropdown li:nth-child(2) {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.1s;
+}
+
+.has-dropdown:hover .stfox-dropdown li:nth-child(3) {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.15s;
+}
+
+.has-dropdown:hover .stfox-dropdown li:nth-child(4) {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.2s;
+}
+
+.has-dropdown:hover .stfox-dropdown li:nth-child(5) {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.25s;
+}
+
+/* Dropdown arrow indicator */
+.stfox-dropdown::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 30px;
+  width: 12px;
+  height: 12px;
+  background: rgba(0, 0, 0, 0.98);
+  border-top: 1px solid rgba(0, 102, 255, 0.4);
+  border-left: 1px solid rgba(0, 102, 255, 0.4);
+  transform: rotate(45deg);
+}
+
+/* ========================================
+    CTA BUTTON
+    ======================================== */
+
+.stfox-cta-btn {
+  background: var(--color-primary);
+  color: #ffffff;
+  padding: 0.75rem 1.75rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all var(--transition-normal);
+  box-shadow: 0 4px 15px rgba(0, 102, 255, 0.4);
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.stfox-cta-btn:hover {
+  background: var(--color-secondary);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 25px rgba(0, 102, 255, 0.6);
+  color: #ffffff;
+}
+
+/* ========================================
+    MOBILE TOGGLE BUTTON
+    ======================================== */
+
+.stfox-mobile-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1001;
+}
+
+.stfox-mobile-toggle span {
+  display: block;
+  width: 28px;
+  height: 3px;
+  background: var(--color-text-primary);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+  border-radius: 2px;
+}
+
+/* Hamburger to X animation */
+.stfox-mobile-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translateY(9px);
+}
+
+.stfox-mobile-toggle.active span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.stfox-mobile-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-9px);
+}
+
+/* ========================================
+    RESPONSIVE - TABLET & MOBILE
+    ======================================== */
+
+@media (max-width: 992px) {
+  .stfox-navbar-inner {
+    padding: 0 1.5rem;
+  }
+
+  .stfox-mobile-toggle {
+    display: flex;
+  }
+
+  .stfox-nav {
+    position: fixed;
+    top: 77px;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.98);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 1.5rem;
+    border-top: 1px solid rgba(0, 102, 255, 0.3);
+    border-bottom: 1px solid rgba(0, 102, 255, 0.3);
+    max-height: 0;
+    opacity: 0;
+    visibility: hidden;
+    overflow-y: auto;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+  }
+
+  .stfox-nav.active {
+    max-height: calc(100vh - 77px);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .stfox-nav > li {
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .stfox-nav > li:last-child {
+    border-bottom: none;
+  }
+
+  .stfox-nav-link {
+    width: 100%;
+    justify-content: space-between;
+    padding: 1rem 0;
+    border-radius: 0;
+  }
+
+  .stfox-nav-link:hover {
+    transform: none;
+    padding-left: 1rem;
+  }
+
+  /* Dropdown for mobile */
+  .stfox-dropdown {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    transition: max-height 0.3s ease;
+    pointer-events: auto;
+  }
+
+  .stfox-dropdown::before {
+    display: none;
+  }
+
+  .has-dropdown.dropdown-open .stfox-dropdown {
+    max-height: 500px;
+    padding: 0.5rem 0;
+  }
+
+  .stfox-dropdown li {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .stfox-dropdown a {
+    padding: 0.75rem 0 0.75rem 2rem;
+    font-size: 0.9rem;
+    border-left: none;
+    background: rgba(0, 102, 255, 0.05);
+  }
+
+  .stfox-dropdown a:hover {
+    padding-left: 2.5rem;
+    background: rgba(0, 102, 255, 0.15);
+  }
+
+  .stfox-cta-btn {
+    text-align: center;
+    display: block;
+    margin-top: 1rem;
+  }
+
+  /* Custom scrollbar for mobile nav */
+  .stfox-nav::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .stfox-nav::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  .stfox-nav::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: 3px;
+  }
+}
+
+@media (max-width: 768px) {
+  .stfox-brand {
+    font-size: 1.1rem;
+  }
+
+  .stfox-brand img {
+    height: 38px;
+  }
+
+  .stfox-navbar-inner {
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .stfox-brand span {
+    display: none;
+  }
+
+  .stfox-mobile-toggle span {
+    width: 24px;
+  }
+}
+
+/* ========================================
+    NAVBAR SCROLL EFFECT
+    ======================================== */
+
+@media (min-width: 993px) {
+  .stfox-navbar.scrolled .stfox-brand img {
+    height: 40px;
+  }
+
+  .stfox-navbar.scrolled .stfox-nav-link {
+    padding: 0.65rem 1.15rem;
+  }
+
+  .stfox-navbar.scrolled .stfox-cta-btn {
+    padding: 0.65rem 1.5rem;
+  }
+}
+
+/* ========================================
+    ACCESSIBILITY & FOCUS STATES
+    ======================================== */
+
+.stfox-nav-link:focus-visible,
+.stfox-cta-btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+.stfox-mobile-toggle:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Prevent body scroll when mobile menu is open */
+body.menu-open {
+  overflow: hidden;
+}
+
+/* ========================================
+    HOVER IMPROVEMENTS FOR BETTER UX
+    ======================================== */
+
+@media (hover: hover) {
+  .has-dropdown {
+    cursor: pointer;
+  }
+
+  /* Keep dropdown open while hovering over it */
+  .has-dropdown:hover,
+  .has-dropdown:focus-within {
+    .stfox-dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .dropdown-arrow {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+/* ========================================
+    PRINT STYLES
+    ======================================== */
+
+@media print {
+  .stfox-navbar {
+    display: none;
+  }
+}

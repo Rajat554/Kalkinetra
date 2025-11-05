@@ -910,3 +910,38 @@ body {
       page-break-inside: avoid;
     }
   }
+
+
+
+
+
+
+  /* ========================================
+   COMMON.CSS - Shared Styles Only
+   ======================================== */
+
+/* This file is now cleaned - all navbar styles moved to styles.css */
+/* Keep this file for any future shared components across multiple pages */
+
+/* Example: If you have multiple HTML pages, add shared styles here */
+
+/* ========================================
+   PRINT STYLES (SHARED)
+   ======================================== */
+@media print {
+  .stfox-navbar,
+  .footer-section,
+  .btn,
+  .social-links {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+
+  section {
+    page-break-inside: avoid;
+  }
+}

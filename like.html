@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DRISHTI Framework - KalkiNetra</title>
+    
+    <!-- GSAP Library -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Observer.min.js"></script>
+    
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        body.hidden {
+            overflow: hidden;
+        }
+
+        /* Blank Sections */
+        .blank-section {
+            height: 100vh;
+            background: linear-gradient(180deg, #000 0%, #001a33 100%);
+            overflow: hidden;
+        }
+
+        /* DRISHTI Timeline Section */
+        .drishti-timeline-section {
+            padding: 100px 0;
+            min-height: 100vh;
+            will-change: transform;
+            background: #000;
+        }
+
+        @media only screen and (max-width: 1400px) {
+            .drishti-timeline-section {
+                padding: 80px 0;
+            }
+        }
+
+        .rows {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            gap: 80px;
+        }
+
+        @media only screen and (max-width: 767px) {
+            .rows {
+                flex-wrap: wrap;
+                gap: 40px;
+            }
+        }
+
+        /* Circle Container */
+        .circle {
+            width: 600px;
+            height: 600px;
+            background: transparent;
+            border-radius: 50%;
+            color: #fff;
+            position: relative;
+            border: 3px solid #0066ff;
+            will-change: transform;
+            box-shadow: 
+                0 0 60px rgba(0, 102, 255, 0.3), 
+                inset 0 0 60px rgba(0, 102, 255, 0.1);
+        }
+
+        @media only screen and (max-width: 1400px) {
+            .circle {
+                width: 540px;
+                height: 540px;
+            }
+        }
+
+        @media only screen and (max-width: 767px) {
+            .circle {
+                width: 300px;
+                height: 300px;
+            }
+        }
+
+        .date-list-row,
+        .dots-list-row {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Dots */
+        .dots {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            background: #0066ff;
+            border-radius: 50%;
+            display: inline-block;
+            transition: all 0.4s ease;
+            will-change: transform;
+            box-shadow: 0 0 20px rgba(0, 102, 255, 0.5);
+        }
+
+        @media only screen and (max-width: 767px) {
+            .dots {
+                width: 14px;
+                height: 14px;
+            }
+        }
+
+        .dots.active {
+            background-color: #0052cc;
+            box-shadow: 0 0 30px rgba(0, 82, 204, 0.8);
+            width: 24px;
+            height: 24px;
+        }
+
+        @media only screen and (max-width: 767px) {
+            .dots.active {
+                width: 18px;
+                height: 18px;
+            }
+        }
+
+        /* Date List (Letters) */
+        .date-list {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            color: #0066ff;
+        }
+
+        .inner-text {
+            position: relative;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .inner-text span {
+            display: inline-block;
+        }
+
+        .date-text {
+            font-weight: 900;
+            font-size: 2.5rem;
+            transition: all 0.4s ease;
+            color: #0066ff;
+            will-change: transform;
+            transform-origin: center;
+            text-shadow: 0 0 10px rgba(0, 102, 255, 0.3);
+        }
+
+        @media only screen and (max-width: 767px) {
+            .date-text {
+                font-size: 1.5rem;
+            }
+        }
+
+        .text {
+            font-size: 0.9rem;
+            word-break: break-word;
+            opacity: 0;
+            transition: all 0.4s ease;
+            color: rgba(255, 255, 255, 0.6);
+            text-align: center;
+            white-space: nowrap;
+            font-weight: 600;
+        }
+
+        .date-list.active .date-text {
+            color: #0052cc;
+            transform: scale(1.4);
+            text-shadow: 0 0 20px rgba(0, 82, 204, 0.6);
+        }
+
+        @media only screen and (max-width: 767px) {
+            .date-list.active .date-text {
+                transform: scale(1.2);
+            }
+        }
+
+        .date-list.active .text {
+            opacity: 1;
+        }
+
+        /* Text List (Content Display) */
+        .text-list {
+            max-width: 600px;
+            flex: 1;
+        }
+
+        @media only screen and (max-width: 767px) {
+            .text-list {
+                width: 100%;
+                padding: 0 30px;
+                text-align: center;
+            }
+        }
+
+        .out-text {
+            display: none;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .out-text.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Pillar Content Styling */
+        .pillar-badge {
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #0066ff;
+            background: rgba(0, 102, 255, 0.2);
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 1px solid rgba(0, 102, 255, 0.3);
+        }
+
+        .pillar-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #0066ff 0%, #3388ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .pillar-subtitle {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .pillar-description {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .pillar-features {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 16px;
+            background: rgba(0, 102, 255, 0.1);
+            border-left: 3px solid #0066ff;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .feature-item::before {
+            content: "✓";
+            color: #0066ff;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Blank Section Before -->
+<section class="blank-section"></section>
+
+<!-- DRISHTI Timeline Section -->
+<section class="drishti-timeline-section">
+    <div class="rows">
+        <!-- Circle with Dots and Letters -->
+        <div class="circle">
+            <!-- Dots Layer -->
+            <div class="dots-list-row">
+                <span class="dots active" data-angle="90"></span>
+                <span class="dots" data-angle="141"></span>
+                <span class="dots" data-angle="193"></span>
+                <span class="dots" data-angle="244"></span>
+                <span class="dots" data-angle="296"></span>
+                <span class="dots" data-angle="347"></span>
+                <span class="dots" data-angle="39"></span>
+            </div>
+            
+            <!-- Date List (Letters) -->
+            <div class="date-list-row">
+                <!-- D -->
+                <span class="date-list active" data-angle="90">
+                    <span class="inner-text">
+                        <span class="date"><span class="date-text">D</span></span>
+                        <span class="text">Detect</span>
+                    </span>
+                </span>
+                
+                <!-- R -->
+                <span class="date-list" data-angle="141">
+                    <span class="inner-text">
+                        <span class="date"><span class="date-text">R</span></span>
+                        <span class="text">Reinforce</span>
+                    </span>
+                </span>
+                
+                <!-- I -->
+                <span class="date-list" data-angle="193">
+                    <span class="inner-text">
+                        <span class="date"><span class="date-text">I</span></span>
+                        <span class="text">Interpret</span>
+                    </span>
+                </span>
+                
+                <!-- S -->
+                <span class="date-list" data-angle="244">
+                    <span class="inner-text">
+                        <span class="date"><span class="date-text">S</span></span>
+                        <span class="text">Secure</span>
+                    </span>
+                </span>
+                
+                <!-- H -->
+                <span class="date-list" data-angle="296">
+                    <span class="inner-text">
+                        <span class="date"><span class="date-text">H</span></span>
+                        <span class="text">Harmonize</span>
+                    </span>
+                </span>
+                
+                <!-- T -->
+                <span class="date-list" data-angle="347">
+                    <span class="inner-text">
+                        <span class="date"><span class="date-text">T</span></span>
+                        <span class="text">Transform</span>
+                    </span>
+                </span>
+                
+                <!-- I -->
+                <span class="date-list" data-angle="39">
+                    <span class="inner-text">
+                        <span class="date"><span class="date-text">I</span></span>
+                        <span class="text">Illuminate</span>
+                    </span>
+                </span>
+            </div>
+        </div>
+        
+        <!-- Content Display -->
+        <div class="text-list">
+            <!-- D - Detect -->
+            <div class="out-text active">
+                <div class="pillar-badge">Pillar 1</div>
+                <h2 class="pillar-title">Detect</h2>
+                <h3 class="pillar-subtitle">Threat Visibility</h3>
+                <p class="pillar-description">
+                    Advanced threat detection systems that provide real-time visibility into potential security risks.
+                </p>
+                <div class="pillar-features">
+                    <div class="feature-item">Real-time monitoring</div>
+                    <div class="feature-item">Anomaly detection</div>
+                    <div class="feature-item">Threat intelligence</div>
+                </div>
+            </div>
+            
+            <!-- R - Reinforce -->
+            <div class="out-text">
+                <div class="pillar-badge">Pillar 2</div>
+                <h2 class="pillar-title">Reinforce</h2>
+                <h3 class="pillar-subtitle">Defensive Strength</h3>
+                <p class="pillar-description">
+                    Strengthen your security posture with multi-layered defense mechanisms.
+                </p>
+                <div class="pillar-features">
+                    <div class="feature-item">Multi-layer protection</div>
+                    <div class="feature-item">Adaptive responses</div>
+                    <div class="feature-item">Continuous hardening</div>
+                </div>
+            </div>
+            
+            <!-- I - Interpret -->
+            <div class="out-text">
+                <div class="pillar-badge">Pillar 3</div>
+                <h2 class="pillar-title">Interpret</h2>
+                <h3 class="pillar-subtitle">Explainability</h3>
+                <p class="pillar-description">
+                    Make sense of complex security data with intelligent interpretation systems.
+                </p>
+                <div class="pillar-features">
+                    <div class="feature-item">Clear insights</div>
+                    <div class="feature-item">AI explainability</div>
+                    <div class="feature-item">Actionable intelligence</div>
+                </div>
+            </div>
+            
+            <!-- S - Secure -->
+            <div class="out-text">
+                <div class="pillar-badge">Pillar 4</div>
+                <h2 class="pillar-title">Secure</h2>
+                <h3 class="pillar-subtitle">Operational Integrity</h3>
+                <p class="pillar-description">
+                    Maintain the integrity of your operations with comprehensive security measures.
+                </p>
+                <div class="pillar-features">
+                    <div class="feature-item">Data protection</div>
+                    <div class="feature-item">Business continuity</div>
+                    <div class="feature-item">Compliance assurance</div>
+                </div>
+            </div>
+            
+            <!-- H - Harmonize -->
+            <div class="out-text">
+                <div class="pillar-badge">Pillar 5</div>
+                <h2 class="pillar-title">Harmonize</h2>
+                <h3 class="pillar-subtitle">Human-AI Collaboration</h3>
+                <p class="pillar-description">
+                    Bridge the gap between human expertise and AI capabilities.
+                </p>
+                <div class="pillar-features">
+                    <div class="feature-item">Human-AI synergy</div>
+                    <div class="feature-item">Team empowerment</div>
+                    <div class="feature-item">Collaborative defense</div>
+                </div>
+            </div>
+            
+            <!-- T - Transform -->
+            <div class="out-text">
+                <div class="pillar-badge">Pillar 6</div>
+                <h2 class="pillar-title">Transform</h2>
+                <h3 class="pillar-subtitle">Evolving Defense</h3>
+                <p class="pillar-description">
+                    Stay ahead of emerging threats with adaptive security systems.
+                </p>
+                <div class="pillar-features">
+                    <div class="feature-item">Adaptive evolution</div>
+                    <div class="feature-item">Future-ready defense</div>
+                    <div class="feature-item">Continuous innovation</div>
+                </div>
+            </div>
+            
+            <!-- I - Illuminate -->
+            <div class="out-text">
+                <div class="pillar-badge">Pillar 7</div>
+                <h2 class="pillar-title">Illuminate</h2>
+                <h3 class="pillar-subtitle">Insight & Foresight</h3>
+                <p class="pillar-description">
+                    Gain unprecedented visibility into your security posture with predictive analytics.
+                </p>
+                <div class="pillar-features">
+                    <div class="feature-item">Predictive analytics</div>
+                    <div class="feature-item">Proactive defense</div>
+                    <div class="feature-item">Future visibility</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Blank Section After -->
+<section class="blank-section"></section>
+
+<script>
+    gsap.registerPlugin(Observer);
+    gsap.registerPlugin(ScrollTrigger);
+
+    var section = document.querySelector(".drishti-timeline-section");
+    var circle = document.querySelector(".circle");
+    const dateListItems = document.querySelectorAll(".date-list");
+    const dotsListItems = document.querySelectorAll(".dots");
+    let allowScroll = true;
+    let scrollTimeout = gsap.delayedCall(1, () => (allowScroll = true)).pause();
+    let animating;
+
+    function positionsDotsDates() {
+        const dotsTranslateYValue =
+            window.innerWidth <= 767
+                ? "-149px"
+                : window.innerWidth < 1400
+                ? "-270px"
+                : "-299px";
+        const datesTranslateYValue =
+            window.innerWidth <= 767
+                ? "-180px"
+                : window.innerWidth < 1400
+                ? "-311px"
+                : "-340px";
+
+        dateListItems.forEach((item) => {
+            const dateListItemsSpan = item.querySelector(".inner-text");
+            const angle = parseInt(item.getAttribute("data-angle"));
+            item.style.transform = `translate(-50%, -50%) rotate(${angle}deg) translateY(${datesTranslateYValue})`;
+            dateListItemsSpan.style.transform = `rotate(${-angle}deg)`;
+        });
+
+        dotsListItems.forEach((dotsItem) => {
+            const angle = parseInt(dotsItem.getAttribute("data-angle"));
+            dotsItem.style.transform = `translate(-50%, -50%) rotate(${angle}deg) translateY(${dotsTranslateYValue})`;
+        });
+    }
+
+    positionsDotsDates();
+
+    window.addEventListener("resize", positionsDotsDates);
+    window.addEventListener("orientationchange", positionsDotsDates);
+    window.addEventListener("load", positionsDotsDates);
+
+    // Animation of Circle
+    const degrees = 360 / dotsListItems.length;
+    let currentRotation = 0;
+
+    let intentObserver = ScrollTrigger.observe({
+        type: "wheel,touch,pointer",
+        allowClicks: true,
+        wheelSpeed: -1,
+        onUp: () => !animating && rotateCircle(currentRotation + degrees, 1),
+        onDown: () => !animating && rotateCircle(currentRotation - degrees, -1),
+        tolerance: 10,
+        preventDefault: true,
+        onEnable(self) {
+            allowScroll = false;
+            scrollTimeout.restart(true);
+            let savedScroll = self.scrollY();
+            self._restoreScroll = () => self.scrollY(savedScroll);
+            document.addEventListener("scroll", self._restoreScroll, {
+                passive: false
+            });
+        },
+        onDisable: (self) =>
+            document.removeEventListener("scroll", self._restoreScroll)
+    });
+    intentObserver.disable();
+
+    const tl = gsap.timeline({
+        defaults: {
+            ease: "none",
+            onUpdate: updateActiveDate
+        }
+    });
+
+    function rotateCircle(rotate, direction) {
+        if (rotate < 0 || rotate >= 360 || animating) {
+            intentObserver.disable();
+            return;
+        }
+
+        allowScroll = false;
+        scrollTimeout.restart(true);
+        animating = true;
+
+        const rotationStep = 360 / dotsListItems.length;
+        const step = direction === -1 ? -rotationStep : rotationStep;
+
+        tl.to(circle, {
+            rotation: currentRotation + step,
+            duration: 0.5,
+            onComplete: () => {
+                animating = false;
+            }
+        });
+
+        tl.to(
+            ".date-list .date, .date-list .text",
+            {
+                rotation: -currentRotation - step,
+                duration: 0.5,
+                onComplete: () => {
+                    animating = false;
+                }
+            },
+            "<"
+        );
+        currentRotation += step;
+    }
+
+    // Pin swipe section and initiate observer
+    ScrollTrigger.create({
+        trigger: section,
+        pin: true,
+        start: "top top",
+        end: "+=200%",
+        onEnter: (self) => {
+            if (intentObserver.isEnabled) {
+                return;
+            }
+            self.scroll(self.start + 1);
+            intentObserver.enable();
+        },
+        onEnterBack: (self) => {
+            if (intentObserver.isEnabled) {
+                return;
+            }
+            self.scroll(self.end - 1);
+            intentObserver.enable();
+        }
+    });
+
+    // Update active date/letter
+    function updateActiveDate() {
+        animating = true;
+        const circleRect = circle.getBoundingClientRect();
+        const circleCenterX = circleRect.left + circleRect.width / 2;
+        const circleCenterY = circleRect.top + circleRect.height / 2;
+        const tolerance = Math.PI / 6;
+
+        dateListItems.forEach((date, index) => {
+            const dateRect = date.getBoundingClientRect();
+            const dateCenterX = dateRect.left + date.offsetWidth / 2;
+            const dateCenterY = dateRect.top + date.offsetHeight / 2;
+            const angle = Math.atan2(
+                dateCenterY - circleCenterY,
+                dateCenterX - circleCenterX
+            );
+            const angleDifference = Math.abs(angle);
+
+            if (angleDifference <= tolerance) {
+                date.classList.add("active");
+                
+                const textList = document.querySelectorAll(".text-list .out-text");
+                textList.forEach((text, textIndex) => {
+                    if (index === textIndex) {
+                        text.classList.add("active");
+                    } else {
+                        text.classList.remove("active");
+                    }
+                });
+
+                dotsListItems.forEach((dot, dotIndex) => {
+                    if (index === dotIndex) {
+                        dot.classList.add("active");
+                    } else {
+                        dot.classList.remove("active");
+                    }
+                });
+            } else {
+                date.classList.remove("active");
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
