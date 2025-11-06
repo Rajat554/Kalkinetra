@@ -663,9 +663,9 @@ window.addEventListener('DOMContentLoaded', function() {
   // ========================================
   const originalTitle = document.title;
   
-  window.addEventListener('blur', () => {
-    document.title = '👋 Come back! - ' + originalTitle;
-  });
+  // window.addEventListener('blur', () => {
+  //   document.title = '👋 Come back! - ' + originalTitle;
+  // });
   
   window.addEventListener('focus', () => {
     document.title = originalTitle;

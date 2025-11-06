@@ -661,12 +661,12 @@ body {
 
 /* AI Security Section Background */
 .ai-security-bg {
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0f0f1e 100%);
+  background: linear-gradient(135deg, #16213e 0%, #0d1b2a 50%, #1a1a2e 100%);
 }
 
 /* Cybersecurity Section Background */
 .cyber-security-bg {
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0d1b2a 100%);
+  background: linear-gradient(135deg, #16213e 0%, #0d1b2a 50%, #1a1a2e 100%);
 }
 
 .container {

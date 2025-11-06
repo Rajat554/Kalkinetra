@@ -1792,11 +1792,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.02) 0%,
-    transparent 100%
-  );
+  background: linear-gradient(135deg, #16213e 0%, #0d1b2a 50%, #1a1a2e 100%);
   pointer-events: none;
 }
 

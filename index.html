@@ -94,10 +94,10 @@
 
       <!-- Company Dropdown -->
       <li class="has-dropdown">
-        <button class="stfox-nav-link" onclick="toggleDropdown(this)">
-          Company
-          <span class="dropdown-arrow">▼</span>
-        </button>
+          <button class="stfox-nav-link" onclick="toggleDropdown(this)">
+            Company
+            <span class="dropdown-arrow">▼</span>
+          </button>
         <ul class="stfox-dropdown">
           <li><a href="about.html">About Us</a></li>
           <li><a href="framework.html">DRISHTI</a></li>
@@ -105,21 +105,162 @@
           <li><a href="collaborate.html">Careers</a></li>
           <li><a href="research.html">Privacy Policy</a></li>
         </ul>
-      </li>
-
-
+        </li>
 
       <!-- CTA Button -->
-      <li>
-        <a href="contact.html" class="stfox-cta-btn btn-primary">Experiencing a Breach?</a>
-      </li>
+<!-- CTA Button -->
+<!-- CTA Button -->
+<li>
+  <button class="stfox-cta-btn btn-primary" onclick="openSecurityModal()">
+    Experiencing a Breach?
+  </button>
+</li>
 
     </ul>
 
   </div>
 </nav>
+<!-- Security Incident Report Modal -->
+<div class="security-modal" id="securityModal">
+  <div class="security-modal-overlay" onclick="closeSecurityModal()"></div>
+  
+  <div class="security-modal-content">
+    <!-- Close Button -->
+    <button class="modal-close-btn" onclick="closeSecurityModal()" aria-label="Close">
+      <i class="bi bi-x-lg"></i>
+    </button>
 
+    <!-- Header -->
+    <div class="modal-header d-flex flex-column">
+      <h2 class="modal-title">Report a Security Incident</h2>
+      <p class="modal-subtitle">
+        Fill out the form below and our security team will respond within 24 hours.
+      </p>
+    </div>
 
+    <!-- Form -->
+    <form class="security-form" id="securityForm" onsubmit="handleSecuritySubmit(event)">
+      
+      <!-- Name / Organization -->
+      <div class="form-group">
+        <label for="orgName" class="form-label">
+          Name / Organization <span class="required">*</span>
+        </label>
+        <input 
+          type="text" 
+          class="form-input" 
+          id="orgName" 
+          name="orgName"
+          placeholder="Enter your name or organization"
+          required
+        />
+      </div>
+
+      <!-- Contact Email -->
+      <div class="form-group">
+        <label for="email" class="form-label">
+          Contact Email <span class="required">*</span>
+        </label>
+        <input 
+          type="email" 
+          class="form-input" 
+          id="email" 
+          name="email"
+          placeholder="your.email@company.com"
+          required
+        />
+      </div>
+
+      <!-- Contact Number -->
+      <div class="form-group">
+        <label for="phone" class="form-label">
+          Contact Number <span class="required">*</span>
+        </label>
+        <input 
+          type="tel" 
+          class="form-input" 
+          id="phone" 
+          name="phone"
+          placeholder="+1 (555) 123-4567"
+          required
+        />
+      </div>
+
+      <!-- Urgency Level -->
+      <div class="form-group">
+        <label class="form-label">
+          Urgency Level <span class="required">*</span>
+        </label>
+        <div class="urgency-buttons">
+          <label class="urgency-option urgency-critical">
+            <input type="radio" name="urgency" value="critical" required />
+            <span class="urgency-label">
+              <i class="bi bi-exclamation-triangle-fill"></i>
+              Critical
+            </span>
+          </label>
+          <label class="urgency-option urgency-moderate">
+            <input type="radio" name="urgency" value="moderate" />
+            <span class="urgency-label">
+              <i class="bi bi-exclamation-circle-fill"></i>
+              Moderate
+            </span>
+          </label>
+          <label class="urgency-option urgency-low">
+            <input type="radio" name="urgency" value="low" />
+            <span class="urgency-label">
+              <i class="bi bi-info-circle-fill"></i>
+              Low
+            </span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Description of Incident -->
+      <div class="form-group">
+        <label for="description" class="form-label">
+          Description of Incident <span class="required">*</span>
+        </label>
+        <textarea 
+          class="form-textarea" 
+          id="description" 
+          name="description"
+          rows="5"
+          placeholder="Please describe:
+• What happened
+• When it occurred
+• What systems or data were affected"
+          required
+        ></textarea>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="btn-submit">
+        <i class="bi bi-send-fill"></i>
+        Submit Report
+      </button>
+
+    </form>
+
+    <!-- Success Message (Hidden by default) -->
+    <div class="success-message" id="successMessage" style="display: none;">
+      <div class="success-icon">
+        <i class="bi bi-check-circle-fill"></i>
+      </div>
+      <h3 class="success-title">Report Submitted Successfully!</h3>
+      <p class="success-text">
+        Our team will analyze your report and reach out with initial insights or recommendations within <strong>24 hours</strong>.
+      </p>
+      <p class="success-reference">
+        Reference ID: <span id="referenceId" class="reference-code"></span>
+      </p>
+      <button class="btn-close-success" onclick="closeSecurityModal()">
+        Close
+      </button>
+    </div>
+
+  </div>
+</div>
 
 
 <!-- Hero Section -->
@@ -142,7 +283,7 @@
               <i class="bi bi-file-earmark-text me-2"></i>Discover Our Work
             </a>
             <a href="#collaboration" class="btn btn-outline-custom btn-lg">
-              <i class="bi bi-people me-2"></i>Collaborate with Us
+              <i class="bi bi-people me-2"></i>Solutions
             </a>
             <a href="#contact" class="btn btn-outline-custom btn-lg">
               <i class="bi bi-envelope me-2"></i>Contact Us
@@ -352,9 +493,7 @@
               Models, identifying attack vectors, and developing robust
               defense mechanisms to protect AI systems from malicious inputs.
             </p>
-            <a href="#" class="research-link">
-              Learn More <i class="bi bi-arrow-right ms-2"></i>
-            </a>
+
           </div>
         </div>
 
@@ -373,9 +512,7 @@
               adversarial examples, studying model robustness, and creating
               frameworks for adversarial defense strategies.
             </p>
-            <a href="#" class="research-link">
-              Learn More <i class="bi bi-arrow-right ms-2"></i>
-            </a>
+
           </div>
         </div>
 
@@ -392,9 +529,7 @@
               techniques, and developing detection systems to identify
               compromised datasets and model integrity issues.
             </p>
-            <a href="#" class="research-link">
-              Learn More <i class="bi bi-arrow-right ms-2"></i>
-            </a>
+
           </div>
         </div>
 
@@ -411,11 +546,11 @@
               evaluating risk factors, and establishing best practices for
               secure AI deployment in enterprise environments.
             </p>
-            <a href="#" class="research-link">
-              Learn More <i class="bi bi-arrow-right ms-2"></i>
-            </a>
           </div>
         </div>
+                    <a href="#" class="research-link px-4">
+              Learn More +2 <i class="bi bi-arrow-right ms-2"></i>
+            </a>
       </div>
     </div>
   </section>
@@ -459,7 +594,6 @@
                 reporting
               </li>
             </ul>
-            <a href="#" class="btn btn-tool-action mt-3">Request Demo <i class="bi bi-arrow-right ms-2"></i></a>
           </div>
         </div>
 
@@ -491,7 +625,6 @@
                 ready
               </li>
             </ul>
-            <a href="#" class="btn btn-tool-action mt-3">Request Demo <i class="bi bi-arrow-right ms-2"></i></a>
           </div>
         </div>
 
@@ -521,9 +654,11 @@
                 recommendations
               </li>
             </ul>
-            <a href="#" class="btn btn-tool-action mt-3">Request Demo <i class="bi bi-arrow-right ms-2"></i></a>
           </div>
         </div>
+                    <a href="#" class="research-link px-4">
+              Learn More +1 <i class="bi bi-arrow-right ms-2"></i>
+            </a>
       </div>
     </div>
   </section>
@@ -544,7 +679,7 @@
             open-source security tools, or collaborate on custom AI security
             solutions for your organization.
           </p>
-          <a href="#" class="btn btn-collab-cta btn-lg">
+          <a href="contact.html" class="btn btn-collab-cta btn-lg">
             Start a Collaboration <i class="bi bi-arrow-right ms-2"></i>
           </a>
         </div>
@@ -595,7 +730,7 @@
             Research & Threat Intelligence Lab
           </p>
           <p class="footer-contact mb-3">
-            <i class="bi bi-envelope me-2"></i>contact@kalkinetra.com
+            <i class="bi bi-envelope me-2"></i>info@kalkinetra.com
           </p>
           <p class="footer-contact mb-4">
             <i class="bi bi-geo-alt me-2"></i>Research Lab, Innovation

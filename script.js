@@ -789,3 +789,300 @@ document.addEventListener('DOMContentLoaded', function() {
 
   console.log('✅ KalkiNetra - Research & Threat Intelligence Lab initialized');
 });
+
+
+
+// ========================================
+// SECURITY INCIDENT MODAL
+// ========================================
+
+function openSecurityModal() {
+  const modal = document.getElementById('securityModal');
+  const body = document.body;
+  
+  if (modal) {
+    modal.classList.add('active');
+    body.style.overflow = 'hidden';
+    
+    // Reset form
+    const form = document.getElementById('securityForm');
+    const successMessage = document.getElementById('successMessage');
+    
+    if (form) {
+      form.reset();
+      form.style.display = 'flex';
+    }
+    if (successMessage) {
+      successMessage.style.display = 'none';
+    }
+  }
+}
+
+function closeSecurityModal() {
+  const modal = document.getElementById('securityModal');
+  const body = document.body;
+  
+  if (modal) {
+    modal.classList.remove('active');
+    body.style.overflow = '';
+    
+    // Optional: Reset form after close animation
+    setTimeout(() => {
+      const form = document.getElementById('securityForm');
+      const successMessage = document.getElementById('successMessage');
+      
+      if (form) {
+        form.reset();
+        form.style.display = 'flex';
+      }
+      if (successMessage) {
+        successMessage.style.display = 'none';
+      }
+    }, 300);
+  }
+}
+
+// Close modal on Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    const modal = document.getElementById('securityModal');
+    if (modal && modal.classList.contains('active')) {
+      closeSecurityModal();
+    }
+  }
+});
+
+// Prevent modal content click from closing modal
+document.addEventListener('DOMContentLoaded', function() {
+  const modalContent = document.querySelector('.security-modal-content');
+  if (modalContent) {
+    modalContent.addEventListener('click', function(e) {
+      e.stopPropagation();
+    });
+  }
+});
+
+// ========================================
+// FORM SUBMISSION HANDLER
+// ========================================
+
+function handleSecuritySubmit(event) {
+  event.preventDefault();
+  
+  const form = event.target;
+  const submitBtn = form.querySelector('.btn-submit');
+  
+  // Collect form data
+  const formData = {
+    organization: form.orgName.value.trim(),
+    email: form.email.value.trim(),
+    phone: form.phone.value.trim(),
+    urgency: form.urgency.value,
+    description: form.description.value.trim(),
+    timestamp: new Date().toISOString(),
+    referenceId: generateReferenceId()
+  };
+  
+  // Validate form data
+  if (!validateFormData(formData)) {
+    return;
+  }
+  
+  // Show loading state
+  const originalBtnText = submitBtn.innerHTML;
+  submitBtn.innerHTML = '<i class="bi bi-hourglass-split"></i> Submitting...';
+  submitBtn.disabled = true;
+  
+  // Log data to console (for testing)
+  console.log('Security Incident Report:', formData);
+  
+  // Simulate API call (replace with actual backend call)
+  setTimeout(() => {
+    // Show success message
+    showSuccessMessage(formData.referenceId);
+    
+    // Reset button
+    submitBtn.innerHTML = originalBtnText;
+    submitBtn.disabled = false;
+    
+    // Optional: Send to backend
+    // sendToBackend(formData);
+  }, 1500);
+}
+
+// ========================================
+// HELPER FUNCTIONS
+// ========================================
+
+function generateReferenceId() {
+  const timestamp = Date.now().toString(36).toUpperCase();
+  const random = Math.random().toString(36).substr(2, 4).toUpperCase();
+  return `SEC-${timestamp}-${random}`;
+}
+
+function validateFormData(data) {
+  // Basic validation (browser handles required fields)
+  if (!data.organization || data.organization.length < 2) {
+    alert('Please enter a valid name or organization.');
+    return false;
+  }
+  
+  if (!data.email || !isValidEmail(data.email)) {
+    alert('Please enter a valid email address.');
+    return false;
+  }
+  
+  if (!data.phone || data.phone.length < 10) {
+    alert('Please enter a valid phone number.');
+    return false;
+  }
+  
+  if (!data.urgency) {
+    alert('Please select an urgency level.');
+    return false;
+  }
+  
+  if (!data.description || data.description.length < 20) {
+    alert('Please provide a detailed description (minimum 20 characters).');
+    return false;
+  }
+  
+  return true;
+}
+
+function isValidEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
+function showSuccessMessage(referenceId) {
+  const form = document.getElementById('securityForm');
+  const successMessage = document.getElementById('successMessage');
+  const referenceIdSpan = document.getElementById('referenceId');
+  
+  if (form && successMessage && referenceIdSpan) {
+    // Hide form
+    form.style.display = 'none';
+    
+    // Show success message
+    referenceIdSpan.textContent = referenceId;
+    successMessage.style.display = 'block';
+    
+    // Scroll to top of modal
+    const modalContent = document.querySelector('.security-modal-content');
+    if (modalContent) {
+      modalContent.scrollTop = 0;
+    }
+  }
+}
+
+// ========================================
+// BACKEND INTEGRATION (OPTIONAL)
+// ========================================
+
+function sendToBackend(formData) {
+  // Example 1: Using Fetch API
+  fetch('https://your-api-endpoint.com/api/security-reports', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      // Add authentication if needed
+      // 'Authorization': 'Bearer YOUR_TOKEN'
+    },
+    body: JSON.stringify(formData)
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log('Success:', data);
+    // Use server-generated reference ID if available
+    if (data.referenceId) {
+      showSuccessMessage(data.referenceId);
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    alert('Failed to submit report. Please try again or contact us directly at security@kalkinetra.com');
+    
+    // Reset submit button
+    const submitBtn = document.querySelector('.btn-submit');
+    if (submitBtn) {
+      submitBtn.innerHTML = '<i class="bi bi-send-fill"></i> Submit Report';
+      submitBtn.disabled = false;
+    }
+  });
+}
+
+// Example 2: Using EmailJS
+function sendViaEmailJS(formData) {
+  // Add EmailJS script to HTML: 
+  // <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  
+  emailjs.init('YOUR_PUBLIC_KEY');
+  
+  emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
+    to_email: 'security@kalkinetra.com',
+    from_name: formData.organization,
+    from_email: formData.email,
+    phone: formData.phone,
+    urgency: formData.urgency.toUpperCase(),
+    message: formData.description,
+    reference_id: formData.referenceId,
+    timestamp: new Date(formData.timestamp).toLocaleString()
+  })
+  .then(function(response) {
+    console.log('Email sent successfully:', response);
+    showSuccessMessage(formData.referenceId);
+  })
+  .catch(function(error) {
+    console.error('Email send failed:', error);
+    alert('Failed to send report. Please contact us directly.');
+  });
+}
+
+// Example 3: Using Formspree
+function sendViaFormspree(formData) {
+  fetch('https://formspree.io/f/YOUR_FORM_ID', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      organization: formData.organization,
+      email: formData.email,
+      phone: formData.phone,
+      urgency: formData.urgency,
+      description: formData.description,
+      referenceId: formData.referenceId,
+      timestamp: formData.timestamp
+    })
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Formspree success:', data);
+    showSuccessMessage(formData.referenceId);
+  })
+  .catch(error => {
+    console.error('Formspree error:', error);
+    alert('Failed to submit report. Please try again.');
+  });
+}
+
+// ========================================
+// INITIALIZE ON PAGE LOAD
+// ========================================
+
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('Security modal initialized');
+  
+  // Optional: Open modal with URL parameter
+  // Example: yoursite.com?reportIncident=true
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('reportIncident') === 'true') {
+    openSecurityModal();
+  }
+});

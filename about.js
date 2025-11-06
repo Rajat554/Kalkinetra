@@ -555,9 +555,9 @@ window.addEventListener('DOMContentLoaded', function() {
   // ========================================
   let originalTitle = document.title;
   
-  window.addEventListener('blur', function() {
-    document.title = '👋 Come back! - ' + originalTitle;
-  });
+  // window.addEventListener('blur', function() {
+  //   document.title = '👋 Come back! - ' + originalTitle;
+  // });
   
   window.addEventListener('focus', function() {
     document.title = originalTitle;

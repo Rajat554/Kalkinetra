@@ -374,11 +374,7 @@ section {
 .article-icon-wrapper {
   width: 75px;
   height: 75px;
-  background: linear-gradient(
-    135deg,
-    rgba(0, 102, 255, 0.2) 0%,
-    rgba(0, 102, 255, 0.08) 100%
-  );
+  background: linear-gradient(135deg, #16213e 0%, #0d1b2a 50%, #1a1a2e 100%);
   border-radius: 18px;
   display: flex;
   align-items: center;
@@ -396,11 +392,7 @@ section {
 .article-card:hover .article-icon-wrapper {
   transform: scale(1.15) rotate(5deg);
   box-shadow: 0 15px 40px rgba(0, 102, 255, 0.4);
-  background: linear-gradient(
-    135deg,
-    rgba(0, 102, 255, 0.3) 0%,
-    rgba(0, 102, 255, 0.15) 100%
-  );
+  background: linear-gradient(135deg, #16213e 0%, #0d1b2a 50%, #1a1a2e 100%);
 }
 
 /* Article Meta */
