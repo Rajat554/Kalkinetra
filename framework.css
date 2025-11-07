@@ -1089,6 +1089,14 @@ html {
   letter-spacing: 1.5px;
 }
 
+.section-label {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #888;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
 .pillar-letter-item.active .pillar-letter-text {
   background: linear-gradient(135deg, #ffffff, #cad0d2);
   -webkit-background-clip: text;
