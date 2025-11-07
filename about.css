@@ -1799,7 +1799,7 @@ body {
 @media (max-width: 1200px) {
   .curved-bg {
     border-radius: 60px;
-    margin: 0 30px;
+    margin: 0 0px;
   }
 }
 
@@ -1821,7 +1821,7 @@ body {
 @media (max-width: 768px) {
   .curved-bg {
     border-radius: 40px;
-    margin: 0 20px;
+    margin: 0 0px;
     padding: 60px 20px;
   }
 
@@ -1856,7 +1856,7 @@ body {
 @media (max-width: 576px) {
   .curved-bg {
     border-radius: 30px;
-    margin: 0 15px;
+    margin: 0 0px;
   }
 
   .origin-quote {

@@ -1112,6 +1112,7 @@ html {
 }
 
 .pillar-content-item {
+  margin-top: 2rem;
   display: none;
   animation: fadeInContent 0.6s ease;
 }
@@ -1434,13 +1435,13 @@ html {
   .pillar-dot {
     width: 14px;
     height: 14px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 0px solid rgba(255, 255, 255, 0.3);
   }
   
   .pillar-dot.active {
     width: 18px;
     height: 18px;
-    border: 2px solid rgba(255, 255, 255, 0.5);
+    border: 0px solid rgba(255, 255, 255, 0.5);
   }
   
   .pillar-letter-text {

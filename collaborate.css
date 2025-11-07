@@ -1252,7 +1252,7 @@ body {
   .collaboration-section,
   .culture-section {
     border-radius: 60px;
-    margin: 60px 30px;
+    margin: 60px 0px;
   }
 }
 
@@ -1276,7 +1276,7 @@ body {
   .collaboration-section,
   .culture-section {
     border-radius: 40px;
-    margin: 60px 20px;
+    margin: 60px 0px;
     padding: 60px 20px;
   }
 
@@ -1300,7 +1300,7 @@ body {
   .collaboration-section,
   .culture-section {
     border-radius: 30px;
-    margin: 60px 15px;
+    margin: 60px 0px;
   }
 
   .culture-card {
