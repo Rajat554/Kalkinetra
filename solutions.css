@@ -351,6 +351,7 @@ section {
 .section-header {
   text-align: center;
   margin-bottom: 4rem;
+  margin-top: 0rem;
 }
 
 .section-title {
@@ -653,6 +654,7 @@ section {
   background: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(5px);
   border-top: 1px solid rgba(0, 102, 255, 0.1);
+  margin-top: 14rem;
 }
 
 .process-timeline {
@@ -1809,6 +1811,11 @@ body {
   text-align: center;
   margin-bottom: 4rem;
 }
+.section-header-2 {
+  text-align: center;
+  margin-bottom: 4rem;
+  margin-top: 5rem;
+}
 
 .section-title {
   font-size: clamp(2.2rem, 5vw, 4rem);
@@ -2186,6 +2193,14 @@ body {
   padding: 0 20px;
 }
 
+.section-label {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #888;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
 .process-timeline::before {
   content: "";
   position: absolute;

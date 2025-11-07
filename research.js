@@ -278,3 +278,98 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+
+
+
+    // Simple card swap animation simulation
+    const cards = document.querySelectorAll('.card');
+    const container = document.querySelector('.card-swap-container');
+    
+    let order = [0, 1, 2, 3];
+    const cardDistance = 60;
+    const verticalDistance = 70;
+
+    function makeSlot(i, total) {
+      return {
+        x: i * cardDistance,
+        y: -i * verticalDistance,
+        z: -i * cardDistance * 1.5,
+        zIndex: total - i
+      };
+    }
+
+    function placeCard(card, slot, skew = 6) {
+      gsap.set(card, {
+        x: slot.x,
+        y: slot.y,
+        z: slot.z,
+        xPercent: -50,
+        yPercent: -50,
+        skewY: skew,
+        transformOrigin: 'center center',
+        zIndex: slot.zIndex,
+        force3D: true
+      });
+    }
+
+    function swapCards() {
+      const [front, ...rest] = order;
+      const frontCard = cards[front];
+      const tl = gsap.timeline();
+
+      // Drop front card
+      tl.to(frontCard, {
+        y: '+=500',
+        duration: 2,
+        ease: 'elastic.out(0.6, 0.9)'
+      });
+
+      // Promote other cards
+      tl.addLabel('promote', '-=1.8');
+      rest.forEach((idx, i) => {
+        const card = cards[idx];
+        const slot = makeSlot(i, cards.length);
+        tl.set(card, { zIndex: slot.zIndex }, 'promote');
+        tl.to(card, {
+          x: slot.x,
+          y: slot.y,
+          z: slot.z,
+          duration: 2,
+          ease: 'elastic.out(0.6, 0.9)'
+        }, `promote+=${i * 0.15}`);
+      });
+
+      // Return front card to back
+      const backSlot = makeSlot(cards.length - 1, cards.length);
+      tl.addLabel('return', 'promote+=0.1');
+      tl.set(frontCard, { zIndex: backSlot.zIndex }, 'return');
+      tl.to(frontCard, {
+        x: backSlot.x,
+        y: backSlot.y,
+        z: backSlot.z,
+        duration: 2,
+        ease: 'elastic.out(0.6, 0.9)'
+      }, 'return');
+
+      tl.call(() => {
+        order = [...rest, front];
+      });
+    }
+
+    // Initialize card positions
+    cards.forEach((card, i) => {
+      placeCard(card, makeSlot(i, cards.length));
+    });
+
+    // Start animation
+    setTimeout(swapCards, 1000);
+    setInterval(swapCards, 5000);
+
+    // Pause on hover
+    container.addEventListener('mouseenter', () => {
+      gsap.globalTimeline.pause();
+    });
+
+    container.addEventListener('mouseleave', () => {
+      gsap.globalTimeline.play();
+    });
