@@ -2244,13 +2244,13 @@ section {
   .pillar-dot {
     width: 14px;
     height: 14px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 0px solid rgba(255, 255, 255, 0.3);
   }
   
   .pillar-dot.active {
     width: 18px;
     height: 18px;
-    border: 2px solid rgba(255, 255, 255, 0.5);
+    border: 0px solid rgba(255, 255, 255, 0.5);
   }
   
   .pillar-letter-text {
@@ -2347,13 +2347,13 @@ section {
   }
   
   .pillar-dot {
-    width: 12px;
-    height: 12px;
+    width: 0px;
+    height: 0px;
   }
   
   .pillar-dot.active {
-    width: 16px;
-    height: 16px;
+    width: 0px;
+    height: 0px;
   }
   
   .pillar-letter-text {
