@@ -1086,3 +1086,221 @@ document.addEventListener('DOMContentLoaded', function() {
     openSecurityModal();
   }
 });
+
+
+
+
+// ADD THIS CODE TO THE EXISTING framework.js (after the DOMContentLoaded function)
+
+// ========================================
+// INTERACTIVE DRISHTI CIRCLE
+// ========================================
+(function() {
+  const circle = document.querySelector(".drishti-circle");
+  const letterItems = document.querySelectorAll(".pillar-letter-item");
+  const dotItems = document.querySelectorAll(".pillar-dot");
+  const contentItems = document.querySelectorAll(".pillar-content-item");
+  
+  if (!circle || !letterItems.length) return;
+
+  let currentRotation = 0;
+  let isAnimating = false;
+  const degrees = 360 / letterItems.length; // 51.43 degrees per item
+  
+  // Position dots and letters around the circle
+  function positionElements() {
+    const dotsTranslateY = window.innerWidth <= 576 ? "-149px" :
+                           window.innerWidth <= 767 ? "-169px" :
+                           window.innerWidth <= 991 ? "-189px" :
+                           window.innerWidth <= 1200 ? "-209px" : "-239px";
+                           
+    const lettersTranslateY = window.innerWidth <= 576 ? "-175px" :
+                              window.innerWidth <= 767 ? "-195px" :
+                              window.innerWidth <= 991 ? "-215px" :
+                              window.innerWidth <= 1200 ? "-235px" : "-270px";
+
+    letterItems.forEach((item) => {
+      const letterInner = item.querySelector(".letter-inner");
+      const angle = parseInt(item.getAttribute("data-angle"));
+      item.style.transform = `translate(-50%, -50%) rotate(${angle}deg) translateY(${lettersTranslateY})`;
+      letterInner.style.transform = `rotate(${-angle}deg)`;
+    });
+
+    dotItems.forEach((dot) => {
+      const angle = parseInt(dot.getAttribute("data-angle"));
+      dot.style.transform = `translate(-50%, -50%) rotate(${angle}deg) translateY(${dotsTranslateY})`;
+    });
+  }
+
+  positionElements();
+  window.addEventListener("resize", positionElements);
+  window.addEventListener("orientationchange", positionElements);
+
+  // Update active state based on rotation
+  function updateActiveState() {
+    const circleRect = circle.getBoundingClientRect();
+    const circleCenterX = circleRect.left + circleRect.width / 2;
+    const circleCenterY = circleRect.top + circleRect.height / 2;
+    const tolerance = Math.PI / 6;
+
+    letterItems.forEach((letter, index) => {
+      const letterRect = letter.getBoundingClientRect();
+      const letterCenterX = letterRect.left + letter.offsetWidth / 2;
+      const letterCenterY = letterRect.top + letter.offsetHeight / 2;
+      const angle = Math.atan2(letterCenterY - circleCenterY, letterCenterX - circleCenterX);
+      const angleDifference = Math.abs(angle);
+
+      if (angleDifference <= tolerance) {
+        letter.classList.add("active");
+        
+        contentItems.forEach((content, contentIndex) => {
+          if (index === contentIndex) {
+            content.classList.add("active");
+          } else {
+            content.classList.remove("active");
+          }
+        });
+
+        dotItems.forEach((dot, dotIndex) => {
+          if (index === dotIndex) {
+            dot.classList.add("active");
+          } else {
+            dot.classList.remove("active");
+          }
+        });
+      } else {
+        letter.classList.remove("active");
+      }
+    });
+  }
+
+  // Rotate circle animation
+  function rotateCircle(direction) {
+    if (isAnimating) return;
+    
+    isAnimating = true;
+    const step = direction === 1 ? degrees : -degrees;
+    const newRotation = currentRotation + step;
+    
+    // Animate circle rotation
+    circle.style.transition = "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)";
+    circle.style.transform = `rotate(${newRotation}deg)`;
+    
+    // Animate letters counter-rotation
+    letterItems.forEach(item => {
+      const letterInner = item.querySelector(".letter-inner");
+      letterInner.style.transition = "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)";
+      const angle = parseInt(item.getAttribute("data-angle"));
+      letterInner.style.transform = `rotate(${-angle - newRotation}deg)`;
+    });
+    
+    currentRotation = newRotation;
+    
+    setTimeout(() => {
+      updateActiveState();
+      isAnimating = false;
+    }, 500);
+  }
+
+  // Desktop: Mouse wheel scroll
+  let scrollTimeout;
+  circle.addEventListener("wheel", (e) => {
+    e.preventDefault();
+    
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+      if (e.deltaY > 0) {
+        rotateCircle(-1); // Scroll down, rotate clockwise
+      } else {
+        rotateCircle(1); // Scroll up, rotate counter-clockwise
+      }
+    }, 50);
+  }, { passive: false });
+
+  // Mobile: Touch swipe
+  let touchStartY = 0;
+  let touchEndY = 0;
+  
+  circle.addEventListener("touchstart", (e) => {
+    touchStartY = e.changedTouches[0].screenY;
+  }, { passive: true });
+  
+  circle.addEventListener("touchend", (e) => {
+    touchEndY = e.changedTouches[0].screenY;
+    handleSwipe();
+  }, { passive: true });
+  
+  function handleSwipe() {
+    const swipeDistance = touchStartY - touchEndY;
+    const minSwipeDistance = 30;
+    
+    if (Math.abs(swipeDistance) > minSwipeDistance) {
+      if (swipeDistance > 0) {
+        rotateCircle(-1); // Swipe up
+      } else {
+        rotateCircle(1); // Swipe down
+      }
+    }
+  }
+
+  // Click on letters/dots to navigate
+  letterItems.forEach((item, index) => {
+    item.addEventListener("click", () => {
+      if (isAnimating) return;
+      
+      // Calculate how many steps to rotate
+      const currentIndex = Array.from(letterItems).findIndex(l => l.classList.contains("active"));
+      const steps = index - currentIndex;
+      
+      if (steps !== 0) {
+        isAnimating = true;
+        const newRotation = currentRotation + (steps * degrees);
+        
+        circle.style.transition = "transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)";
+        circle.style.transform = `rotate(${newRotation}deg)`;
+        
+        letterItems.forEach(item => {
+          const letterInner = item.querySelector(".letter-inner");
+          letterInner.style.transition = "transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)";
+          const angle = parseInt(item.getAttribute("data-angle"));
+          letterInner.style.transform = `rotate(${-angle - newRotation}deg)`;
+        });
+        
+        currentRotation = newRotation;
+        
+        setTimeout(() => {
+          updateActiveState();
+          isAnimating = false;
+        }, 600);
+      }
+    });
+  });
+
+  dotItems.forEach((dot, index) => {
+    dot.addEventListener("click", () => {
+      letterItems[index].click();
+    });
+  });
+
+  // Keyboard navigation (arrow keys)
+  document.addEventListener("keydown", (e) => {
+    const pillarsSection = document.querySelector(".pillars-section");
+    const rect = pillarsSection.getBoundingClientRect();
+    
+    // Only respond to arrow keys when pillars section is in view
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
+        e.preventDefault();
+        rotateCircle(1);
+      } else if (e.key === "ArrowDown" || e.key === "ArrowRight") {
+        e.preventDefault();
+        rotateCircle(-1);
+      }
+    }
+  });
+
+  // Initialize
+  updateActiveState();
+  
+  console.log("✅ Interactive DRISHTI circle initialized");
+})();

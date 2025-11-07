@@ -22,205 +22,180 @@
   <!-- Fixed DarkVeil Background -->
   <div id="darkveil-background"></div>
 
-<!-- EXACT ST FOX NAVBAR -->
-<nav class="stfox-navbar">
-  <div class="stfox-navbar-inner">
-    
-    <!-- Logo/Brand -->
-    <a href="index.html" class="stfox-brand">
-      <img src="/Kalkinetra/assets/Screenshot 2025-10-25 170112.png" alt="KalkiNetra" />
-      <span>KalkiNetra</span>
-    </a>
+  <!-- EXACT ST FOX NAVBAR -->
+  <nav class="stfox-navbar">
+    <div class="stfox-navbar-inner">
 
-    <!-- Mobile Toggle Button -->
-    <button class="stfox-mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
+      <!-- Logo/Brand -->
+      <a href="index.html" class="stfox-brand">
+        <img src="/Kalkinetra/assets/Untitled_Artwork.png" alt="KalkiNetra" />
+        <span>KalkiNetra</span>
+      </a>
 
-    <!-- Navigation Menu -->
-    <ul class="stfox-nav" id="mainNav">
+      <!-- Mobile Toggle Button -->
+      <button class="stfox-mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
-      <!-- Solutions Dropdown -->
-      <li>
-        <a href="solutions.html" class="stfox-nav-link">Solutions</a>
-      </li>
+      <!-- Navigation Menu -->
+      <ul class="stfox-nav" id="mainNav">
 
-            <!-- Research Link -->
-      <li>
-        <a href="research.html" class="stfox-nav-link">Research</a>
-      </li>
+        <!-- Solutions Dropdown -->
+        <li>
+          <a href="solutions.html" class="stfox-nav-link">Solutions</a>
+        </li>
 
-      <!-- Company Dropdown -->
-      <li class="has-dropdown">
+        <!-- Research Link -->
+        <li>
+          <a href="research.html" class="stfox-nav-link">Research</a>
+        </li>
+
+        <!-- Company Dropdown -->
+        <li class="has-dropdown">
           <button class="stfox-nav-link" onclick="toggleDropdown(this)">
             Company
             <span class="dropdown-arrow">▼</span>
           </button>
-        <ul class="stfox-dropdown">
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="framework.html">DRISHTI</a></li>
-          <li><a href="inside.html">Insights</a></li>
-          <li><a href="collaborate.html">Careers</a></li>
-          <li><a href="research.html">Privacy Policy</a></li>
-        </ul>
+          <ul class="stfox-dropdown">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="framework.html">DRISHTI</a></li>
+            <li><a href="inside.html">Insights</a></li>
+            <li><a href="collaborate.html">Careers</a></li>
+            <li><a href="research.html">Privacy Policy</a></li>
+          </ul>
         </li>
 
-      <!-- CTA Button -->
-<!-- CTA Button -->
-<!-- CTA Button -->
-<li>
-  <button class="stfox-cta-btn btn-primary" onclick="openSecurityModal()">
-    Experiencing a Breach?
-  </button>
-</li>
+        <!-- CTA Button -->
+        <!-- CTA Button -->
+        <!-- CTA Button -->
+        <li>
+          <button class="stfox-cta-btn btn-primary" onclick="openSecurityModal()">
+            Experiencing a Breach?
+          </button>
+        </li>
 
-    </ul>
+      </ul>
 
-  </div>
-</nav>
-<!-- Security Incident Report Modal -->
-<div class="security-modal" id="securityModal">
-  <div class="security-modal-overlay" onclick="closeSecurityModal()"></div>
-  
-  <div class="security-modal-content">
-    <!-- Close Button -->
-    <button class="modal-close-btn" onclick="closeSecurityModal()" aria-label="Close">
-      <i class="bi bi-x-lg"></i>
-    </button>
-
-    <!-- Header -->
-    <div class="modal-header d-flex flex-column">
-      <h2 class="modal-title">Report a Security Incident</h2>
-      <p class="modal-subtitle">
-        Fill out the form below and our security team will respond within 24 hours.
-      </p>
     </div>
+  </nav>
+  <!-- Security Incident Report Modal -->
+  <div class="security-modal" id="securityModal">
+    <div class="security-modal-overlay" onclick="closeSecurityModal()"></div>
 
-    <!-- Form -->
-    <form class="security-form" id="securityForm" onsubmit="handleSecuritySubmit(event)">
-      
-      <!-- Name / Organization -->
-      <div class="form-group">
-        <label for="orgName" class="form-label">
-          Name / Organization <span class="required">*</span>
-        </label>
-        <input 
-          type="text" 
-          class="form-input" 
-          id="orgName" 
-          name="orgName"
-          placeholder="Enter your name or organization"
-          required
-        />
+    <div class="security-modal-content">
+      <!-- Close Button -->
+      <button class="modal-close-btn" onclick="closeSecurityModal()" aria-label="Close">
+        <i class="bi bi-x-lg"></i>
+      </button>
+
+      <!-- Header -->
+      <div class="modal-header d-flex flex-column">
+        <h2 class="modal-title">Report a Security Incident</h2>
+        <p class="modal-subtitle">
+          Fill out the form below and our security team will respond within 24 hours.
+        </p>
       </div>
 
-      <!-- Contact Email -->
-      <div class="form-group">
-        <label for="email" class="form-label">
-          Contact Email <span class="required">*</span>
-        </label>
-        <input 
-          type="email" 
-          class="form-input" 
-          id="email" 
-          name="email"
-          placeholder="your.email@company.com"
-          required
-        />
-      </div>
+      <!-- Form -->
+      <form class="security-form" id="securityForm" onsubmit="handleSecuritySubmit(event)">
 
-      <!-- Contact Number -->
-      <div class="form-group">
-        <label for="phone" class="form-label">
-          Contact Number <span class="required">*</span>
-        </label>
-        <input 
-          type="tel" 
-          class="form-input" 
-          id="phone" 
-          name="phone"
-          placeholder="+1 (555) 123-4567"
-          required
-        />
-      </div>
-
-      <!-- Urgency Level -->
-      <div class="form-group">
-        <label class="form-label">
-          Urgency Level <span class="required">*</span>
-        </label>
-        <div class="urgency-buttons">
-          <label class="urgency-option urgency-critical">
-            <input type="radio" name="urgency" value="critical" required />
-            <span class="urgency-label">
-              <i class="bi bi-exclamation-triangle-fill"></i>
-              Critical
-            </span>
+        <!-- Name / Organization -->
+        <div class="form-group">
+          <label for="orgName" class="form-label">
+            Name / Organization <span class="required">*</span>
           </label>
-          <label class="urgency-option urgency-moderate">
-            <input type="radio" name="urgency" value="moderate" />
-            <span class="urgency-label">
-              <i class="bi bi-exclamation-circle-fill"></i>
-              Moderate
-            </span>
-          </label>
-          <label class="urgency-option urgency-low">
-            <input type="radio" name="urgency" value="low" />
-            <span class="urgency-label">
-              <i class="bi bi-info-circle-fill"></i>
-              Low
-            </span>
-          </label>
+          <input type="text" class="form-input" id="orgName" name="orgName"
+            placeholder="Enter your name or organization" required />
         </div>
-      </div>
 
-      <!-- Description of Incident -->
-      <div class="form-group">
-        <label for="description" class="form-label">
-          Description of Incident <span class="required">*</span>
-        </label>
-        <textarea 
-          class="form-textarea" 
-          id="description" 
-          name="description"
-          rows="5"
-          placeholder="Please describe:
+        <!-- Contact Email -->
+        <div class="form-group">
+          <label for="email" class="form-label">
+            Contact Email <span class="required">*</span>
+          </label>
+          <input type="email" class="form-input" id="email" name="email" placeholder="your.email@company.com"
+            required />
+        </div>
+
+        <!-- Contact Number -->
+        <div class="form-group">
+          <label for="phone" class="form-label">
+            Contact Number <span class="required">*</span>
+          </label>
+          <input type="tel" class="form-input" id="phone" name="phone" placeholder="+1 (555) 123-4567" required />
+        </div>
+
+        <!-- Urgency Level -->
+        <div class="form-group">
+          <label class="form-label">
+            Urgency Level <span class="required">*</span>
+          </label>
+          <div class="urgency-buttons">
+            <label class="urgency-option urgency-critical">
+              <input type="radio" name="urgency" value="critical" required />
+              <span class="urgency-label">
+                <i class="bi bi-exclamation-triangle-fill"></i>
+                Critical
+              </span>
+            </label>
+            <label class="urgency-option urgency-moderate">
+              <input type="radio" name="urgency" value="moderate" />
+              <span class="urgency-label">
+                <i class="bi bi-exclamation-circle-fill"></i>
+                Moderate
+              </span>
+            </label>
+            <label class="urgency-option urgency-low">
+              <input type="radio" name="urgency" value="low" />
+              <span class="urgency-label">
+                <i class="bi bi-info-circle-fill"></i>
+                Low
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Description of Incident -->
+        <div class="form-group">
+          <label for="description" class="form-label">
+            Description of Incident <span class="required">*</span>
+          </label>
+          <textarea class="form-textarea" id="description" name="description" rows="5" placeholder="Please describe:
 • What happened
 • When it occurred
-• What systems or data were affected"
-          required
-        ></textarea>
+• What systems or data were affected" required></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn-submit">
+          <i class="bi bi-send-fill"></i>
+          Submit Report
+        </button>
+
+      </form>
+
+      <!-- Success Message (Hidden by default) -->
+      <div class="success-message" id="successMessage" style="display: none;">
+        <div class="success-icon">
+          <i class="bi bi-check-circle-fill"></i>
+        </div>
+        <h3 class="success-title">Report Submitted Successfully!</h3>
+        <p class="success-text">
+          Our team will analyze your report and reach out with initial insights or recommendations within <strong>24
+            hours</strong>.
+        </p>
+        <p class="success-reference">
+          Reference ID: <span id="referenceId" class="reference-code"></span>
+        </p>
+        <button class="btn-close-success" onclick="closeSecurityModal()">
+          Close
+        </button>
       </div>
 
-      <!-- Submit Button -->
-      <button type="submit" class="btn-submit">
-        <i class="bi bi-send-fill"></i>
-        Submit Report
-      </button>
-
-    </form>
-
-    <!-- Success Message (Hidden by default) -->
-    <div class="success-message" id="successMessage" style="display: none;">
-      <div class="success-icon">
-        <i class="bi bi-check-circle-fill"></i>
-      </div>
-      <h3 class="success-title">Report Submitted Successfully!</h3>
-      <p class="success-text">
-        Our team will analyze your report and reach out with initial insights or recommendations within <strong>24 hours</strong>.
-      </p>
-      <p class="success-reference">
-        Reference ID: <span id="referenceId" class="reference-code"></span>
-      </p>
-      <button class="btn-close-success" onclick="closeSecurityModal()">
-        Close
-      </button>
     </div>
-
   </div>
-</div>
 
 
   <!-- Hero Section -->
@@ -299,167 +274,216 @@
   </section>
 
   <!-- DRISHTI Pillars Section -->
-  <section class="pillars-section">
-    <div class="container">
-      <div class="row justify-content-center mb-5">
-        <div class="col-lg-10 text-center">
-          <h2 class="section-title animate-on-scroll" data-animation="fade-up">🌐 What Makes DRISHTI Unique</h2>
-          <p class="section-subtitle animate-on-scroll" data-animation="fade-up">
-            Our framework draws strength from seven guiding principles that define Kalkinetra's vision of AI-driven
-            defense and ethical intelligence
-          </p>
+<!-- DRISHTI Pillars Section - REPLACE THE ENTIRE SECTION -->
+<section class="pillars-section">
+  <div class="container-fluid">
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-10 text-center">
+        <h2 class="section-title animate-on-scroll" data-animation="fade-up">🌟 What Makes DRISHTI Unique</h2>
+        <p class="section-subtitle animate-on-scroll" data-animation="fade-up">
+          Our framework draws strength from seven guiding principles that define Kalkinetra's vision of AI-driven
+          defense and ethical intelligence
+        </p>
+      </div>
+    </div>
+
+    <div class="circle-rows">
+      <!-- Circle with Dots and Letters -->
+      <div class="drishti-circle">
+        <!-- Center Logo/Text -->
+        <div class="circle-center-logo">
+          <div class="center-logo-icon">
+            <i class="bi bi-eye-fill"></i>
+          </div>
+          <!-- <div class="center-logo-text h1 class1 fw-bold">DRISHTI</div> -->
+          <!-- <div class="center-logo-subtitle">AI Security Vision</div> -->
+        </div>
+        
+        <!-- Dots Layer -->
+        <div class="dots-list-row">
+          <span class="pillar-dot active" data-angle="90"></span>
+          <span class="pillar-dot" data-angle="141"></span>
+          <span class="pillar-dot" data-angle="193"></span>
+          <span class="pillar-dot" data-angle="244"></span>
+          <span class="pillar-dot" data-angle="296"></span>
+          <span class="pillar-dot" data-angle="347"></span>
+          <span class="pillar-dot" data-angle="39"></span>
+        </div>
+        
+        <!-- Date List (Letters) -->
+        <div class="date-list-row">
+          <!-- D -->
+          <span class="pillar-letter-item active" data-angle="90">
+            <span class="letter-inner">
+              <span class="pillar-letter"><span class="pillar-letter-text">D</span></span>
+              <span class="pillar-letter-label">Detect</span>
+            </span>
+          </span>
+          
+          <!-- R -->
+          <span class="pillar-letter-item" data-angle="141">
+            <span class="letter-inner">
+              <span class="pillar-letter"><span class="pillar-letter-text">R</span></span>
+              <span class="pillar-letter-label">Reinforce</span>
+            </span>
+          </span>
+          
+          <!-- I -->
+          <span class="pillar-letter-item" data-angle="193">
+            <span class="letter-inner">
+              <span class="pillar-letter"><span class="pillar-letter-text">I</span></span>
+              <span class="pillar-letter-label">Interpret</span>
+            </span>
+          </span>
+          
+          <!-- S -->
+          <span class="pillar-letter-item" data-angle="244">
+            <span class="letter-inner">
+              <span class="pillar-letter"><span class="pillar-letter-text">S</span></span>
+              <span class="pillar-letter-label">Secure</span>
+            </span>
+          </span>
+          
+          <!-- H -->
+          <span class="pillar-letter-item" data-angle="296">
+            <span class="letter-inner">
+              <span class="pillar-letter"><span class="pillar-letter-text">H</span></span>
+              <span class="pillar-letter-label">Harmonize</span>
+            </span>
+          </span>
+          
+          <!-- T -->
+          <span class="pillar-letter-item" data-angle="347">
+            <span class="letter-inner">
+              <span class="pillar-letter"><span class="pillar-letter-text">T</span></span>
+              <span class="pillar-letter-label">Transform</span>
+            </span>
+          </span>
+          
+          <!-- I -->
+          <span class="pillar-letter-item" data-angle="39">
+            <span class="letter-inner">
+              <span class="pillar-letter"><span class="pillar-letter-text">I</span></span>
+              <span class="pillar-letter-label">Illuminate</span>
+            </span>
+          </span>
         </div>
       </div>
-
-      <div class="row g-4">
-        <!-- Pillar 1: Detect -->
-        <div class="col-lg-6">
-          <div class="pillar-card animate-on-scroll" data-animation="slide-left">
-            <div class="pillar-header">
-              <div class="pillar-letter">D</div>
-              <div class="pillar-icon">
-                <i class="bi bi-search"></i>
-              </div>
-              <div class="pillar-title-wrapper">
-                <h3 class="pillar-title">Detect</h3>
-                <span class="pillar-focus">Threat Visibility</span>
-              </div>
-            </div>
-            <p class="pillar-description">
-              Identify vulnerabilities in AI systems, datasets, and model pipelines before they can be exploited.
-            </p>
-            <div class="pillar-glow"></div>
+      
+      <!-- Content Display -->
+      <div class="pillar-content-list">
+        <!-- D - Detect -->
+        <div class="pillar-content-item active">
+          <div class="pillar-badge">Pillar 1</div>
+          <h2 class="pillar-content-title">Detect</h2>
+          <h3 class="pillar-content-subtitle">Threat Visibility</h3>
+          <p class="pillar-content-description">
+            Identify vulnerabilities in AI systems, datasets, and model pipelines before they can be exploited.
+          </p>
+          <div class="pillar-features-list">
+            <div class="pillar-feature-item">Real-time monitoring and threat detection</div>
+            <div class="pillar-feature-item">Advanced anomaly detection systems</div>
+            <div class="pillar-feature-item">Comprehensive threat intelligence</div>
           </div>
         </div>
-
-        <!-- Pillar 2: Reinforce -->
-        <div class="col-lg-6">
-          <div class="pillar-card animate-on-scroll" data-animation="slide-right">
-            <div class="pillar-header">
-              <div class="pillar-letter">R</div>
-              <div class="pillar-icon">
-                <i class="bi bi-shield-fill-check"></i>
-              </div>
-              <div class="pillar-title-wrapper">
-                <h3 class="pillar-title">Reinforce</h3>
-                <span class="pillar-focus">Defensive Strength</span>
-              </div>
-            </div>
-            <p class="pillar-description">
-              Build resilience into models, APIs, and environments through continuous red-teaming and adaptive
-              hardening.
-            </p>
-            <div class="pillar-glow"></div>
+        
+        <!-- R - Reinforce -->
+        <div class="pillar-content-item">
+          <div class="pillar-badge">Pillar 2</div>
+          <h2 class="pillar-content-title">Reinforce</h2>
+          <h3 class="pillar-content-subtitle">Defensive Strength</h3>
+          <p class="pillar-content-description">
+            Build resilience into models, APIs, and environments through continuous red-teaming and adaptive hardening.
+          </p>
+          <div class="pillar-features-list">
+            <div class="pillar-feature-item">Multi-layered protection mechanisms</div>
+            <div class="pillar-feature-item">Adaptive defensive responses</div>
+            <div class="pillar-feature-item">Continuous security hardening</div>
           </div>
         </div>
-
-        <!-- Pillar 3: Interpret -->
-        <div class="col-lg-6">
-          <div class="pillar-card animate-on-scroll" data-animation="slide-left">
-            <div class="pillar-header">
-              <div class="pillar-letter">I</div>
-              <div class="pillar-icon">
-                <i class="bi bi-lightbulb-fill"></i>
-              </div>
-              <div class="pillar-title-wrapper">
-                <h3 class="pillar-title">Interpret</h3>
-                <span class="pillar-focus">Explainability</span>
-              </div>
-            </div>
-            <p class="pillar-description">
-              Maintain transparency in every AI-driven security action — ensuring that decisions remain explainable and
-              auditable.
-            </p>
-            <div class="pillar-glow"></div>
+        
+        <!-- I - Interpret -->
+        <div class="pillar-content-item">
+          <div class="pillar-badge">Pillar 3</div>
+          <h2 class="pillar-content-title">Interpret</h2>
+          <h3 class="pillar-content-subtitle">Explainability</h3>
+          <p class="pillar-content-description">
+            Maintain transparency in every AI-driven security action — ensuring that decisions remain explainable and auditable.
+          </p>
+          <div class="pillar-features-list">
+            <div class="pillar-feature-item">Clear insights and transparency</div>
+            <div class="pillar-feature-item">AI decision explainability</div>
+            <div class="pillar-feature-item">Actionable intelligence delivery</div>
           </div>
         </div>
-
-        <!-- Pillar 4: Secure -->
-        <div class="col-lg-6">
-          <div class="pillar-card animate-on-scroll" data-animation="slide-right">
-            <div class="pillar-header">
-              <div class="pillar-letter">S</div>
-              <div class="pillar-icon">
-                <i class="bi bi-lock-fill"></i>
-              </div>
-              <div class="pillar-title-wrapper">
-                <h3 class="pillar-title">Secure</h3>
-                <span class="pillar-focus">Operational Integrity</span>
-              </div>
-            </div>
-            <p class="pillar-description">
-              Protect model lifecycles, APIs, and endpoints with continuous validation, encryption, and integrity
-              monitoring.
-            </p>
-            <div class="pillar-glow"></div>
+        
+        <!-- S - Secure -->
+        <div class="pillar-content-item">
+          <div class="pillar-badge">Pillar 4</div>
+          <h2 class="pillar-content-title">Secure</h2>
+          <h3 class="pillar-content-subtitle">Operational Integrity</h3>
+          <p class="pillar-content-description">
+            Protect model lifecycles, APIs, and endpoints with continuous validation, encryption, and integrity monitoring.
+          </p>
+          <div class="pillar-features-list">
+            <div class="pillar-feature-item">Comprehensive data protection</div>
+            <div class="pillar-feature-item">Business continuity assurance</div>
+            <div class="pillar-feature-item">Regulatory compliance support</div>
           </div>
         </div>
-
-        <!-- Pillar 5: Harmonize -->
-        <div class="col-lg-6">
-          <div class="pillar-card animate-on-scroll" data-animation="slide-left">
-            <div class="pillar-header">
-              <div class="pillar-letter">H</div>
-              <div class="pillar-icon">
-                <i class="bi bi-people-fill"></i>
-              </div>
-              <div class="pillar-title-wrapper">
-                <h3 class="pillar-title">Harmonize</h3>
-                <span class="pillar-focus">Human-AI Collaboration</span>
-              </div>
-            </div>
-            <p class="pillar-description">
-              Blend human intuition with machine precision to create ethical, context-aware defenses that evolve
-              intelligently.
-            </p>
-            <div class="pillar-glow"></div>
+        
+        <!-- H - Harmonize -->
+        <div class="pillar-content-item">
+          <div class="pillar-badge">Pillar 5</div>
+          <h2 class="pillar-content-title">Harmonize</h2>
+          <h3 class="pillar-content-subtitle">Human-AI Collaboration</h3>
+          <p class="pillar-content-description">
+            Blend human intuition with machine precision to create ethical, context-aware defenses that evolve intelligently.
+          </p>
+          <div class="pillar-features-list">
+            <div class="pillar-feature-item">Seamless human-AI synergy</div>
+            <div class="pillar-feature-item">Security team empowerment</div>
+            <div class="pillar-feature-item">Collaborative defense strategies</div>
           </div>
         </div>
-
-        <!-- Pillar 6: Transform -->
-        <div class="col-lg-6">
-          <div class="pillar-card animate-on-scroll" data-animation="slide-right">
-            <div class="pillar-header">
-              <div class="pillar-letter">T</div>
-              <div class="pillar-icon">
-                <i class="bi bi-arrow-repeat"></i>
-              </div>
-              <div class="pillar-title-wrapper">
-                <h3 class="pillar-title">Transform</h3>
-                <span class="pillar-focus">Evolving Defense</span>
-              </div>
-            </div>
-            <p class="pillar-description">
-              Turn threat intelligence into self-learning feedback loops — making your systems smarter and more
-              autonomous with time.
-            </p>
-            <div class="pillar-glow"></div>
+        
+        <!-- T - Transform -->
+        <div class="pillar-content-item">
+          <div class="pillar-badge">Pillar 6</div>
+          <h2 class="pillar-content-title">Transform</h2>
+          <h3 class="pillar-content-subtitle">Evolving Defense</h3>
+          <p class="pillar-content-description">
+            Turn threat intelligence into self-learning feedback loops — making your systems smarter and more autonomous with time.
+          </p>
+          <div class="pillar-features-list">
+            <div class="pillar-feature-item">Adaptive evolution capabilities</div>
+            <div class="pillar-feature-item">Future-ready defense systems</div>
+            <div class="pillar-feature-item">Continuous innovation cycle</div>
           </div>
         </div>
-
-        <!-- Pillar 7: Illuminate -->
-        <div class="col-lg-12">
-          <div class="pillar-card pillar-featured animate-on-scroll" data-animation="fade-up">
-            <div class="pillar-header">
-              <div class="pillar-letter">I</div>
-              <div class="pillar-icon">
-                <i class="bi bi-stars"></i>
-              </div>
-              <div class="pillar-title-wrapper">
-                <h3 class="pillar-title">Illuminate</h3>
-                <span class="pillar-focus">Insight & Foresight</span>
-              </div>
-            </div>
-            <p class="pillar-description">
-              Illuminate hidden attack surfaces and uncover adversarial intent using advanced model introspection and
-              predictive analytics.
-            </p>
-            <div class="pillar-glow"></div>
+        
+        <!-- I - Illuminate -->
+        <div class="pillar-content-item">
+          <div class="pillar-badge">Pillar 7</div>
+          <h2 class="pillar-content-title">Illuminate</h2>
+          <h3 class="pillar-content-subtitle">Insight & Foresight</h3>
+          <p class="pillar-content-description">
+            Illuminate hidden attack surfaces and uncover adversarial intent using advanced model introspection and predictive analytics.
+          </p>
+          <div class="pillar-features-list">
+            <div class="pillar-feature-item">Predictive analytics and forecasting</div>
+            <div class="pillar-feature-item">Proactive defense mechanisms</div>
+            <div class="pillar-feature-item">Future threat visibility</div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+    
+    <div class="scroll-hint">
+      <i class="bi bi-mouse"></i> Scroll to explore each pillar
+    </div>
+  </div>
+</section>
 
   <!-- Why Choose DRISHTI Section -->
   <section class="why-choose-section">
