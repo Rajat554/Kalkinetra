@@ -1921,6 +1921,7 @@ section {
 }
 
 .pillar-content-item {
+    margin-top: 2rem;
   display: none;
   animation: fadeInContent 0.6s ease;
 }
